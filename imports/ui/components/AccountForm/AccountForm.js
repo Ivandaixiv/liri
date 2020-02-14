@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import { Form, Field, FormSpy } from "react-final-form";
 import { FormLabel, TextField, Typography, Button } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-
+import styles from "./styles";
 import { Meteor } from "meteor/meteor";
 import { Accounts } from "meteor/accounts-base";
 
