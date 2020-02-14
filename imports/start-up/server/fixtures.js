@@ -1,9 +1,17 @@
 //Location for dumy data - TEST DATA
 import { Meteor } from "meteor/meteor";
-import { ToDos } from "../../api/todo";
+import { Tasks } from "../../api/tasks";
+import { Pets } from "../../api/pets";
+import { Users } from "../../api/users";
 
 Meteor.startup(() => {
-  if (ToDos.find().count() === 0) {
-    ToDos.insert({ title: "Learn xyz", complete: false });
+  if (Tasks.find().count() === 0) {
+    Tasks.insert({
+      title: "Create a new task",
+      complete: false,
+      creatorId: 1,
+      dueDate: null,
+      tags: "productivity"
+    });
   }
 });
