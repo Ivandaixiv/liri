@@ -1,8 +1,13 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import { Form, Field, FormSpy } from "react-final-form";
+import { FormLabel, TextField, Typography, Button } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
+
 import { Meteor } from "meteor/meteor";
 import { Accounts } from "meteor/accounts-base";
 
-export default class AccountForm extends Component {
+class AccountForm extends Component {
   signup = event => {
     event.preventDefault();
     const username = event.target.username.value;
@@ -24,19 +29,17 @@ export default class AccountForm extends Component {
         console.log(error);
       } else {
         props.setLoggingIn(Meteor.loggingIn());
-        window.location.replace("/stats");
+        history.push("/stats");
       }
     });
   };
-  Accounts.createUser({ username, email, password }, error =>
-    console.log(error)
-  );
-};
+
   render() {
+    const { classes, history } = this.props;
     console.log("Logged In: ", Meteor.userId());
     return (
       <div>
-         <h1 style={{ color: "white" }}>SignUp</h1>
+        <h1 style={{ color: "white" }}>SignUp</h1>
         <form onSubmit={this.signup}>
           <input name="username" placeholder="username" type="text" />
           <input name="email" placeholder="email" type="text" />
@@ -56,3 +59,5 @@ export default class AccountForm extends Component {
     );
   }
 }
+
+export default withRouter(withStyles(styles)(AccountForm));
