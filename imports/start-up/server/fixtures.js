@@ -18,7 +18,7 @@ Meteor.startup(() => {
       }
     });
   }
-
+  // Tasks creatorId and Pets ownerId is not linked to use because of Meteor.accounts
   if (Tasks.find().count() === 0) {
     Tasks.insert({
       title: "Create a new task",
@@ -26,6 +26,16 @@ Meteor.startup(() => {
       creatorId: 1,
       dueDate: null,
       tags: "productivity"
+    });
+  }
+
+  if (Pets.find().count() === 0) {
+    Pets.insert({
+      name: "Pikachu",
+      hp: 100,
+      stage: 1,
+      species: 1,
+      ownerId: 1
     });
   }
 });
