@@ -17,4 +17,4 @@ const Login = ({}) => {
   );
 };
 
-export default withStyles(styles)(Home);
+export default withStyles(styles)(Login);
