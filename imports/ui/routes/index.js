@@ -15,6 +15,8 @@ import AddGoals from "../pages/AddGoals";
 import Friends from "../pages/Friends";
 import Settings from "../pages/Settings";
 import NavBar from "../components/NavBar";
+import Login from "../pages/Login";
+import Focus from "../pages/Focus";
 
 // import FullScreenLoader from "../components/FullScreenLoader";
 
@@ -23,6 +25,8 @@ const Routes = props => {
     <Router>
       <NavBar />
       <Switch>
+        <Route exact path="/focus" component={focus} />
+        <Route exact path="/login" component={Login} />
         <Route exact path="/stats" component={Stats} />
         <Route exact path="/scoreboard" component={Scoreboard} />
         <Route exact path="/calendar" component={Calendar} />
