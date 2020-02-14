@@ -11,6 +11,9 @@ Meteor.startup(() => {
       profile: {
         friends: []
       }
+    });
+  }
+
   if (Tasks.find().count() === 0) {
     Tasks.insert({
       title: "Create a new task",
@@ -19,4 +22,5 @@ Meteor.startup(() => {
       dueDate: null,
       tags: "productivity"
     });
-  });
+  }
+});
