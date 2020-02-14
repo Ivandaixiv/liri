@@ -2,18 +2,7 @@ import React, { Component } from "react";
 import { Accounts } from "meteor/accounts-base";
 import { Meteor } from "meteor/meteor";
 
-export default class AccountsUIWrapper extends Component {
-  signup = event => {
-    event.preventDefault();
-    const username = event.target.username.value;
-    const email = event.target.email.value;
-    const password = event.target.password.value;
-
-    Accounts.createUser({ username, email, password }, error =>
-      console.log(error)
-    );
-  };
-
+export default class AccountForm extends Component {
   login = event => {
     event.preventDefault();
     const username = event.target.username.value;
@@ -33,13 +22,6 @@ export default class AccountsUIWrapper extends Component {
     console.log("Logged In: ", Meteor.userId());
     return (
       <div>
-        <h1 style={{ color: "white" }}>SignUp</h1>
-        <form onSubmit={this.signup}>
-          <input name="username" placeholder="username" type="text" />
-          <input name="email" placeholder="email" type="text" />
-          <input name="password" placeholder="password" type="password" />
-          <button type="submit">Signup</button>
-        </form>
         <h1 style={{ color: "white" }}>Log In</h1>
         <form onSubmit={this.login}>
           <input name="username" placeholder="username" type="text" />
