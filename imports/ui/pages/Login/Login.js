@@ -7,14 +7,7 @@ import AccountForm from "../../components/AccountForm";
 // import PropTypes from "prop-types";
 
 const Login = ({}) => {
-  return (
-    <Grid item xs={12} sm={12} md={6}>
-      <Typography gutterBottom variant="h3">
-        Login Screen
-      </Typography>
-      <AccountForm />
-    </Grid>
-  );
+  return <AccountForm />;
 };
 
 export default Login;
