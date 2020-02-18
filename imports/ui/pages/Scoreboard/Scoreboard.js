@@ -5,6 +5,7 @@ import ScoreboardList from "../../components/ScoreboardList";
 // import PropTypes from "prop-types";
 
 const Scoreboard = ({ classes, users }) => {
+  console.log(users);
   return (
     <Container maxWidth="lg" className={classes.scoreboard}>
       <ScoreboardList friends={users} />
