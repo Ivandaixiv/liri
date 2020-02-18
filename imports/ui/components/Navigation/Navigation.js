@@ -2,6 +2,7 @@ import { withStyles } from "@material-ui/styles";
 import styles from "./styles";
 import {
   Typography,
+  CardMedia,
   AppBar,
   Toolbar,
   IconButton,
@@ -14,7 +15,8 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import ExitIcon from "@material-ui/icons/MeetingRoom";
 import { withRouter } from "react-router-dom";
 
-const Navigation = () => {
+const Navigation = props => {
+  const classes = props;
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -64,7 +66,12 @@ const Navigation = () => {
               <MenuItem onClick={handleClose}>Scoreboard</MenuItem>
             </Menu>
           </div>
-          <Typography variant="h6">Liri Logo Placeholder</Typography>
+
+          <CardMedia
+            className={classes.liri}
+            component="img"
+            image="/liri.png"
+          />
           {auth && (
             <IconButton
               color="secondary"
