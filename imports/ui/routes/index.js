@@ -1,12 +1,7 @@
 import { Meteor } from "meteor/meteor";
 import { withTracker } from "meteor/react-meteor-data";
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Route,
-  Switch
-} from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import Stats from "../pages/Stats";
 import Scoreboard from "../pages/Scoreboard";
 import Calendar from "../pages/Calendar";
@@ -22,11 +17,9 @@ import Focuses from "../pages/Focuses";
 
 const Routes = props => {
   return props.userId ? (
-    <Router>
-      <Navigation />
+    <>
       <Switch>
         <Route exact path="/focus" component={Focuses} />
-        <Route exact path="/login" component={Login} />
         <Route exact path="/stats" component={Stats} />
         <Route exact path="/scoreboard" component={Scoreboard} />
         <Route exact path="/calendar" component={Calendar} />
@@ -36,9 +29,9 @@ const Routes = props => {
         <Route exact path="/settings" component={Settings} />
         <Redirect from="*" to="/stats" />
       </Switch>
-    </Router>
+    </>
   ) : (
-    <FullScreenLoader />
+    <Route exact path="/login" component={Login} />
   );
 };
 
