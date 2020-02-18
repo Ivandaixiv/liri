@@ -1,3 +1,3 @@
-import users from "../../api/users";
-import tasks from "../../api/tasks";
-import pets from "../../api/pets";
+import "../../api/users";
+import "../../api/tasks";
+import "../../api/pets";
