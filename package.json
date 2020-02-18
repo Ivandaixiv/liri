@@ -13,6 +13,7 @@
     "@material-ui/icons": "^4.9.1",
     "@material-ui/styles": "^4.9.0",
     "bcrypt": "^3.0.8",
+    "final-form": "^4.18.7",
     "jquery": "^3.4.1",
     "meteor-node-stubs": "^1.0.0",
     "prop-types": "^15.7.2",

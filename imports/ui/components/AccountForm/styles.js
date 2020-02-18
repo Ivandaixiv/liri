@@ -1,8 +1,10 @@
-import { createStyles } from "@material-ui/styles";
+import { createStyles } from "@material-ui/core";
 
-const styles = () =>
+const styles = ({ theme }) =>
   createStyles({
-    //placeholder
+    textFields: {
+      height: "50px"
+    }
   });
 
 export default styles;
