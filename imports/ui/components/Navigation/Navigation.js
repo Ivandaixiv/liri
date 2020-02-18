@@ -2,6 +2,7 @@ import { withStyles } from "@material-ui/styles";
 import styles from "./styles";
 import {
   Typography,
+  CardMedia,
   AppBar,
   Toolbar,
   IconButton,
@@ -14,7 +15,8 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import ExitIcon from "@material-ui/icons/MeetingRoom";
 import { withRouter } from "react-router-dom";
 
-const Navigation = () => {
+const Navigation = props => {
+  const { classes } = props;
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -31,43 +33,51 @@ const Navigation = () => {
     <div>
       <AppBar position="static" color="primary">
         <Toolbar>
-          <IconButton edge="start" color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6">Liri</Typography>
+          <div>
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleMenu}
+              color="inherit"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right"
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right"
+              }}
+              open={open}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem onClick={handleClose}>Goals</MenuItem>
+              <MenuItem onClick={handleClose}>Calendar</MenuItem>
+              <MenuItem onClick={handleClose}>Scoreboard</MenuItem>
+            </Menu>
+          </div>
+          <CardMedia
+            className={classes.liri}
+            component="img"
+            image="/liri.png"
+          />
           {auth && (
-            <div>
-              <IconButton
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right"
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right"
-                }}
-                open={open}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-              </Menu>
-              <IconButton color="secondary">
-                <ExitIcon onClick={(handleClose, Meteor.logout)} />
-              </IconButton>
-            </div>
+            <IconButton
+              color="secondary"
+              onClick={(handleClose, Meteor.logout)}
+            >
+              <ExitIcon />
+            </IconButton>
           )}
         </Toolbar>
       </AppBar>
