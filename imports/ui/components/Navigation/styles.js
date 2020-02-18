@@ -1,6 +1,6 @@
 import { createStyles } from "@material-ui/styles";
 
-const styles = () => {
+const styles = theme => {
   createStyles({});
 };
 
