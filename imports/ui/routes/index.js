@@ -23,6 +23,8 @@ const Routes = props => {
     <Router>
       <NavBar />
       <Switch>
+        <Route exact path="/focus" component={Focus} />
+        <Route exact path="/login" component={Login} />
         <Route exact path="/stats" component={Stats} />
         <Route exact path="/scoreboard" component={Scoreboard} />
         <Route exact path="/calendar" component={Calendar} />
