@@ -1,9 +1,7 @@
 import React from "react";
 import { Container, withStyles } from "@material-ui/core";
 import { withTracker } from "meteor/react-meteor-data";
-// import styles from "./styles";
 import ScoreboardList from "../../components/ScoreboardList";
-// import PropTypes from "prop-types"
 import { Meteor } from "meteor/meteor";
 
 const Scoreboard = ({ currentUser }) => {

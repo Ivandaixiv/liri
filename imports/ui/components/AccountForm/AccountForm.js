@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-// import { Form, Field, FormSpy } from "react-final-form";
+import { Form, Field } from "react-final-form";
 import {
   FormControl,
-  Grid,
   Input,
-  InputLabelFormLabel,
-  TextField,
+  Grid,
+  InputLabel,
   Typography,
   Button
 } from "@material-ui/core";
@@ -24,54 +23,141 @@ class AccountForm extends Component {
     };
   }
 
-  signup = event => {
-    event.preventDefault();
-    const username = event.target.username.value;
-    const email = event.target.email.value;
-    const password = event.target.password.value;
-
-    Accounts.createUser({ username, email, password }, error =>
-      console.log(error)
-    );
+  validate = values => {
+    const errors = {};
+    if (!values.email) {
+      errors.email = "Required";
+    }
+    if (!values.password) {
+      errors.password = "Required";
+    }
+    return errors;
   };
 
-  login = event => {
-    event.preventDefault();
-    const username = event.target.username.value;
-    const password = event.target.password.value;
+  signup = values => {
+    const { username, password, email } = values;
 
-    Meteor.loginWithPassword(username, password, error => {
+    Accounts.createUser({ username, email, password }, error => {
       if (error) {
-        console.log(error);
-      } else {
-        props.setLoggingIn(Meteor.loggingIn());
-        history.push("/stats");
+        throw new Error(error);
+      }
+    });
+  };
+
+  login = values => {
+    const { email, password } = values;
+
+    Meteor.loginWithPassword(email, password, error => {
+      if (error) {
+        throw new Error(error);
       }
     });
   };
 
   render() {
-    const { classes, history } = this.props;
+    const { classes } = this.props;
     console.log("Logged In: ", Meteor.userId());
     return (
-      <div>
-        <h1 style={{ color: "white" }}>SignUp</h1>
-        <form onSubmit={this.signup}>
-          <input name="username" placeholder="username" type="text" />
-          <input name="email" placeholder="email" type="text" />
-          <input name="password" placeholder="password" type="password" />
-          <button type="submit">Signup</button>
-        </form>
-        <h1 style={{ color: "white" }}>Log In</h1>
-        <form onSubmit={this.login}>
-          <input name="username" placeholder="username" type="text" />
-          {/* <input name="email" placeholder="email" type="text" /> */}
-          <input name="password" placeholder="password" type="password" />
-          <button type="submit">Login</button>
-        </form>
+      <Form
+        onSubmit={values =>
+          !this.state.formToggle ? this.signup(values) : this.login(values)
+        }
+        validate={this.validate}
+        render={({ handleSubmit, pristine, invalid, submitting, form }) => (
+          <form onSubmit={handleSubmit} className={classes.accountForm}>
+            {!this.state.formToggle && (
+              <FormControl fullWidth>
+                <InputLabel htmlFor="fullname">Username</InputLabel>
+                <Field name="username">
+                  {({ input, meta }) => (
+                    <>
+                      <Input
+                        id="username"
+                        type="text"
+                        inputProps={{
+                          ...input,
+                          autoComplete: "off"
+                        }}
+                        value={input.value}
+                      />
 
-        <button onClick={Meteor.logout}>Logout</button>
-      </div>
+                      {meta.touched && meta.error && <span>{meta.error}</span>}
+                    </>
+                  )}
+                </Field>
+              </FormControl>
+            )}
+            <FormControl fullWidth>
+              <InputLabel htmlFor="email">Email</InputLabel>
+              <Field name="email">
+                {({ input, meta }) => (
+                  <>
+                    <Input
+                      id="email"
+                      type="text"
+                      inputProps={{
+                        ...input,
+                        autoComplete: "off"
+                      }}
+                      value={input.value}
+                    />
+                    {meta.touched && meta.error && <span>{meta.error}</span>}
+                  </>
+                )}
+              </Field>
+            </FormControl>
+            <FormControl fullWidth>
+              <InputLabel htmlFor="password">Password</InputLabel>
+              <Field name="password">
+                {({ input, meta }) => (
+                  <Input
+                    id="password"
+                    type="password"
+                    inputProps={{
+                      ...input,
+                      autoComplete: "off"
+                    }}
+                    value={input.value}
+                  />
+                )}
+              </Field>
+            </FormControl>
+            <FormControl>
+              <Grid
+                container
+                direction="row"
+                justify="space-between"
+                alignItems="center"
+              >
+                <Button
+                  type="submit"
+                  variant="contained"
+                  size="large"
+                  color="secondary"
+                  disabled={pristine || invalid}
+                >
+                  {this.state.formToggle ? "Enter" : "Create Account"}
+                </Button>
+                <Typography>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      form.reset();
+                      this.setState({
+                        formToggle: !this.state.formToggle
+                      });
+                    }}
+                  >
+                    {this.state.formToggle
+                      ? "Create an account."
+                      : "Login to existing account."}
+                  </button>
+                </Typography>
+              </Grid>
+            </FormControl>
+          </form>
+        )}
+      />
     );
   }
 }
