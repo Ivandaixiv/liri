@@ -6,6 +6,10 @@ const styles = () =>
       height: "100px",
       width: "50px",
       objectFit: "scale-down"
+    },
+    link: {
+      textDecoration: "none",
+      color: "#212121"
     }
   });
 

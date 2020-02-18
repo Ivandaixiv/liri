@@ -1,3 +1,3 @@
-import StatsContainer from "./Stats";
+import StatsContainer from "./StatsContainer";
 
 export default StatsContainer;

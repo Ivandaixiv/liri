@@ -13,7 +13,7 @@ import React from "react";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import ExitIcon from "@material-ui/icons/MeetingRoom";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
 const Navigation = props => {
   const { classes } = props;
@@ -60,17 +60,27 @@ const Navigation = props => {
               open={open}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
-              <MenuItem onClick={handleClose}>Goals</MenuItem>
-              <MenuItem onClick={handleClose}>Calendar</MenuItem>
-              <MenuItem onClick={handleClose}>Scoreboard</MenuItem>
+              <Link to="/profile" className={classes.link}>
+                <MenuItem onClick={handleClose}>Profile</MenuItem>
+              </Link>
+              <Link to="/goals" className={classes.link}>
+                <MenuItem onClick={handleClose}>Goals</MenuItem>
+              </Link>
+              <Link to="/calendar" className={classes.link}>
+                <MenuItem onClick={handleClose}>Calendar</MenuItem>
+              </Link>
+              <Link to="/scoreboard" className={classes.link}>
+                <MenuItem onClick={handleClose}>Scoreboard</MenuItem>
+              </Link>
             </Menu>
           </div>
-          <CardMedia
-            className={classes.liri}
-            component="img"
-            image="/liri.png"
-          />
+          <Link to="/home">
+            <CardMedia
+              className={classes.liri}
+              component="img"
+              image="/liri.png"
+            />
+          </Link>
           {auth && (
             <IconButton
               color="secondary"
