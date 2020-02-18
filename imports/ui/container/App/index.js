@@ -1,15 +1,14 @@
 import React, { Component } from "react";
-import AppRoutes from "../../../ui/routes";
-import LoginContainer from "../../pages/Login";
+import AppRoutes from "../../routes";
 import { BrowserRouter as Router } from "react-router-dom";
 
 // App component - represents the whole app
 class App extends Component {
   render() {
     return (
-      <div className="container">
+      <Router>
         <AppRoutes />
-      </div>
+      </Router>
     );
   }
 }

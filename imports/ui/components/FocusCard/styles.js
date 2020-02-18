@@ -6,7 +6,7 @@ const styles = () =>
       width: "300px",
       height: "300px",
     },
-    Container: {
+    container: {
         width: "300px"
     }
   });
