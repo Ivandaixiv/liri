@@ -18,6 +18,7 @@ import Focuses from "../pages/Focuses";
 const Routes = props => {
   return props.userId ? (
     <>
+      <Navigation />
       <Switch>
         <Route exact path="/stats" component={Stats} />
         <Route exact path="/focus" component={Focuses} />
