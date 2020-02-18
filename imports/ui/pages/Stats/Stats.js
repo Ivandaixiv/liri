@@ -11,7 +11,6 @@ const Login = ({}) => {
       <Typography variant="h2">Your Stats</Typography>
       <Typography></Typography>
       <img src="../../../src/image/liri.png"></img>
-      <button onClick={Meteor.logout}>Logout</button>
     </div>
   );
 };
