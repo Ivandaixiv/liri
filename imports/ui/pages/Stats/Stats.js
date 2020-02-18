@@ -1,5 +1,4 @@
 import React from "react";
-import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
@@ -7,7 +6,13 @@ import styles from "./styles";
 // import PropTypes from "prop-types";
 
 const Login = ({}) => {
-  return <p>This is the statistics page</p>;
+  return (
+    <div>
+      <Typography variant="h2">Your Stats</Typography>
+      <Typography></Typography>
+      <img src="../../../src/image/liri.png"></img>
+    </div>
+  );
 };
 
 export default withStyles(styles)(Login);
