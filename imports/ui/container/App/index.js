@@ -9,6 +9,7 @@ class App extends Component {
     return (
       <div className="container">
         <AppRoutes />
+        Hello world
       </div>
     );
   }
