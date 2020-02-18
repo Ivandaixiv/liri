@@ -8,7 +8,7 @@ const FullScreenLoader = props => {
   return (
     <div>
       <CardMedia
-        className={classes.card}
+        className={classes.liri}
         component="img"
         image="../../../src/image/liri.png"
       />
