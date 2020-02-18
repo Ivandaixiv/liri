@@ -40,4 +40,4 @@ Scoreboard.propTypes = {
   // onPlayerSelected: React.PropTypes.func
 };
 
-export default withRouter(withStyles(styles)(Scoreboard));
+export default withRouter(Scoreboard);
