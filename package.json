@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.7.6",
-    "@material-ui/core": "^4.9.2",
+    "@material-ui/core": "^4.9.3",
     "bcrypt": "^3.0.8",
     "jquery": "^3.4.1",
     "meteor-node-stubs": "^1.0.0",
@@ -17,6 +17,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-final-form": "^6.3.5",
+    "react-gravatar": "^2.6.3",
     "react-router-dom": "^5.1.2"
   },
   "meteor": {
