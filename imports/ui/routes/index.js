@@ -16,7 +16,7 @@ import Friends from "../pages/Friends";
 import Settings from "../pages/Settings";
 import NavBar from "../components/NavBar";
 import Login from "../pages/Login";
-import Focus from "../pages/Focus";
+import Focuses from "../pages/Focuses";
 
 // import FullScreenLoader from "../components/FullScreenLoader";
 
@@ -25,7 +25,7 @@ const Routes = props => {
     <Router>
       <NavBar />
       <Switch>
-        <Route exact path="/focus" component={Focus} />
+        <Route exact path="/focus" component={Focuses} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/stats" component={Stats} />
         <Route exact path="/scoreboard" component={Scoreboard} />
