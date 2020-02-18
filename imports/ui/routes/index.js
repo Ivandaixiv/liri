@@ -14,15 +14,19 @@ import Goals from "../pages/Goals";
 import AddGoals from "../pages/AddGoals";
 import Friends from "../pages/Friends";
 import Settings from "../pages/Settings";
-import NavBar from "../components/NavBar";
+import Navigation from "../components/Navigation";
+import Login from "../pages/Login";
+import Focuses from "../pages/Focuses";
 
 // import FullScreenLoader from "../components/FullScreenLoader";
 
 const Routes = props => {
   return props.userId ? (
     <Router>
-      <NavBar />
+      <Navigation />
       <Switch>
+        <Route exact path="/focus" component={Focuses} />
+        <Route exact path="/login" component={Login} />
         <Route exact path="/stats" component={Stats} />
         <Route exact path="/scoreboard" component={Scoreboard} />
         <Route exact path="/calendar" component={Calendar} />
