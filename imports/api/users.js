@@ -1,6 +1,15 @@
 import { Meteor } from "meteor/meteor";
 
 Meteor.methods({
+  "user.findFriend"() {
+    if (Meteor.userId()) {
+      const userIds = Meteor.users
+        .find({})
+        .fetch()
+        .map(user => user.friends);
+      return userIds;
+    }
+  },
   // Method to add friends
   "user.addFriend"(friendUserId) {
     if (!friendUserId) {

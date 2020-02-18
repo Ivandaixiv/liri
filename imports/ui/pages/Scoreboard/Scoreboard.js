@@ -1,17 +1,23 @@
 import React from "react";
 import { Container, withStyles } from "@material-ui/core";
-import styles from "./styles";
+import { withTracker } from "meteor/react-meteor-data";
+// import styles from "./styles";
 import ScoreboardList from "../../components/ScoreboardList";
-// import PropTypes from "prop-types";
+// import PropTypes from "prop-types"
+import { Meteor } from "meteor/meteor";
 
-const Scoreboard = ({ classes, users }) => {
-  console.log(users);
-  console.log(classes);
+const Scoreboard = ({ currentUser }) => {
+  Meteor.call("user.findFriend");
+
   return (
-    <Container maxWidth="lg" className={classes.scoreboard}>
-      <ScoreboardList friends={users} />
+    <Container maxWidth="lg" className="scoreboard-container">
+      {/* <ScoreboardList user={currentUser} /> */}
     </Container>
   );
 };
 
-export default withStyles(styles)(Scoreboard);
+export default withTracker(() => {
+  return {
+    currentUser: Meteor.user()
+  };
+})(Scoreboard);
