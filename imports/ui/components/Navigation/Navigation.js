@@ -64,7 +64,6 @@ const Navigation = () => {
               <MenuItem onClick={handleClose}>Scoreboard</MenuItem>
             </Menu>
           </div>
-          <Typography variant="h6">Liri Logo Placeholder</Typography>
           {auth && (
             <IconButton color="secondary">
               <ExitIcon onClick={(handleClose, Meteor.logout)} />
