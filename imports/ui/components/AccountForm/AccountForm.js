@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-// import { Form, Field, FormSpy } from "react-final-form";
+import { Form, Field } from "react-final-form";
 import {
   FormControl,
-  Grid,
   Input,
-  InputLabelFormLabel,
+  Grid,
+  InputLabel,
   TextField,
   Typography,
   Button
@@ -23,6 +23,17 @@ class AccountForm extends Component {
       error: null
     };
   }
+
+  validate = values => {
+    const errors = {};
+    if (!values.email) {
+      errors.email = "Required";
+    }
+    if (!values.password) {
+      errors.password = "Required";
+    }
+    return errors;
+  };
 
   signup = event => {
     event.preventDefault();
@@ -54,26 +65,108 @@ class AccountForm extends Component {
     const { classes, history } = this.props;
     console.log("Logged In: ", Meteor.userId());
     return (
-      <div>
-        <h1 style={{ color: "white" }}>SignUp</h1>
-        <form onSubmit={this.signup}>
-          <input name="username" placeholder="username" type="text" />
-          <input name="email" placeholder="email" type="text" />
-          <input name="password" placeholder="password" type="password" />
-          <button type="submit">Signup</button>
-        </form>
-        <h1 style={{ color: "white" }}>Log In</h1>
-        <form onSubmit={this.login}>
-          <input name="username" placeholder="username" type="text" />
-          {/* <input name="email" placeholder="email" type="text" /> */}
-          <input name="password" placeholder="password" type="password" />
-          <button type="submit">Login</button>
-        </form>
-
-        <button onClick={Meteor.logout}>Logout</button>
-      </div>
+      <Form
+        onSubmit={values => {
+          const username = { variables: { username: values } };
+          this.state.formToggle
+            ? Meteor.loginWithPassword
+            : signupMutation(user).catch(error => this.setState({ error }));
+        }}
+        validate={this.validate}
+        render={({ handleSubmit, pristine, invalid, submitting, form }) => (
+          <form onSubmit={handleSubmit} className={classes.accountForm}>
+            {!this.state.formToggle && (
+              <FormControl fullWidth className={classes.formControl}>
+                <InputLabel htmlFor="fullname">Username</InputLabel>
+                <Field name="username">
+                  {({ input, meta }) => (
+                    <Input
+                      id="username"
+                      type="text"
+                      inputProps={{
+                        ...input,
+                        autoComplete: "off"
+                      }}
+                      value={input.value}
+                    />
+                  )}
+                </Field>
+              </FormControl>
+            )}
+            <FormControl fullWidth className={classes.formControl}>
+              <InputLabel htmlFor="email">Email</InputLabel>
+              <Field name="email">
+                {({ input, meta }) => (
+                  <Input
+                    id="email"
+                    type="text"
+                    inputProps={{
+                      ...input,
+                      autoComplete: "off"
+                    }}
+                    value={input.value}
+                  />
+                )}
+              </Field>
+            </FormControl>
+            <FormControl fullWidth className={classes.formControl}>
+              <InputLabel htmlFor="password">Password</InputLabel>
+              <Field name="password">
+                {({ input, meta }) => (
+                  <Input
+                    id="password"
+                    type="password"
+                    inputProps={{
+                      ...input,
+                      autoComplete: "off"
+                    }}
+                    value={input.value}
+                  />
+                )}
+              </Field>
+            </FormControl>
+            <FormControl className={classes.formControl}>
+              <Grid
+                container
+                direction="row"
+                justify="space-between"
+                alignItems="center"
+              >
+                <Button
+                  type="submit"
+                  className={classes.formButton}
+                  variant="contained"
+                  size="large"
+                  color="secondary"
+                  disabled={pristine || invalid}
+                >
+                  {this.state.formToggle ? "Enter" : "Create Account"}
+                </Button>
+                <Typography>
+                  <button
+                    className={classes.formToggle}
+                    type="button"
+                    onClick={() => {
+                      form.reset();
+                      this.setState({
+                        formToggle: !this.state.formToggle
+                      });
+                    }}
+                  >
+                    {this.state.formToggle
+                      ? "Create an account."
+                      : "Login to existing account."}
+                  </button>
+                </Typography>
+              </Grid>
+            </FormControl>
+          </form>
+        )}
+      />
     );
   }
 }
+
+//     <button onClick={Meteor.logout}>Logout</button>
 
 export default withRouter(withStyles(styles)(AccountForm));
