@@ -14,13 +14,9 @@ import Goals from "../pages/Goals";
 import AddGoals from "../pages/AddGoals";
 import Friends from "../pages/Friends";
 import Settings from "../pages/Settings";
-<<<<<<< HEAD
-import NavBar from "../components/NavBar";
+import Navigation from "../components/Navigation";
 import Login from "../pages/Login";
 import Focuses from "../pages/Focuses";
-=======
-import Navigation from "../components/Navigation";
->>>>>>> master
 
 // import FullScreenLoader from "../components/FullScreenLoader";
 
