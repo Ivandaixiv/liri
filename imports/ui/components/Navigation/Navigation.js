@@ -66,8 +66,11 @@ const Navigation = () => {
           </div>
           <Typography variant="h6">Liri Logo Placeholder</Typography>
           {auth && (
-            <IconButton color="secondary">
-              <ExitIcon onClick={(handleClose, Meteor.logout)} />
+            <IconButton
+              color="secondary"
+              onClick={(handleClose, Meteor.logout)}
+            >
+              <ExitIcon />
             </IconButton>
           )}
         </Toolbar>
