@@ -6,7 +6,6 @@ import Stats from "../pages/Stats";
 import Scoreboard from "../pages/Scoreboard";
 import Calendar from "../pages/Calendar";
 import Goals from "../pages/Goals";
-import AddGoals from "../pages/AddGoals";
 import Friends from "../pages/Friends";
 import Settings from "../pages/Settings";
 import Navigation from "../components/Navigation";
@@ -20,14 +19,12 @@ const Routes = props => {
     <>
       <Navigation />
       <Switch>
-        <Route exact path="/stats" component={Stats} />
+        <Route exact path="/home" component={Stats} />
         <Route exact path="/focus" component={Focuses} />
         <Route exact path="/scoreboard" component={Scoreboard} />
         <Route exact path="/calendar" component={Calendar} />
         <Route exact path="/goals" component={Goals} />
-        <Route exact path="/addgoals" component={AddGoals} />
-        <Route exact path="/friends" component={Friends} />
-        <Route exact path="/settings" component={Settings} />
+        <Route exact path="/profile" component={Profile} />
         <Redirect from="*" to="/stats" />
       </Switch>
     </>
