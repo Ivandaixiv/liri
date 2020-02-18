@@ -15,14 +15,15 @@ class Scoreboard extends Component {
     return (
       <List>
         {this.props.users.map(user => {
+          console.log(user);
           return (
-            <div className={classes.ListItem}>
+            <div className={classes.listItem}>
               <Gravatar email={user.email} />
               <ListItem
                 key={user._id}
                 primaryText={user.name}
                 onClick={this.selectFriend.bind(this, user._id)}
-                secondaryText={"Current score: " + user.streak}
+                secondaryText={"Current streak: " + user.streak}
                 style={style}
               />
               <ListDivider />
@@ -34,10 +35,10 @@ class Scoreboard extends Component {
   }
 }
 
-Scoreboard.propTypes = {
-  selectedUserId: React.PropTypes.string,
-  users: React.PropTypes.array
-  // onPlayerSelected: React.PropTypes.func
-};
+// Scoreboard.propTypes = {
+//   selectedUserId: React.PropTypes.string,
+//   users: React.PropTypes.array
+//   // onPlayerSelected: React.PropTypes.func
+// };
 
 export default withRouter(Scoreboard);
