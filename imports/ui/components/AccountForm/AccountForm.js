@@ -6,7 +6,6 @@ import {
   Input,
   Grid,
   InputLabel,
-  TextField,
   Typography,
   Button
 } from "@material-ui/core";
@@ -35,53 +34,66 @@ class AccountForm extends Component {
     return errors;
   };
 
-  signup = event => {
-    event.preventDefault();
-    const username = event.target.username.value;
-    const email = event.target.email.value;
-    const password = event.target.password.value;
+  signup = values => {
+    const { username, password, email } = values;
 
-    Accounts.createUser({ username, email, password }, error =>
-      console.log(error)
-    );
+    Accounts.createUser({ username, email, password }, error => {
+      if (error) {
+        throw new Error(error);
+      }
+    });
   };
 
-  login = event => {
-    event.preventDefault();
-    const username = event.target.username.value;
-    const password = event.target.password.value;
+  login = values => {
+    const { email, password } = values;
 
-    Meteor.loginWithPassword(username, password, error => {
+    Meteor.loginWithPassword(email, password, error => {
       if (error) {
-        console.log(error);
-      } else {
-        props.setLoggingIn(Meteor.loggingIn());
-        history.push("/stats");
+        throw new Error(error);
       }
     });
   };
 
   render() {
-    const { classes, history } = this.props;
+    const { classes } = this.props;
     console.log("Logged In: ", Meteor.userId());
     return (
       <Form
-        onSubmit={values => {
-          const username = { variables: { username: values } };
-          this.state.formToggle
-            ? Meteor.loginWithPassword
-            : signupMutation(user).catch(error => this.setState({ error }));
-        }}
+        onSubmit={values =>
+          !this.state.formToggle ? this.signup(values) : this.login(values)
+        }
         validate={this.validate}
         render={({ handleSubmit, pristine, invalid, submitting, form }) => (
           <form onSubmit={handleSubmit} className={classes.accountForm}>
             {!this.state.formToggle && (
-              <FormControl fullWidth className={classes.formControl}>
+              <FormControl fullWidth>
                 <InputLabel htmlFor="fullname">Username</InputLabel>
                 <Field name="username">
                   {({ input, meta }) => (
+                    <>
+                      <Input
+                        id="username"
+                        type="text"
+                        inputProps={{
+                          ...input,
+                          autoComplete: "off"
+                        }}
+                        value={input.value}
+                      />
+
+                      {meta.touched && meta.error && <span>{meta.error}</span>}
+                    </>
+                  )}
+                </Field>
+              </FormControl>
+            )}
+            <FormControl fullWidth>
+              <InputLabel htmlFor="email">Email</InputLabel>
+              <Field name="email">
+                {({ input, meta }) => (
+                  <>
                     <Input
-                      id="username"
+                      id="email"
                       type="text"
                       inputProps={{
                         ...input,
@@ -89,27 +101,12 @@ class AccountForm extends Component {
                       }}
                       value={input.value}
                     />
-                  )}
-                </Field>
-              </FormControl>
-            )}
-            <FormControl fullWidth className={classes.formControl}>
-              <InputLabel htmlFor="email">Email</InputLabel>
-              <Field name="email">
-                {({ input, meta }) => (
-                  <Input
-                    id="email"
-                    type="text"
-                    inputProps={{
-                      ...input,
-                      autoComplete: "off"
-                    }}
-                    value={input.value}
-                  />
+                    {meta.touched && meta.error && <span>{meta.error}</span>}
+                  </>
                 )}
               </Field>
             </FormControl>
-            <FormControl fullWidth className={classes.formControl}>
+            <FormControl fullWidth>
               <InputLabel htmlFor="password">Password</InputLabel>
               <Field name="password">
                 {({ input, meta }) => (
@@ -125,7 +122,7 @@ class AccountForm extends Component {
                 )}
               </Field>
             </FormControl>
-            <FormControl className={classes.formControl}>
+            <FormControl>
               <Grid
                 container
                 direction="row"
@@ -134,7 +131,6 @@ class AccountForm extends Component {
               >
                 <Button
                   type="submit"
-                  className={classes.formButton}
                   variant="contained"
                   size="large"
                   color="secondary"
@@ -144,7 +140,6 @@ class AccountForm extends Component {
                 </Button>
                 <Typography>
                   <button
-                    className={classes.formToggle}
                     type="button"
                     onClick={() => {
                       form.reset();
@@ -166,7 +161,5 @@ class AccountForm extends Component {
     );
   }
 }
-
-//     <button onClick={Meteor.logout}>Logout</button>
 
 export default withRouter(withStyles(styles)(AccountForm));
