@@ -18,9 +18,10 @@ import Focuses from "../pages/Focuses";
 const Routes = props => {
   return props.userId ? (
     <>
+      <Navigation />
       <Switch>
-        <Route exact path="/focus" component={Focuses} />
         <Route exact path="/stats" component={Stats} />
+        <Route exact path="/focus" component={Focuses} />
         <Route exact path="/scoreboard" component={Scoreboard} />
         <Route exact path="/calendar" component={Calendar} />
         <Route exact path="/goals" component={Goals} />
@@ -31,7 +32,10 @@ const Routes = props => {
       </Switch>
     </>
   ) : (
-    <Route exact path="/login" component={Login} />
+    <Switch>
+      <Route exact path="/login" component={Login} />
+      <Redirect from="*" to="/login" />
+    </Switch>
   );
 };
 
