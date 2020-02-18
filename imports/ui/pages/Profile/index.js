@@ -1,3 +1,3 @@
-import FocusesContainer from './FocusesContainer';
+import ProfileContainer from "./ProfileContainer";
 
-export default FocusesContainer;
+export default ProfileContainer;
