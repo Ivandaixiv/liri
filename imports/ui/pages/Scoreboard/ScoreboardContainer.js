@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import Scoreboard from "./Scoreboard";
 
-class LoginContainer extends Component {
+class ScoreboardContainer extends Component {
   render() {
-    return <Scoreboard />;
+    return (
+      <div className="scoreboard-container">
+        <Scoreboard />;
+      </div>
+    );
   }
 }
-export default LoginContainer;
+export default ScoreboardContainer;
