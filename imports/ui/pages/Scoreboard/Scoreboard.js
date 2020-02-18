@@ -6,6 +6,7 @@ import ScoreboardList from "../../components/ScoreboardList";
 
 const Scoreboard = ({ classes, users }) => {
   console.log(users);
+  console.log(classes);
   return (
     <Container maxWidth="lg" className={classes.scoreboard}>
       <ScoreboardList friends={users} />
