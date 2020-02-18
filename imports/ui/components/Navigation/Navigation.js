@@ -11,15 +11,13 @@ import {
 import React from "react";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
+import ExitIcon from "@material-ui/icons/MeetingRoom";
+import { withRouter } from "react-router-dom";
 
 const Navigation = () => {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-
-  const handleChange = event => {
-    setAuth(event.target.checked);
-  };
 
   const handleMenu = event => {
     setAnchorEl(event.currentTarget);
@@ -31,7 +29,7 @@ const Navigation = () => {
 
   return (
     <div>
-      <AppBar position="static">
+      <AppBar position="static" color="primary">
         <Toolbar>
           <IconButton edge="start" color="inherit" aria-label="menu">
             <MenuIcon />
@@ -65,10 +63,10 @@ const Navigation = () => {
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={(handleClose, Meteor.logout)}>
-                  Logout
-                </MenuItem>
               </Menu>
+              <IconButton color="secondary">
+                <ExitIcon onClick={(handleClose, Meteor.logout)} />
+              </IconButton>
             </div>
           )}
         </Toolbar>
@@ -77,4 +75,4 @@ const Navigation = () => {
   );
 };
 
-export default withStyles(styles)(Navigation);
+export default withRouter(withStyles(styles)(Navigation));
