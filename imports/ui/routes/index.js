@@ -14,7 +14,13 @@ import Goals from "../pages/Goals";
 import AddGoals from "../pages/AddGoals";
 import Friends from "../pages/Friends";
 import Settings from "../pages/Settings";
+<<<<<<< HEAD
+import NavBar from "../components/NavBar";
+import Login from "../pages/Login";
+import Focuses from "../pages/Focuses";
+=======
 import Navigation from "../components/Navigation";
+>>>>>>> master
 
 // import FullScreenLoader from "../components/FullScreenLoader";
 
@@ -23,7 +29,7 @@ const Routes = props => {
     <Router>
       <Navigation />
       <Switch>
-        <Route exact path="/focus" component={Focus} />
+        <Route exact path="/focus" component={Focuses} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/stats" component={Stats} />
         <Route exact path="/scoreboard" component={Scoreboard} />
