@@ -1,6 +1,5 @@
 import React from "react";
 import { Container, withStyles } from "@material-ui/core";
-import styles from "./styles";
 import ScoreboardList from "../../components/ScoreboardList";
 // import PropTypes from "prop-types";
 
@@ -14,4 +13,4 @@ const Scoreboard = ({ classes, users }) => {
   );
 };
 
-export default withStyles(styles)(Scoreboard);
+export default Scoreboard;
