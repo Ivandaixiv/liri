@@ -5,7 +5,7 @@ import FocusCard from '../../components/FocusCard';
 const Focuses = ({ focuses }) => {
   return (
     <div>
-      <FocusCard focuses={focuses}/>
+      <FocusCard />
     </div>
   );
 };
