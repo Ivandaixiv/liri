@@ -21,7 +21,7 @@ const Routes = props => {
         <Route exact path="/home" component={Stats} />
         <Route exact path="/focus" component={Focuses} />
         <Route exact path="/scoreboard" component={Scoreboard} />
-        <Redirect from="*" to="/stats" />
+        <Redirect from="*" to="/home" />
       </Switch>
     </>
   ) : (

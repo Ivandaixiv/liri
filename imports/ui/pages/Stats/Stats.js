@@ -5,7 +5,7 @@ import styles from "./styles";
 // import AccountForm
 // import PropTypes from "prop-types";
 
-const Login = ({}) => {
+const Stats = ({}) => {
   return (
     <div>
       <Typography variant="h2">Your Stats</Typography>
@@ -16,4 +16,4 @@ const Login = ({}) => {
   );
 };
 
-export default withStyles(styles)(Login);
+export default withStyles(styles)(Stats);
