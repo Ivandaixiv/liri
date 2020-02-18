@@ -35,8 +35,8 @@ class Scoreboard extends Component {
 }
 
 Scoreboard.propTypes = {
-  selectedUserId: React.PropTypes.string,
-  users: React.PropTypes.array
+  //   selectedUserId: React.PropTypes.string,
+  //   users: React.PropTypes.array
   // onPlayerSelected: React.PropTypes.func
 };
 
