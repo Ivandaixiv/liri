@@ -16,7 +16,7 @@ import ExitIcon from "@material-ui/icons/MeetingRoom";
 import { withRouter } from "react-router-dom";
 
 const Navigation = props => {
-  const classes = props;
+  const { classes } = props;
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -66,7 +66,6 @@ const Navigation = props => {
               <MenuItem onClick={handleClose}>Scoreboard</MenuItem>
             </Menu>
           </div>
-
           <CardMedia
             className={classes.liri}
             component="img"
