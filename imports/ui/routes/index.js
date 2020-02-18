@@ -15,8 +15,6 @@ import AddGoals from "../pages/AddGoals";
 import Friends from "../pages/Friends";
 import Settings from "../pages/Settings";
 import NavBar from "../components/NavBar";
-import Login from "../pages/Login";
-import Focus from "../pages/Focus";
 
 // import FullScreenLoader from "../components/FullScreenLoader";
 
