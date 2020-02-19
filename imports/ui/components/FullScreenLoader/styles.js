@@ -2,12 +2,16 @@ import { createStyles } from "@material-ui/styles";
 
 const styles = () =>
   createStyles({
-    card: {
-      width: "300px",
-      height: "300px",
+    liri: {
+        height: "800px",
+        width: "400px",
     },
     container: {
-        width: "300px"
+    },
+    loading: {
+        width: "300px",
+    },
+    text: {
     }
   });
 export default styles;

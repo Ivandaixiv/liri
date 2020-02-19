@@ -5,14 +5,15 @@ import styles from "./styles";
 // import AccountForm
 // import PropTypes from "prop-types";
 
-const Login = ({}) => {
+const Stats = ({}) => {
   return (
     <div>
       <Typography variant="h2">Your Stats</Typography>
       <Typography></Typography>
       <img src="../../../src/image/liri.png"></img>
+      <button onClick={Meteor.logout}>Logout</button>
     </div>
   );
 };
 
-export default withStyles(styles)(Login);
+export default withStyles(styles)(Stats);

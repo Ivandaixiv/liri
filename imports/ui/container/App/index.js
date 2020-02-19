@@ -1,19 +1,19 @@
 import React, { Component } from "react";
-import AppRoutes from "../../../ui/routes";
-import LoginContainer from "../../pages/Login";
-import Router from "react-router-dom";
+import AppRoutes from "../../routes";
+import { BrowserRouter as Router } from "react-router-dom";
+import theme from "../../theme";
+import { ThemeProvider } from "@material-ui/core";
+import AccountForm from "../../components/AccountForm";
 
 // App component - represents the whole app
 class App extends Component {
   render() {
     return (
-      <div className="container">
-        <AppRoutes />
-        {/* <Router> */}
-        {/* <LoginContainer /> */}
-        Hello
-        {/* </Router> */}
-      </div>
+      <ThemeProvider theme={theme}>
+        <Router>
+          <AppRoutes />
+        </Router>
+      </ThemeProvider>
     );
   }
 }

@@ -15,15 +15,25 @@ import {
 const FocusCard = ({ classes }) => {
   return (
     <div>
-      <Typography variant="h3">Focus</Typography>
-      <Card className={classes.container}>
-        <CardMedia
-          className={classes.card}
-          component="img"
-          image="https://www.fillmurray.com/300/300"
-        />
-      </Card>
-      {console.log("test")};
+      <Button
+        color="primary"
+        onClick={() => {
+          console.log("Button is clicked");
+        }}
+      >
+        <Card className={classes.container}>
+        <Typography variant="h4">Fitness</Typography>
+          <CardMedia
+            className={classes.card}
+            component="img"
+            image="https://cdn2.iconfinder.com/data/icons/fitness-and-sports/100/Fitnes-13-512.png"
+          />
+          <Typography variant="body2" color="textSecondary" component="p">
+            Praesent et lectus ultricies, convallis odio in, auctor erat. Nunc
+            ut lobortis nunc. In at semper justo, at hendrerit dui.
+          </Typography>
+        </Card>
+      </Button>
     </div>
   );
 };

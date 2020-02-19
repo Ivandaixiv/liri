@@ -5,8 +5,8 @@ import { Tasks } from "../../api/tasks";
 import { Pets } from "../../api/pets";
 
 Meteor.startup(() => {
-  if (Meteor.users.find().count() === 0) {
-    user = Accounts.createUser({
+  if (Meteor.users.find({}).count() === 0) {
+    Accounts.createUser({
       username: "user1",
       email: "a@a.com",
       password: "a",
