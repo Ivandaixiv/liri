@@ -12,8 +12,8 @@ import {
 import React from "react";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import ExitIcon from "@material-ui/icons/MeetingRoom";
-import { withRouter, Link } from "react-router-dom";
+import ExitIcon from "@material-ui/icons/PowerSettingsNew";
+import { withRouter, Link, NavLink } from "react-router-dom";
 
 const Navigation = props => {
   const { classes } = props;
@@ -60,8 +60,11 @@ const Navigation = props => {
               open={open}
               onClose={handleClose}
             >
-              <Link to="/profile" className={classes.link}>
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <Typography variant="h5" className={classes.menu}>
+                Menu
+              </Typography>
+              <Link to="/home" className={classes.link}>
+                <MenuItem onClick={handleClose}>Home</MenuItem>
               </Link>
               <Link to="/goals" className={classes.link}>
                 <MenuItem onClick={handleClose}>Goals</MenuItem>
@@ -73,9 +76,16 @@ const Navigation = props => {
                 <MenuItem onClick={handleClose}>Scoreboard</MenuItem>
               </Link>
             </Menu>
-            <Typography className={classes.titleText} variant="h5">
-              LIRI
-            </Typography>
+
+            <Link to="/home" className={classes.link}>
+              <Typography
+                color="secondary"
+                className={classes.titleText}
+                variant="h5"
+              >
+                LIRI
+              </Typography>
+            </Link>
           </div>
           <Link to="/home">
             <CardMedia
@@ -84,14 +94,21 @@ const Navigation = props => {
               image="/liri.png"
             />
           </Link>
-          {auth && (
-            <IconButton
-              color="secondary"
-              onClick={(handleClose, Meteor.logout)}
-            >
-              <ExitIcon />
-            </IconButton>
-          )}
+          <div>
+            <NavLink to="/profile">
+              <IconButton className={classes.link}>
+                <AccountCircle color="secondary" />
+              </IconButton>
+            </NavLink>
+            {auth && (
+              <IconButton
+                color="secondary"
+                onClick={(handleClose, Meteor.logout)}
+              >
+                <ExitIcon />
+              </IconButton>
+            )}
+          </div>
         </Toolbar>
       </AppBar>
     </div>
