@@ -32,8 +32,8 @@ const Navigation = props => {
   return (
     <div>
       <AppBar position="static" color="primary">
-        <Toolbar>
-          <div>
+        <Toolbar className={classes.toolbar}>
+          <div className={classes.title}>
             <IconButton
               edge="start"
               color="inherit"
@@ -73,6 +73,9 @@ const Navigation = props => {
                 <MenuItem onClick={handleClose}>Scoreboard</MenuItem>
               </Link>
             </Menu>
+            <Typography className={classes.titleText} variant="h5">
+              LIRI
+            </Typography>
           </div>
           <Link to="/home">
             <CardMedia
