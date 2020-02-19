@@ -1,20 +1,29 @@
 import { Meteor } from "meteor/meteor";
 
+export const Users = Meteor.users;
+
 if (Meteor.isServer) {
-  Meteor.publish("users", function usersPublication() {
-    return Meteor.users.find(
-      {},
-      { fields: { profile: 1, username: 1, email: 1 } }
-    );
+  Meteor.publish("user", function userPublication() {
+    return Users.find({ _id: this.userId });
   });
 }
+
 Meteor.methods({
-  // "user.findFriend"() {
-  //   if (Meteor.userId()) {
-  //     const userIds = Meteor.user()?.profile?.friends;
-  //     return userIds;
-  //   }
-  // },
+  "user.newAccount"(userId) {
+    Meteor.users.update(userId, {
+      $set: { tasksCompleted: 0, focuses: [], streak: 1, exp: 100 }
+    });
+  },
+
+  "user.findFriend"() {
+    if (Meteor.userId()) {
+      const userIds = Meteor.users
+        .find({})
+        .fetch()
+        .map(user => user.friends);
+      return userIds;
+    }
+  },
   // Method to add friends
   "user.addFriend"(username) {
     if (!username) {
