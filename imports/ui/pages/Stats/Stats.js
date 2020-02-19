@@ -2,14 +2,15 @@ import React from "react";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
-// import AccountForm
+import { withTracker } from "meteor/react-meteor-data";
 // import PropTypes from "prop-types";
 
 const Stats = props => {
-  const { classes } = props;
+  const { classes, user } = props;
+  console.log(props);
   return (
     <div className={classes.statsContainer}>
-      <Typography variant="h3">Your Stats</Typography>
+      <Typography variant="h3">{user && user.username}'s stats</Typography>
       <Typography>Account Age Placeholder</Typography>
       <div>
         <Typography>Stats 1 Placeholder</Typography>
@@ -20,4 +21,8 @@ const Stats = props => {
   );
 };
 
-export default withStyles(styles)(Stats);
+export default withTracker(() => {
+  return {
+    user: Meteor.user()
+  };
+})(withStyles(styles)(Stats));
