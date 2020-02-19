@@ -5,6 +5,7 @@ import styles from "./styles";
 import { withTracker } from "meteor/react-meteor-data";
 import { Users } from "../../../api/users";
 import moment from "moment";
+import { Meteor } from "meteor/meteor";
 // import PropTypes from "prop-types";
 
 const Stats = props => {
@@ -44,6 +45,7 @@ export default withTracker(() => {
   Meteor.subscribe("user");
 
   return {
+    userId: Meteor.userId(),
     user: Users.find({}).fetch()
   };
 })(withStyles(styles)(Stats));

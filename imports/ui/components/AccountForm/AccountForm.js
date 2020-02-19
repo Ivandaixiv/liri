@@ -45,6 +45,7 @@ class AccountForm extends Component {
       }
       if (Meteor.user()) {
         Meteor.call("user.newAccount", Meteor.userId());
+        Meteor.call("pets.addPet");
       }
     });
   };
