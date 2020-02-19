@@ -5,13 +5,17 @@ import styles from "./styles";
 // import AccountForm
 // import PropTypes from "prop-types";
 
-const Stats = ({}) => {
+const Stats = props => {
+  const { classes } = props;
   return (
-    <div>
-      <Typography variant="h2">Your Stats</Typography>
-      <Typography></Typography>
-      <img src="../../../src/image/liri.png"></img>
-      <button onClick={Meteor.logout}>Logout</button>
+    <div className={classes.statsContainer}>
+      <Typography variant="h3">Your Stats</Typography>
+      <Typography>Account Age Placeholder</Typography>
+      <div>
+        <Typography>Stats 1 Placeholder</Typography>
+        <Typography>Stats 2 Placeholder</Typography>
+      </div>
+      <img src="/liri.png" className={classes.liri}></img>
     </div>
   );
 };
