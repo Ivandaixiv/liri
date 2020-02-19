@@ -10,6 +10,9 @@ import {
 } from "@material-ui/core";
 import styles from "./styles";
 import { withStyles } from "@material-ui/styles";
+import AddCircleOutlineOutlinedIcon from "@material-ui/icons/AddCircleOutlineOutlined";
+import DoneIcon from "@material-ui/icons/Done";
+import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import moment from "moment";
 
 class TaskCard extends Component {
@@ -27,7 +30,12 @@ class TaskCard extends Component {
           </div>
           <br />
           <Divider />
-          {/* <span>{tasks && moment(tasks.created).fromNow()}</span> */}
+          <div className={classes.split}>
+            {task && moment(task.created).fromNow()}
+            <DoneIcon />
+            <DeleteOutlineIcon />
+            <AddCircleOutlineOutlinedIcon />
+          </div>
         </CardContent>
       </Card>
     );

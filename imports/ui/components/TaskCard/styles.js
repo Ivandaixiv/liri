@@ -5,15 +5,15 @@ const styles = () =>
     card: {
       display: "flex",
       paddingTop: "20px",
-      width: "88.5vw",
-      height: "15vw"
+      width: "80vw",
+      height: "10vw"
     },
     pad: {
       padding: "20"
     },
-    buttonSplit: {
-      display: "grid",
-      gridTemplateColumns: "1fr 1fr"
+    split: {
+      display: "flex",
+      justifyContent: "space-between"
     },
     gravatar: {
       borderRadius: "50%"
