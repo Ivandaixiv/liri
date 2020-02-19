@@ -1,22 +1,5 @@
 import { Meteor } from "meteor/meteor";
 
-<<<<<<< HEAD
-if (Meteor.isServer) {
-  Meteor.publish("users", function usersPublication() {
-    return Meteor.users.find(
-      {},
-      { fields: { profile: 1, username: 1, email: 1 } }
-    );
-  });
-}
-Meteor.methods({
-  // "user.findFriend"() {
-  //   if (Meteor.userId()) {
-  //     const userIds = Meteor.user()?.profile?.friends;
-  //     return userIds;
-  //   }
-  // },
-=======
 export const Users = Meteor.users;
 
 if (Meteor.isServer) {
@@ -39,7 +22,6 @@ Meteor.methods({
       return userIds;
     }
   },
->>>>>>> id-statistics-page
   // Method to add friends
   "user.addFriend"(username) {
     if (!username) {
