@@ -17,6 +17,28 @@ Meteor.startup(() => {
         friends: []
       }
     });
+    Accounts.createUser({
+      username: "user2",
+      email: "b@b.com",
+      password: "a",
+      mainFocus: "Fitness",
+      streak: 1,
+      exp: 100,
+      profile: {
+        friends: []
+      }
+    });
+    Accounts.createUser({
+      username: "user3",
+      email: "c@c.com",
+      password: "a",
+      mainFocus: "Fitness",
+      streak: 1,
+      exp: 100,
+      profile: {
+        friends: []
+      }
+    });
   }
   // Tasks creatorId and Pets ownerId is not linked to use because of Meteor.accounts
   if (Tasks.find().count() === 0) {

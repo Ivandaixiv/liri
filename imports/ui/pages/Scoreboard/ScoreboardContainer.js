@@ -5,7 +5,7 @@ class ScoreboardContainer extends Component {
   render() {
     return (
       <div className="scoreboard-container">
-        <Scoreboard />;
+        <Scoreboard />
       </div>
     );
   }
