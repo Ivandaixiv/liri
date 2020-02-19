@@ -2,6 +2,7 @@ import { withStyles } from "@material-ui/styles";
 import styles from "./styles";
 import {
   Typography,
+  CardMedia,
   AppBar,
   Toolbar,
   IconButton,
@@ -12,9 +13,10 @@ import React from "react";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import ExitIcon from "@material-ui/icons/MeetingRoom";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
-const Navigation = () => {
+const Navigation = props => {
+  const { classes } = props;
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -58,16 +60,33 @@ const Navigation = () => {
               open={open}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
-              <MenuItem onClick={handleClose}>Goals</MenuItem>
-              <MenuItem onClick={handleClose}>Calendar</MenuItem>
-              <MenuItem onClick={handleClose}>Scoreboard</MenuItem>
+              <Link to="/profile" className={classes.link}>
+                <MenuItem onClick={handleClose}>Profile</MenuItem>
+              </Link>
+              <Link to="/goals" className={classes.link}>
+                <MenuItem onClick={handleClose}>Goals</MenuItem>
+              </Link>
+              <Link to="/calendar" className={classes.link}>
+                <MenuItem onClick={handleClose}>Calendar</MenuItem>
+              </Link>
+              <Link to="/scoreboard" className={classes.link}>
+                <MenuItem onClick={handleClose}>Scoreboard</MenuItem>
+              </Link>
             </Menu>
           </div>
-          <Typography variant="h6">Liri Logo Placeholder</Typography>
+          <Link to="/home">
+            <CardMedia
+              className={classes.liri}
+              component="img"
+              image="/liri.png"
+            />
+          </Link>
           {auth && (
-            <IconButton color="secondary">
-              <ExitIcon onClick={(handleClose, Meteor.logout)} />
+            <IconButton
+              color="secondary"
+              onClick={(handleClose, Meteor.logout)}
+            >
+              <ExitIcon />
             </IconButton>
           )}
         </Toolbar>
