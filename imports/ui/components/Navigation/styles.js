@@ -7,6 +7,9 @@ const styles = () =>
       width: "50px",
       objectFit: "scale-down"
     },
+    menu: {
+      margin: "0 0 0 15px"
+    },
     link: {
       textDecoration: "none",
       color: "#212121"
