@@ -10,6 +10,7 @@ import Profile from "../pages/Profile";
 import Navigation from "../components/Navigation";
 import Login from "../pages/Login";
 import Focuses from "../pages/Focuses";
+import { Tasks } from "../../api/tasks";
 
 // import FullScreenLoader from "../components/FullScreenLoader";
 
@@ -22,6 +23,8 @@ const Routes = props => {
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/focus" component={Focuses} />
         <Route exact path="/scoreboard" component={Scoreboard} />
+        <Route exact path="/goals" component={Goals} />
+        <Route exact path="/calendar" component={Calendar} />
         <Redirect from="*" to="/home" />
       </Switch>
     </>

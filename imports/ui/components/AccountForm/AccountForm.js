@@ -13,6 +13,8 @@ import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
 import { Meteor } from "meteor/meteor";
 import { Accounts } from "meteor/accounts-base";
+import { withTracker } from "meteor/react-meteor-data";
+import { Users } from "../../../api/users";
 
 class AccountForm extends Component {
   constructor(props) {
@@ -41,9 +43,11 @@ class AccountForm extends Component {
       if (error) {
         throw new Error(error);
       }
+      if (Meteor.user()) {
+        Meteor.call("user.newAccount", Meteor.userId());
+      }
     });
   };
-
   login = values => {
     const { email, password } = values;
 
@@ -162,4 +166,8 @@ class AccountForm extends Component {
   }
 }
 
-export default withRouter(withStyles(styles)(AccountForm));
+export default withTracker(() => {
+  return {
+    userId: Meteor.userId()
+  };
+})(withRouter(withStyles(styles)(AccountForm)));
