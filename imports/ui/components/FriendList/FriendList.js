@@ -9,11 +9,11 @@ const FriendList = ({ currentUser }) => {
   const classes = styles();
   // const screenName = Meteor.user().username;
   return (
-    <List className={classes.friendList}>
+    <List className={classes.list}>
       {console.log(currentUser)}
       {/* {friends &&
         friends.map(friend => ( */}
-      <ListItem button className={classes.listItem}>
+      <ListItem button className={classes.item}>
         <Gravatar className={classes.media} email="blah@blah.com" />
         <ListItemText className={classes.text}>Username</ListItemText>
       </ListItem>

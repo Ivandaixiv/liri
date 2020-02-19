@@ -16,9 +16,9 @@ const AddFriend = () => {
         value={usernameInput}
         onChange={event => setUsernameInput(event.target.value)}
       />
-      <Box>
+      <Box className={classes.buttonbox}>
         <Button
-          className={classes.text}
+          className={classes.button}
           onClick={() => Meteor.call("user.addFriend", usernameInput)}
         >
           Add Friend
