@@ -8,22 +8,24 @@ import { Users } from "../../../api/users";
 
 const Stats = props => {
   const { classes, user } = props;
-  console.log(props);
+  console.log(user);
   return (
     <div className={classes.statsContainer}>
-      <Typography variant="h3">{user && user.username}'s stats</Typography>
+      {/* <Typography variant="h3">{user && user.username}'s stats</Typography>
       <Typography>Account Age Placeholder</Typography>
       <div>
         <Typography>Completed Tasks:</Typography>
         <Typography>Stats 2 Placeholder</Typography>
       </div>
-      <img src="/liri.png" className={classes.liri}></img>
+      <img src="/liri.png" className={classes.liri}></img> */}
     </div>
   );
 };
 
 export default withTracker(() => {
+  Meteor.subscribe("user");
+
   return {
-    user: Meteor.user()
+    user: Users.find({}).fetch()
   };
 })(withStyles(styles)(Stats));
