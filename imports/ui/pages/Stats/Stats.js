@@ -8,17 +8,26 @@ import { Users } from "../../../api/users";
 
 const Stats = props => {
   const { classes, user } = props;
-  console.log(user);
+  user.length > 0 && user[0].username && console.log(user[0]);
+
   return (
-    <div className={classes.statsContainer}>
-      {/* <Typography variant="h3">{user && user.username}'s stats</Typography>
-      <Typography>Account Age Placeholder</Typography>
-      <div>
-        <Typography>Completed Tasks:</Typography>
-        <Typography>Stats 2 Placeholder</Typography>
+    user.length > 0 &&
+    user[0] && (
+      <div className={classes.statsContainer}>
+        <Typography variant="h3">
+          {user[0].username && user[0].username}'s stats
+        </Typography>
+        <Typography>
+          Account Age:
+          {/* {user[0].createdAt && user[0].createdAt} */}
+        </Typography>
+        <div>
+          <Typography>Completed Tasks:</Typography>
+          <Typography>Stats 2 Placeholder</Typography>
+        </div>
+        <img src="/liri.png" className={classes.liri}></img>
       </div>
-      <img src="/liri.png" className={classes.liri}></img> */}
-    </div>
+    )
   );
 };
 
