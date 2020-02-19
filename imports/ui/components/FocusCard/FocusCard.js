@@ -27,7 +27,7 @@ const FocusCard = ({ classes }) => {
       <Button
         color="primary"
         onClick={() => {
-        onSubmit(value = "fitness");
+          onSubmit((value = "fitness"));
         }}
       >
         <Card className={classes.container}>
@@ -46,9 +46,8 @@ const FocusCard = ({ classes }) => {
 
       <Button
         color="primary"
-        
         onClick={() => {
-          onSubmit(value = "Puppy!");
+          onSubmit((value = "Puppy!"));
         }}
       >
         <Card className={classes.container}>
@@ -68,7 +67,7 @@ const FocusCard = ({ classes }) => {
       <Button
         color="primary"
         onClick={() => {
-          onSubmit(value = "Test");
+          onSubmit((value = "Test"));
         }}
       >
         <Card className={classes.container}>
@@ -108,7 +107,7 @@ const FocusCard = ({ classes }) => {
       <Button
         color="primary"
         onClick={() => {
-          onSubmit();
+          onSubmit((value = "PLACEHOLDER TAG"));
         }}
       >
         <Card className={classes.container}>
@@ -128,7 +127,7 @@ const FocusCard = ({ classes }) => {
       <Button
         color="primary"
         onClick={() => {
-          onSubmit();
+          onSubmit((value = "PLACEHOLDER TAG"));
         }}
       >
         <Card className={classes.container}>
@@ -144,19 +143,10 @@ const FocusCard = ({ classes }) => {
           </Typography>
         </Card>
       </Button>
+      <Button className={classes.finalSubmit} >Submit</Button>
     </div>
+    
   );
 };
-
-//   render() {
-//     let { classes } = this.props;
-//     return (
-//       <div>
-//         <Typography variant="h3">test</Typography>
-//         {console.log("test")};
-//       </div>
-//     );
-//   }
-// }
 
 export default withStyles(styles)(FocusCard);
