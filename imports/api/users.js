@@ -1,5 +1,6 @@
 import { Meteor } from "meteor/meteor";
 
+<<<<<<< HEAD
 if (Meteor.isServer) {
   Meteor.publish("users", function usersPublication() {
     return Meteor.users.find(
@@ -15,6 +16,30 @@ Meteor.methods({
   //     return userIds;
   //   }
   // },
+=======
+export const Users = Meteor.users;
+
+if (Meteor.isServer) {
+  Meteor.publish("user", function userPublication() {
+    return Users.find({ _id: this.userId });
+  });
+}
+
+Meteor.methods({
+  "user.newAccount"(userId) {
+    Meteor.users.update(userId, { $set: { tasksCompleted: 0 } });
+  },
+
+  "user.findFriend"() {
+    if (Meteor.userId()) {
+      const userIds = Meteor.users
+        .find({})
+        .fetch()
+        .map(user => user.friends);
+      return userIds;
+    }
+  },
+>>>>>>> id-statistics-page
   // Method to add friends
   "user.addFriend"(username) {
     if (!username) {
