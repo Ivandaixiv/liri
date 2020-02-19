@@ -21,11 +21,12 @@ Meteor.startup(() => {
   // Tasks creatorId and Pets ownerId is not linked to use because of Meteor.accounts
   if (Tasks.find().count() === 0) {
     Tasks.insert({
-      title: "Create a new task",
+      title: "A Random Task",
       complete: false,
       creatorId: 1,
       dueDate: null,
-      tags: "productivity"
+      tags: "productivity",
+      created: new Date()
     });
   }
 

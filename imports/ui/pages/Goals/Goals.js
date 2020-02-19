@@ -2,10 +2,14 @@ import React, { Component } from "react";
 import styles from "./styles";
 import { withStyles } from "@material-ui/styles";
 import { Card, CardContent, Typography, Grid } from "@material-ui/core";
+import TaskCard from "../../components/TaskCard";
+import { withTracker } from "meteor/react-meteor-data";
+import { Tasks } from "../../../api/tasks";
 
 class Goals extends Component {
   render() {
-    const { classes } = this.props;
+    const { classes, tasks } = this.props;
+    console.log(this.props.tasks);
     return (
       <div className={classes.pad}>
         <Card className={classes.card}>
@@ -20,9 +24,24 @@ class Goals extends Component {
             </div>
           </CardContent>
         </Card>
+        <Grid item xs="auto">
+          <Grid container justify="center" spacing={3}>
+            {tasks.length &&
+              tasks.map(task => (
+                <Grid key={task._id}>
+                  <TaskCard task={task} />
+                </Grid>
+              ))}
+          </Grid>
+        </Grid>
+        <TaskCard />
       </div>
     );
   }
 }
 
-export default withStyles(styles)(Goals);
+export default withTracker(() => {
+  return {
+    tasks: Tasks.find({}).fetch()
+  };
+})(withStyles(styles)(Goals));

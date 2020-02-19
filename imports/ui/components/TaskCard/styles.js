@@ -3,30 +3,17 @@ import { createStyles } from "@material-ui/styles";
 const styles = () =>
   createStyles({
     card: {
-      width: 600,
-      height: 200
-    },
-    media: {
-      height: 200
+      display: "flex",
+      paddingTop: "20px",
+      width: "88.5vw",
+      height: "15vw"
     },
     pad: {
       padding: "20"
     },
-    tagGrid: {
+    buttonSplit: {
       display: "grid",
       gridTemplateColumns: "1fr 1fr"
-    },
-    userInfo: {
-      display: "flex",
-      paddingBottom: "15px"
-    },
-    flex: {
-      display: "flex",
-      flexDirection: "column",
-      paddingLeft: 10
-    },
-    link: {
-      color: "black"
     },
     gravatar: {
       borderRadius: "50%"
