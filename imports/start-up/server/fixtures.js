@@ -42,7 +42,7 @@ Meteor.startup(() => {
     });
   }
   // Tasks creatorId and Pets ownerId is not linked to use because of Meteor.accounts
-  if (Tasks.find().count() === 0) {
+  if (Tasks.find({}).count() === 0) {
     Tasks.insert({
       title: "A Random Task",
       complete: false,
@@ -53,7 +53,7 @@ Meteor.startup(() => {
     });
   }
 
-  if (Pets.find().count() === 0) {
+  if (Pets.find({}).count() === 0) {
     Pets.insert({
       name: "Pikachu",
       hp: 100,
