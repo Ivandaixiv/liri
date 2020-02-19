@@ -24,7 +24,7 @@ class Goals extends Component {
             </div>
           </CardContent>
         </Card>
-        <Grid item xs="auto">
+        <Grid item xs="auto" className={classes.gridSpace}>
           <Grid container justify="center" spacing={3}>
             {tasks.length &&
               tasks.map(task => (
@@ -34,7 +34,6 @@ class Goals extends Component {
               ))}
           </Grid>
         </Grid>
-        <TaskCard />
       </div>
     );
   }

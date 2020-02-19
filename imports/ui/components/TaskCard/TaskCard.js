@@ -21,14 +21,14 @@ class TaskCard extends Component {
         <CardContent>
           <div className={classes.userInfo}>
             <Typography>
-              <Gravatar className={classes.gravatar} />
+              {/* <Gravatar className={classes.gravatar} /> */}
               {task && task.title}
             </Typography>
           </div>
           <br />
           <Divider />
+          {/* <span>{tasks && moment(tasks.created).fromNow()}</span> */}
         </CardContent>
-        {/* <span>{tasks && moment(tasks.created).fromNow()}</span> */}
       </Card>
     );
   }

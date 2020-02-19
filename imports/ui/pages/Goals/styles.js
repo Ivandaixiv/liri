@@ -23,6 +23,9 @@ const styles = () =>
       alignItems: "center",
       paddingBottom: "10px"
     },
+    gridSpace: {
+      paddingTop: "20px"
+    },
     bold: { fontWeight: 900 }
   });
 
