@@ -48,7 +48,6 @@ const FocusCard = ({ classes }) => {
         color="primary"
         
         onClick={() => {
-          disableButton(this)
           onSubmit(value = "Puppy!");
         }}
       >
