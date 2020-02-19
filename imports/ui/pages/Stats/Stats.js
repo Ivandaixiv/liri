@@ -4,6 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
 import { withTracker } from "meteor/react-meteor-data";
 import { Users } from "../../../api/users";
+import moment from "moment";
 // import PropTypes from "prop-types";
 
 const Stats = props => {
@@ -19,11 +20,19 @@ const Stats = props => {
         </Typography>
         <Typography>
           Account Age:
-          {/* {user[0].createdAt && user[0].createdAt} */}
+          {user[0].createdAt && moment(user[0].createdAt).fromNow()}
         </Typography>
         <div>
-          <Typography>Completed Tasks:</Typography>
-          <Typography>Stats 2 Placeholder</Typography>
+          <div>
+            <Typography>Completed Tasks</Typography>
+            <Typography>
+              {user[0].tasksCompleted && user[0].tasksCompleted}
+            </Typography>
+          </div>
+          <div>
+            <Typography>Streak Count</Typography>
+            <Typography>{user[0].streak && user[0].streak}</Typography>
+          </div>
         </div>
         <img src="/liri.png" className={classes.liri}></img>
       </div>
