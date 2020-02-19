@@ -10,6 +10,17 @@ const styles = () =>
     link: {
       textDecoration: "none",
       color: "#212121"
+    },
+    toolbar: {
+      display: "flex",
+      justifyContent: "space-between"
+    },
+    title: {
+      display: "flex",
+      flexDirection: "row"
+    },
+    titleText: {
+      marginTop: "10px"
     }
   });
 
