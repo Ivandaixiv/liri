@@ -6,6 +6,8 @@ import { withStyles } from "@material-ui/styles";
 import AddCircleOutlineOutlinedIcon from "@material-ui/icons/AddCircleOutlineOutlined";
 import DoneIcon from "@material-ui/icons/Done";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
+import { withTracker } from "meteor/react-meteor-data";
+import { Tasks } from "../../../api/tasks";
 import moment from "moment";
 
 class TaskCard extends Component {
@@ -35,4 +37,10 @@ class TaskCard extends Component {
   }
 }
 
-export default withStyles(styles)(TaskCard);
+export default withTracker(() => {
+  Meteor.subscribe("tasks");
+  return {
+    userId: Meteor.userId(),
+    tasks: Tasks.find({}).fetch()
+  };
+})(withStyles(styles)(TaskCard));

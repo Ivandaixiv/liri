@@ -9,7 +9,7 @@ import { Tasks } from "../../../api/tasks";
 class Goals extends Component {
   render() {
     const { classes, tasks } = this.props;
-    console.log(this.props.tasks);
+    // console.log(this.props.userId);
     return (
       <div className={classes.pad}>
         <Card className={classes.card}>
@@ -28,7 +28,6 @@ class Goals extends Component {
           <Grid container justify="center" spacing={3}>
             {tasks.length > 0 &&
               tasks.map(task => {
-                console.log(task);
                 return (
                   <Grid key={task._id}>
                     <TaskCard task={task} />
@@ -43,9 +42,9 @@ class Goals extends Component {
 }
 
 export default withTracker(() => {
-  console.log(this.props);
   Meteor.subscribe("tasks");
   return {
+    userId: Meteor.userId(),
     tasks: Tasks.find({}).fetch()
   };
 })(withStyles(styles)(Goals));
