@@ -23,17 +23,21 @@ Meteor.methods({
     }
   },
   // Method to add friends
-  "user.addFriend"(friendUserId) {
-    if (!friendUserId) {
+  "user.addFriend"(username) {
+    if (!username) {
       throw new Meteor.Error(
         "user.addFriend.not-authorized",
         "Unable to add user to friends list."
       );
     }
 
-    Meteor.users.update(Meteor.userId(), {
-      profile: { $push: { friends: friendUserId } }
-    });
+    const newFriend = Meteor.users.findOne({ username });
+
+    if (newFriend) {
+      Meteor.users.update(Meteor.userId(), {
+        $push: { "profile.friends": newFriend._id }
+      });
+    }
   },
   // Method to remove friends
   "user.removeFriend"(friendUserId) {
