@@ -1,6 +1,12 @@
 import { Meteor } from "meteor/meteor";
 
+export const Users = Meteor.users;
+
 Meteor.methods({
+  "user.newAccount"(userId) {
+    Meteor.users.update(userId, { $set: { tasksCompleted: 0 } });
+  },
+
   "user.findFriend"() {
     if (Meteor.userId()) {
       const userIds = Meteor.users

@@ -14,7 +14,8 @@ Meteor.startup(() => {
       streak: 1,
       exp: 100,
       profile: {
-        friends: []
+        friends: [],
+        taskCompleted: 0
       }
     });
   }

@@ -3,6 +3,7 @@ import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
 import { withTracker } from "meteor/react-meteor-data";
+import { Users } from "../../../api/users";
 // import PropTypes from "prop-types";
 
 const Stats = props => {
@@ -13,7 +14,7 @@ const Stats = props => {
       <Typography variant="h3">{user && user.username}'s stats</Typography>
       <Typography>Account Age Placeholder</Typography>
       <div>
-        <Typography>Stats 1 Placeholder</Typography>
+        <Typography>Completed Tasks:</Typography>
         <Typography>Stats 2 Placeholder</Typography>
       </div>
       <img src="/liri.png" className={classes.liri}></img>
