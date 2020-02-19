@@ -1,23 +1,26 @@
 import React, { useState } from "react";
 import { Container, withStyles, Box, Button } from "@material-ui/core";
 import { withTracker } from "meteor/react-meteor-data";
-import ScoreboardList from "../../components/ScoreboardList";
 import { Meteor } from "meteor/meteor";
+import styles from "../styles";
 
-const Scoreboard = ({ currentUser }) => {
+const AddFriend = () => {
+  const classes = styles();
   const [usernameInput, setUsernameInput] = useState("");
 
   return (
     <Container maxWidth="lg" className="scoreboard-container">
-      {/* {usernameInput} */}
+      <p className={classes.text}>{usernameInput}</p>
       <input
         type="text"
         value={usernameInput}
         onChange={event => setUsernameInput(event.target.value)}
       />
-      <ScoreboardList user={currentUser} />
       <Box>
-        <Button onClick={() => Meteor.call("user.addFriend", usernameInput)}>
+        <Button
+          className={classes.text}
+          onClick={() => Meteor.call("user.addFriend", usernameInput)}
+        >
           Add Friend
         </Button>
       </Box>
@@ -29,4 +32,4 @@ export default withTracker(() => {
   return {
     currentUser: Meteor.user()
   };
-})(Scoreboard);
+})(AddFriend);
