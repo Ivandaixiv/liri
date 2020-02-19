@@ -23,12 +23,7 @@ const Routes = props => {
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/focus" component={Focuses} />
         <Route exact path="/scoreboard" component={Scoreboard} />
-<<<<<<< HEAD
-        <Route exact path="/goals" component={Goals} />
-        <Redirect from="*" to="/stats" />
-=======
         <Redirect from="*" to="/home" />
->>>>>>> master
       </Switch>
     </>
   ) : (
