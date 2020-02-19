@@ -26,12 +26,15 @@ class Goals extends Component {
         </Card>
         <Grid item xs="auto" className={classes.gridSpace}>
           <Grid container justify="center" spacing={3}>
-            {tasks.length &&
-              tasks.map(task => (
-                <Grid key={task._id}>
-                  <TaskCard task={task} />
-                </Grid>
-              ))}
+            {tasks.length > 0 &&
+              tasks.map(task => {
+                console.log(task);
+                return (
+                  <Grid key={task._id}>
+                    <TaskCard task={task} />
+                  </Grid>
+                );
+              })}
           </Grid>
         </Grid>
       </div>
@@ -40,6 +43,8 @@ class Goals extends Component {
 }
 
 export default withTracker(() => {
+  console.log(this.props);
+  Meteor.subscribe("tasks");
   return {
     tasks: Tasks.find({}).fetch()
   };

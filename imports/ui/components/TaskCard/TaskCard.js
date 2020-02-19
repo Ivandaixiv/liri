@@ -1,13 +1,6 @@
 import React, { Component } from "react";
-import Gravatar from "react-gravatar";
-import {
-  Card,
-  CardActionArea,
-  CardContent,
-  Button,
-  Typography,
-  Divider
-} from "@material-ui/core";
+// import Gravatar from "react-gravatar";
+import { Card, CardContent, Typography, Divider } from "@material-ui/core";
 import styles from "./styles";
 import { withStyles } from "@material-ui/styles";
 import AddCircleOutlineOutlinedIcon from "@material-ui/icons/AddCircleOutlineOutlined";
@@ -18,7 +11,7 @@ import moment from "moment";
 class TaskCard extends Component {
   render() {
     let { classes, task } = this.props;
-
+    console.log(task);
     return (
       <Card className={classes.card}>
         <CardContent>
