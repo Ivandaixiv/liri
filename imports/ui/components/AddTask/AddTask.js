@@ -10,58 +10,6 @@ import {
   MenuItem,
   FormControlLabel
 } from "@material-ui/core";
-import DateFnsUtils from "@date-io/date-fns";
-import {
-  MuiPickersUtilsProvider,
-  TimePicker,
-  DatePicker
-} from "@material-ui/pickers";
-
-function DatePickerWrapper(props) {
-  const {
-    input: { name, onChange, value, ...restInput },
-    meta,
-    ...rest
-  } = props;
-  const showError =
-    ((meta.submitError && !meta.dirtySinceLastSubmit) || meta.error) &&
-    meta.touched;
-
-  return (
-    <DatePicker
-      {...rest}
-      name={name}
-      helperText={showError ? meta.error || meta.submitError : undefined}
-      error={showError}
-      inputProps={restInput}
-      onChange={onChange}
-      value={value === "" ? null : value}
-    />
-  );
-}
-
-function TimePickerWrapper(props) {
-  const {
-    input: { name, onChange, value, ...restInput },
-    meta,
-    ...rest
-  } = props;
-  const showError =
-    ((meta.submitError && !meta.dirtySinceLastSubmit) || meta.error) &&
-    meta.touched;
-
-  return (
-    <TimePicker
-      {...rest}
-      name={name}
-      helperText={showError ? meta.error || meta.submitError : undefined}
-      error={showError}
-      inputProps={restInput}
-      onChange={onChange}
-      value={value === "" ? null : value}
-    />
-  );
-}
 
 const onSubmit = async values => {
   const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
@@ -121,38 +69,24 @@ class AddTask extends Component {
                       </MenuItem>
                     </Field>
                   </Grid>
-                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <Grid item xs={6}>
-                      <Field
-                        name="date"
-                        component={DatePickerWrapper}
-                        fullWidth
-                        margin="normal"
-                        label="Date"
-                      />
-                    </Grid>
-                    <Grid item xs={6}>
-                      <Field
-                        name="time"
-                        component={TimePickerWrapper}
-                        fullWidth
-                        margin="normal"
-                        label="Time"
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <FormControlLabel
-                        label="All Day"
-                        control={
-                          <Field
-                            name="fullday"
-                            component={Checkbox}
-                            type="checkbox"
-                          />
-                        }
-                      />
-                    </Grid>
-                  </MuiPickersUtilsProvider>
+                  <Grid item xs={6}>
+                    <Typography>Placeholder 1</Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography>Placeholder 2</Typography>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <FormControlLabel
+                      label="All Day"
+                      control={
+                        <Field
+                          name="fullday"
+                          component={Checkbox}
+                          type="checkbox"
+                        />
+                      }
+                    />
+                  </Grid>
                   <Grid item style={{ marginTop: 16 }}>
                     <Button
                       type="button"
