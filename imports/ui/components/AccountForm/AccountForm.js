@@ -42,10 +42,13 @@ class AccountForm extends Component {
   validate = values => {
     const errors = {};
     if (!values.email) {
-      errors.email = "Required";
+      errors.email = <Box color="error.main">REQUIRED</Box>;
     }
     if (!values.password) {
-      errors.password = "Required";
+      errors.password = <Box color="error.main">REQUIRED</Box>;
+    }
+    if (!values.username) {
+      errors.username = <Box color="error.main">REQUIRED</Box>;
     }
     return errors;
   };
@@ -106,7 +109,6 @@ class AccountForm extends Component {
                             }}
                             value={input.value}
                           />
-
                           {meta.touched && meta.error && (
                             <span>{meta.error}</span>
                           )}
@@ -140,15 +142,21 @@ class AccountForm extends Component {
                   <InputLabel htmlFor="password">Password</InputLabel>
                   <Field name="password">
                     {({ input, meta }) => (
-                      <Input
-                        id="password"
-                        type="password"
-                        inputProps={{
-                          ...input,
-                          autoComplete: "off"
-                        }}
-                        value={input.value}
-                      />
+                      <>
+                        <Input
+                          id="password"
+                          type="password"
+                          inputProps={{
+                            ...input,
+                            autoComplete: "off"
+                          }}
+                          value={input.value}
+                        />
+
+                        {meta.touched && meta.error && (
+                          <span>{meta.error}</span>
+                        )}
+                      </>
                     )}
                   </Field>
                 </FormControl>
