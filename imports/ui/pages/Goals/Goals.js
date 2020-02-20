@@ -5,6 +5,7 @@ import { Card, CardContent, Typography, Grid } from "@material-ui/core";
 import TaskCard from "../../components/TaskCard";
 import { withTracker } from "meteor/react-meteor-data";
 import { Tasks } from "../../../api/tasks";
+import AddTask from "../../components/AddTask";
 
 class Goals extends Component {
   render() {
@@ -23,6 +24,9 @@ class Goals extends Component {
               </Typography>
             </div>
           </CardContent>
+        </Card>
+        <Card>
+          <AddTask />
         </Card>
         <Grid item xs="auto" className={classes.gridSpace}>
           <Grid container justify="center" spacing={3}>

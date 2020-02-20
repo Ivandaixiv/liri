@@ -9,13 +9,18 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.8.4",
+    "@date-io/date-fns": "^2.4.0",
     "@material-ui/core": "^4.9.2",
     "@material-ui/icons": "^4.9.1",
+    "@material-ui/pickers": "^3.2.10",
     "@material-ui/styles": "^4.9.0",
     "bcrypt": "^3.0.8",
     "bluebird": "^3.7.2",
+    "date-fns": "^2.9.0",
     "final-form": "^4.18.7",
+    "final-form-material-ui": "^0.3.0",
     "jquery": "^3.4.1",
+    "material-ui": "^0.20.2",
     "meteor-node-stubs": "^1.0.0",
     "moment": "^2.24.0",
     "prop-types": "^15.7.2",
@@ -27,7 +32,9 @@
     "react-gravatar": "^2.6.3",
     "react-meteor-data": "^0.2.11",
     "react-router-dom": "^5.1.2",
-    "react_google_calendar": "^2.2.4444"
+    "react-select": "^3.0.8",
+    "react_google_calendar": "^2.2.4444",
+    "styled-components": "^5.0.1"
   },
   "meteor": {
     "mainModule": {
