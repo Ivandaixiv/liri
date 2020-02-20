@@ -1,29 +1,27 @@
 import React from "react";
 import styles from "./styles";
-import { Form, Field, FormSpy } from "react-final-form";
 import { withTracker } from "meteor/react-meteor-data";
 import { Users } from "../../../api/users";
+import { Tasks } from "../../../api/tasks";
 import {
   Card,
-  CardActionArea,
-  CardActions,
-  CardContent,
   CardMedia,
-  Grid,
   Button,
   Typography,
   withStyles,
-  FormControl
 } from "@material-ui/core";
 
 
 
 const FocusCard = props => {
-  const { classes, user, userId } = props;
+  const { classes, user, userId, tasks } = props;
 console.log(user);
+//console.log(props);
 const onSubmit = value => {
   if (value === "fitness" ){
-    Meteor.call('user.updateFocus', userId, value);
+    Meteor.call('user.addTask', userId, value);
+  }else if(value === "health"){
+    Meteor.call('user.addTask', userId, value);
   }
 }
 
@@ -52,11 +50,11 @@ const onSubmit = value => {
       <Button
         color="primary"
         onClick={() => {
-          onSubmit((value = "Puppy!"));
+          onSubmit((value = "health"));
         }}
       >
         <Card className={classes.container}>
-          <Typography variant="h4">Puppy</Typography>
+          <Typography variant="h4">Health</Typography>
           <CardMedia
             className={classes.card}
             component="img"
@@ -152,22 +150,13 @@ const onSubmit = value => {
   );
 };
 
-//   render() {
-//     let { classes } = this.props;
-//     return (
-//       <div>
-//         <Typography variant="h3">test</Typography>
-//         {console.log("test")};
-//       </div>
-//     );
-//   }
-// }
 
 export default withTracker(() => {
   Meteor.subscribe("user");
 
   return {
     user: Users.find({}).fetch(),
-    userId: Meteor.userId()
+    userId: Meteor.userId(),
+    tasks: Tasks.find({}).fetch()
   };
 })(withStyles(styles)(FocusCard));

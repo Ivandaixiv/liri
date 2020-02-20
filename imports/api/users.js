@@ -20,12 +20,17 @@ if (Meteor.isServer) {
 Meteor.methods({
   "user.newAccount"(userId) {
     Meteor.users.update(userId, {
-      $set: { tasksCompleted: 0, focuses: [], streak: 1, exp: 100 }
+      $set: { tasksCompleted: 0, currentTasks: [], streak: 1, exp: 100 }
     });
   },
-  "user.updateFocus"(userId, focuses) {
+  // "user.updateFocus"(userId, focuses) {
+  //   Meteor.users.update(userId, {
+  //     $set: { focuses: focuses }
+  //   });
+  // },
+  "user.addTask"(userId, tasks) {
     Meteor.users.update(userId, {
-      $set: { focuses: focuses }
+      $set: { tasks: tasks }
     });
   },
 
