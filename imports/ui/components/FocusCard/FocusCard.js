@@ -19,17 +19,14 @@ import {
 
 
 const FocusCard = props => {
-  const { classes, user } = props;
- console.log(user);
+  const { classes, user, userId } = props;
+console.log(user);
 const onSubmit = value => {
   if (value === "fitness" ){
-    Meteor.user.update(
-    userId,{$set: {focuses: [{value}] }}
-    )
+    Meteor.call('user.updateFocus', userId, value);
   }
 }
 
-  console.log(user);
   return (
     <div>
       <Button
