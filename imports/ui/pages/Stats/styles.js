@@ -17,7 +17,7 @@ const styles = () =>
       justifyContent: "center"
     },
     counter: {
-      margin: 5
+      margin: 40
     },
     liri: {
       width: "300px"

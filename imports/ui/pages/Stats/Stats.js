@@ -6,12 +6,13 @@ import { withTracker } from "meteor/react-meteor-data";
 import { Users } from "../../../api/users";
 import moment from "moment";
 import { Meteor } from "meteor/meteor";
+import { Pets } from "../../../api/pets";
 // import PropTypes from "prop-types";
 
 const Stats = props => {
   const { classes, user } = props;
-  user.length > 0 && user[0].username && console.log(user[0]);
-
+  console.log("Props", props);
+  user.length > 0 && user[0].username && console.log("User", user[0]);
   return (
     user.length > 0 &&
     user[0] && (
@@ -20,8 +21,8 @@ const Stats = props => {
           {user[0].username && user[0].username}'s stats
         </Typography>
         <Typography>
-          Account Age:{" "}
-          {user[0].createdAt && moment(user[0].createdAt).fromNow()}
+          Your account was created{" "}
+          {user[0].createdAt && moment(user[0].createdAt).fromNow()}!
         </Typography>
         <div className={classes.counterContainer}>
           <div className={classes.counter}>
@@ -43,9 +44,11 @@ const Stats = props => {
 
 export default withTracker(() => {
   Meteor.subscribe("user");
+  Meteor.subscribe("pets");
 
   return {
     userId: Meteor.userId(),
+    pets: Pets.find({}).fetch(),
     user: Users.find({}).fetch()
   };
 })(withStyles(styles)(Stats));
