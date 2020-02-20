@@ -25,9 +25,7 @@ class Goals extends Component {
             </div>
           </CardContent>
         </Card>
-        <Card>
-          <AddTask />
-        </Card>
+
         <Grid item xs="auto" className={classes.gridSpace}>
           <Grid container justify="center" spacing={3}>
             {tasks.length > 0 &&
@@ -40,6 +38,8 @@ class Goals extends Component {
               })}
           </Grid>
         </Grid>
+
+        <AddTask />
       </div>
     );
   }
