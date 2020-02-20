@@ -16,21 +16,21 @@ const Stats = props => {
     user.length > 0 &&
     user[0] && (
       <div className={classes.statsContainer}>
-        <Typography variant="h3">
+        <Typography variant="h4">
           {user[0].username && user[0].username}'s stats
         </Typography>
         <Typography>
-          Account Age:
+          Account Age:{" "}
           {user[0].createdAt && moment(user[0].createdAt).fromNow()}
         </Typography>
-        <div>
-          <div>
+        <div className={classes.counterContainer}>
+          <div className={classes.counter}>
             <Typography>Completed Tasks</Typography>
             <Typography>
               {user[0].tasksCompleted && user[0].tasksCompleted}
             </Typography>
           </div>
-          <div>
+          <div className={classes.counter}>
             <Typography>Streak Count</Typography>
             <Typography>{user[0].streak && user[0].streak}</Typography>
           </div>
