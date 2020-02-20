@@ -23,7 +23,11 @@ const styles = () =>
       flexDirection: "row"
     },
     titleText: {
+      color: "#FFFFFF",
       marginTop: "10px"
+    },
+    icons: {
+      color: "#FFFFFF"
     }
   });
 
