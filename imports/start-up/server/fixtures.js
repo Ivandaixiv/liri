@@ -5,10 +5,33 @@ import { Tasks } from "../../api/tasks";
 import { Pets } from "../../api/pets";
 
 Meteor.startup(() => {
-  if (Meteor.users.find().count() === 0) {
-    user = Accounts.createUser({
+  if (Meteor.users.find({}).count() === 0) {
+    Accounts.createUser({
       username: "user1",
       email: "a@a.com",
+      password: "a",
+      mainFocus: "Fitness",
+      streak: 1,
+      exp: 100,
+      profile: {
+        friends: [],
+        taskCompleted: 0
+      }
+    });
+    Accounts.createUser({
+      username: "user2",
+      email: "b@b.com",
+      password: "a",
+      mainFocus: "Fitness",
+      streak: 1,
+      exp: 100,
+      profile: {
+        friends: []
+      }
+    });
+    Accounts.createUser({
+      username: "user3",
+      email: "c@c.com",
       password: "a",
       mainFocus: "Fitness",
       streak: 1,
@@ -19,17 +42,19 @@ Meteor.startup(() => {
     });
   }
   // Tasks creatorId and Pets ownerId is not linked to use because of Meteor.accounts
-  if (Tasks.find().count() === 0) {
+  if (Tasks.find({}).count() === 0) {
     Tasks.insert({
-      title: "Create a new task",
+      owner: "kDJnXKmQ2FkRejxWZ",
+      title: "A Random Task",
       complete: false,
       creatorId: 1,
       dueDate: null,
-      tags: "productivity"
+      tags: "productivity",
+      created: new Date()
     });
   }
 
-  if (Pets.find().count() === 0) {
+  if (Pets.find({}).count() === 0) {
     Pets.insert({
       name: "Pikachu",
       hp: 100,

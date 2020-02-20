@@ -4,33 +4,32 @@ import { withRouter } from "react-router-dom";
 import { Meteor } from "meteor/meteor";
 import { List, ListItem, ListDivider } from "@material-ui/core";
 import Gravatar from "react-gravatar";
-import styles from "./styles";
+// import styles from "./styles";
 
 class Scoreboard extends Component {
-  selectFriend(FriendUserId) {
-    this.props.onFriendSelected(FriendUserId);
-  }
-
   render() {
     return (
-      <List>
-        {this.props.users.map(user => {
-          console.log(user);
-          return (
-            <div className={classes.listItem}>
-              <Gravatar email={user.email} />
-              <ListItem
-                key={user._id}
-                primaryText={user.name}
-                onClick={this.selectFriend.bind(this, user._id)}
-                secondaryText={"Current streak: " + user.streak}
-                style={style}
-              />
-              <ListDivider />
-            </div>
-          );
-        })}
-      </List>
+      <div>
+        this is the Scoreboard
+        {/* <List>
+          {this.props.user.map(user => {
+            console.log(user);
+            return (
+              <div className={classes.listItem}>
+                <Gravatar email={user.email} />
+                <ListItem
+                  key={user._id}
+                  primaryText={user.name}
+                  onClick={this.selectFriend.bind(this, user._id)}
+                  secondaryText={"Current streak: " + user.streak}
+                  style={style}
+                />
+                <ListDivider />
+              </div>
+            );
+          })}
+        </List> */}
+      </div>
     );
   }
 }

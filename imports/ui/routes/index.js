@@ -6,12 +6,12 @@ import Stats from "../pages/Stats";
 import Scoreboard from "../pages/Scoreboard";
 import Calendar from "../pages/Calendar";
 import Goals from "../pages/Goals";
-import AddGoals from "../pages/AddGoals";
-import Friends from "../pages/Friends";
-import Settings from "../pages/Settings";
+import Profile from "../pages/Profile";
 import Navigation from "../components/Navigation";
 import Login from "../pages/Login";
 import Focuses from "../pages/Focuses";
+
+import { Tasks } from "../../api/tasks";
 
 // import FullScreenLoader from "../components/FullScreenLoader";
 
@@ -20,15 +20,13 @@ const Routes = props => {
     <>
       <Navigation />
       <Switch>
-        <Route exact path="/stats" component={Stats} />
+        <Route exact path="/home" component={Stats} />
+        <Route exact path="/profile" component={Profile} />
         <Route exact path="/focus" component={Focuses} />
         <Route exact path="/scoreboard" component={Scoreboard} />
-        <Route exact path="/calendar" component={Calendar} />
         <Route exact path="/goals" component={Goals} />
-        <Route exact path="/addgoals" component={AddGoals} />
-        <Route exact path="/friends" component={Friends} />
-        <Route exact path="/settings" component={Settings} />
-        <Redirect from="*" to="/stats" />
+        <Route exact path="/calendar" component={Calendar} />
+        <Redirect from="*" to="/home" />
       </Switch>
     </>
   ) : (
