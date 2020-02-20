@@ -10,6 +10,10 @@ import {
   MenuItem,
   FormControlLabel
 } from "@material-ui/core";
+import "react-dates/initialize";
+import "react-dates/lib/css/_datepicker.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { DateRangePicker } from "react-dates";
 
 const onSubmit = async values => {
   const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
@@ -25,6 +29,13 @@ const validate = values => {
 };
 
 class AddTask extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      date: null,
+      focused: null
+    };
+  }
   render() {
     return (
       <div style={{ padding: 16, margin: "auto", maxWidth: 600 }}>
@@ -42,6 +53,22 @@ class AddTask extends Component {
           render={({ handleSubmit, reset, submitting, pristine, values }) => (
             <form onSubmit={handleSubmit} noValidate>
               <Paper style={{ padding: 16 }}>
+                <Typography>Pick your dates: </Typography>
+                <Grid item xs={12}>
+                  <DateRangePicker
+                    startDateId="startDate"
+                    endDateId="endDate"
+                    startDate={this.state.startDate}
+                    endDate={this.state.endDate}
+                    onDatesChange={({ startDate, endDate }) => {
+                      this.setState({ startDate, endDate });
+                    }}
+                    focusedInput={this.state.focusedInput}
+                    onFocusChange={focusedInput => {
+                      this.setState({ focusedInput });
+                    }}
+                  />
+                </Grid>
                 <Grid container alignItems="flex-start" spacing={2}>
                   <Grid item xs={12}>
                     <Field
@@ -68,12 +95,6 @@ class AddTask extends Component {
                         Be More Productive
                       </MenuItem>
                     </Field>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography>Placeholder 1</Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography>Placeholder 2</Typography>
                   </Grid>
                   <Grid item xs={12}>
                     <FormControlLabel
