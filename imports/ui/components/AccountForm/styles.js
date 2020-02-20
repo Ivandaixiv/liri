@@ -19,7 +19,7 @@ const styles = ({}) =>
       marginTop: "5px"
     },
     submit: {
-      margin: "(3px, 0px, 2px)"
+      // margin: "(3px, 0px, 2px)"
     }
   });
 

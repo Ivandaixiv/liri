@@ -63,6 +63,7 @@ class AccountForm extends Component {
       }
     });
   };
+
   login = values => {
     const { email, password } = values;
 
@@ -135,7 +136,7 @@ class AccountForm extends Component {
                     )}
                   </Field>
                 </FormControl>
-                <FormControl fullWidth>
+                <FormControl fullWidth style={{ paddingBottom: "20px" }}>
                   <InputLabel htmlFor="password">Password</InputLabel>
                   <Field name="password">
                     {({ input, meta }) => (
@@ -161,45 +162,33 @@ class AccountForm extends Component {
                     <Button
                       type="submit"
                       variant="contained"
-                      size="large"
                       color="secondary"
                       disabled={pristine || invalid}
                     >
                       {this.state.formToggle ? (
-                        <Typography
-                          component="h3"
-                          variant="h5"
-                          className={classes.submit}
-                        >
-                          Sign in
-                        </Typography>
+                        <Typography>Sign in</Typography>
                       ) : (
-                        <Typography component="h3" variant="h5">
-                          Create an Account
-                        </Typography>
+                        <Typography>Create an Account</Typography>
                       )}
                     </Button>
-                    <Typography>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          form.reset();
-                          this.setState({
-                            formToggle: !this.state.formToggle
-                          });
-                        }}
-                      >
-                        {this.state.formToggle ? (
-                          <Typography component="h1" variant="h5">
-                            Create an Account
-                          </Typography>
-                        ) : (
-                          <Typography component="h1" variant="h5">
-                            Login to Existing Account
-                          </Typography>
-                        )}
-                      </button>
-                    </Typography>
+
+                    <Button
+                      type="button"
+                      variant="contained"
+                      color="secondary"
+                      onClick={() => {
+                        form.reset();
+                        this.setState({
+                          formToggle: !this.state.formToggle
+                        });
+                      }}
+                    >
+                      {this.state.formToggle ? (
+                        <Typography>Create an Account</Typography>
+                      ) : (
+                        <Typography>Login to Existing Account</Typography>
+                      )}
+                    </Button>
                   </Grid>
                 </FormControl>
               </form>
