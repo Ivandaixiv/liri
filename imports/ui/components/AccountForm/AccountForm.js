@@ -110,7 +110,9 @@ class AccountForm extends Component {
                             value={input.value}
                           />
                           {meta.touched && meta.error && (
-                            <span>{meta.error}</span>
+                            <span style={{ fontFamily: "georgia" }}>
+                              {meta.error}
+                            </span>
                           )}
                         </>
                       )}
@@ -132,7 +134,9 @@ class AccountForm extends Component {
                           value={input.value}
                         />
                         {meta.touched && meta.error && (
-                          <span>{meta.error}</span>
+                          <span style={{ fontFamily: "georgia" }}>
+                            {meta.error}
+                          </span>
                         )}
                       </>
                     )}
@@ -154,7 +158,9 @@ class AccountForm extends Component {
                         />
 
                         {meta.touched && meta.error && (
-                          <span>{meta.error}</span>
+                          <span style={{ fontFamily: "georgia" }}>
+                            {meta.error}
+                          </span>
                         )}
                       </>
                     )}
