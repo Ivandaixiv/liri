@@ -4,7 +4,7 @@ export const Pets = new Mongo.Collection("pets");
 
 if (Meteor.isServer) {
   Meteor.publish("pets", function petsPublication() {
-    return Pets.find({ owner: this.userId });
+    return Pets.find({ ownerId: this.userId });
   });
 }
 Meteor.methods({

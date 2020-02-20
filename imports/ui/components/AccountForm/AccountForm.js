@@ -14,8 +14,8 @@ import styles from "./styles";
 import { Meteor } from "meteor/meteor";
 import { Accounts } from "meteor/accounts-base";
 import { withTracker } from "meteor/react-meteor-data";
-import { Users } from "../../../api/users";
-import { Pets } from "../../../api/pets";
+import "../../../api/users";
+import "../../../api/pets";
 
 class AccountForm extends Component {
   constructor(props) {

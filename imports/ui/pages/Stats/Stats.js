@@ -6,35 +6,46 @@ import { withTracker } from "meteor/react-meteor-data";
 import { Users } from "../../../api/users";
 import moment from "moment";
 import { Meteor } from "meteor/meteor";
+import { Pets } from "../../../api/pets";
+import CircularProgress from "@material-ui/core/CircularProgress";
 // import PropTypes from "prop-types";
 
 const Stats = props => {
-  const { classes, user } = props;
-  user.length > 0 && user[0].username && console.log(user[0]);
+  const { classes, user, pets } = props;
+  console.log("Props", props);
 
+  user.length > 0 && user[0].username && console.log("User", user[0]);
   return (
     user.length > 0 &&
     user[0] && (
       <div className={classes.statsContainer}>
-        <Typography variant="h3">
+        <Typography variant="h4">
           {user[0].username && user[0].username}'s stats
         </Typography>
         <Typography>
-          Account Age:
-          {user[0].createdAt && moment(user[0].createdAt).fromNow()}
+          Your account was created{" "}
+          {user[0].createdAt && moment(user[0].createdAt).fromNow()}!
         </Typography>
-        <div>
-          <div>
+        <div className={classes.counterContainer}>
+          <div className={classes.counter}>
             <Typography>Completed Tasks</Typography>
             <Typography>
               {user[0].tasksCompleted && user[0].tasksCompleted}
             </Typography>
           </div>
-          <div>
+          <div className={classes.counter}>
             <Typography>Streak Count</Typography>
             <Typography>{user[0].streak && user[0].streak}</Typography>
           </div>
         </div>
+
+        {user[0].exp && (
+          <CircularProgress
+            variant="determinate"
+            value={user[0].exp}
+            color="secondary"
+          />
+        )}
         <img src="/liri.png" className={classes.liri}></img>
       </div>
     )
@@ -43,9 +54,11 @@ const Stats = props => {
 
 export default withTracker(() => {
   Meteor.subscribe("user");
+  Meteor.subscribe("pets");
 
   return {
     userId: Meteor.userId(),
+    pets: Pets.find({}).fetch(),
     user: Users.find({}).fetch()
   };
 })(withStyles(styles)(Stats));
