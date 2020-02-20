@@ -78,11 +78,7 @@ const Navigation = props => {
             </Menu>
 
             <Link to="/home" className={classes.link}>
-              <Typography
-                color="secondary"
-                className={classes.titleText}
-                variant="h5"
-              >
+              <Typography className={classes.titleText} variant="h5">
                 LIRI
               </Typography>
             </Link>
@@ -97,7 +93,7 @@ const Navigation = props => {
           <div>
             <NavLink to="/profile">
               <IconButton className={classes.link}>
-                <AccountCircle color="secondary" />
+                <AccountCircle color="secondary" className={classes.icons} />
               </IconButton>
             </NavLink>
             {auth && (
@@ -105,7 +101,7 @@ const Navigation = props => {
                 color="secondary"
                 onClick={(handleClose, Meteor.logout)}
               >
-                <ExitIcon />
+                <ExitIcon className={classes.icons} />
               </IconButton>
             )}
           </div>
