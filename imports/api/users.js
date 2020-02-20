@@ -2,15 +2,6 @@ import { Meteor } from "meteor/meteor";
 
 export const Users = Meteor.users;
 
-// if (Meteor.isServer) {
-//   Meteor.publish("user", function userPublication() {
-//     return Users.find(
-//       { _id: this.userId },
-//       { fields: { profile: 1, username: 1, email: 1 } }
-//     );
-//   });
-// }
-
 if (Meteor.isServer) {
   Meteor.publish("user", function userPublication() {
     return Users.find({ _id: this.userId });

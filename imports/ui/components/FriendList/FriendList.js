@@ -4,12 +4,12 @@ import Gravatar from "react-gravatar";
 import { withTracker } from "meteor/react-meteor-data";
 import AddFriend from "./helpers/AddFriend";
 import styles from "./styles";
-import { Meteor } from "meteor/meteor";
 import { Users } from "../../../api/users";
 
-const FriendList = ({ user, userId }) => {
+const FriendList = ({ currentUser }) => {
   const classes = styles();
-  user && console.log(user);
+
+  currentUser && console.log(currentUser.profile.friends);
 
   return (
     <List className={classes.list}>
@@ -18,7 +18,7 @@ const FriendList = ({ user, userId }) => {
       <ListItem button className={classes.item}>
         <Gravatar className={classes.media} email="blah@blah.com" />
         <ListItemText className={classes.text}>
-          {user && user.username}
+          {currentUser && currentUser.username}
         </ListItemText>
       </ListItem>
       {/* ))} */}
@@ -29,8 +29,8 @@ const FriendList = ({ user, userId }) => {
 
 export default withTracker(() => {
   Meteor.subscribe("user");
+
   return {
-    userId: Meteor.userId(),
-    user: Users.find({}).fetch()
+    currentUser: Meteor.user()
   };
 })(FriendList);
