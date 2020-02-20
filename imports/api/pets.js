@@ -18,10 +18,12 @@ Meteor.methods({
       );
     }
     Pets.insert({
-      name: petName ? petName : "Your Liri",
+      // future consideration: add custom name
+      name: "Your Liri",
       hp: 100,
       stage: 1,
-      species: series ? series : 1,
+      // future consideration: choose your pet
+      species: 1,
       ownerId: this.userId
     });
   },
