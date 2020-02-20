@@ -9,7 +9,7 @@ if (Meteor.isServer) {
 }
 Meteor.methods({
   // This method will only be called when the user accounts gets created to initialize their pet
-  "pets.addPet"(petName, series) {
+  "pets.addPet"() {
     if (!this.userId) {
       // Checks if the user matches
       throw new Meteor.Error(
@@ -18,10 +18,12 @@ Meteor.methods({
       );
     }
     Pets.insert({
-      name: petName ? petName : "Your Liri",
+      // future consideration: add custom name
+      name: "Your Liri",
       hp: 100,
       stage: 1,
-      species: series ? series : 1,
+      // future consideration: choose your pet
+      species: 1,
       ownerId: this.userId
     });
   },
