@@ -21,7 +21,7 @@ Meteor.methods({
       // future consideration: add custom name
       name: "Your Liri",
       hp: 100,
-      stage: 1,
+      level: 1,
       // future consideration: choose your pet
       species: 1,
       ownerId: this.userId
