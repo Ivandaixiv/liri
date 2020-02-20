@@ -6,7 +6,7 @@ const styles = () =>
       display: "flex",
       paddingTop: "20px",
       width: "80vw",
-      height: "10vw"
+      height: "12vw"
     },
     pad: {
       padding: "20"

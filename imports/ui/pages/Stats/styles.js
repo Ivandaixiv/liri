@@ -3,7 +3,8 @@ import { createStyles } from "@material-ui/styles";
 const styles = () =>
   createStyles({
     statsContainer: {
-      textAlign: "center"
+      textAlign: "center",
+      background: "white"
     },
     liri: {
       width: "300px"
