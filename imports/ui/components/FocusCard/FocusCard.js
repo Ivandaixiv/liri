@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "./styles";
 import { Form, Field, FormSpy } from "react-final-form";
+import { withTracker } from "meteor/react-meteor-data";
+import { Users } from "../../../api/users";
 import {
   Card,
   CardActionArea,
@@ -14,14 +16,17 @@ import {
   FormControl
 } from "@material-ui/core";
 
-let tags = [];
-console.log(tags);
-onSubmit = () => {
-  tags.push(value);
-  console.log(tags);
-};
 
-const FocusCard = ({ classes }) => {
+
+const FocusCard = props => {
+  const { classes, user, userId } = props;
+console.log(user);
+const onSubmit = value => {
+  if (value === "fitness" ){
+    Meteor.call('user.updateFocus', userId, value);
+  }
+}
+
   return (
     <div>
       <Button
@@ -143,10 +148,26 @@ const FocusCard = ({ classes }) => {
           </Typography>
         </Card>
       </Button>
-      <Button className={classes.finalSubmit} >Submit</Button>
     </div>
-    
   );
 };
 
-export default withStyles(styles)(FocusCard);
+//   render() {
+//     let { classes } = this.props;
+//     return (
+//       <div>
+//         <Typography variant="h3">test</Typography>
+//         {console.log("test")};
+//       </div>
+//     );
+//   }
+// }
+
+export default withTracker(() => {
+  Meteor.subscribe("user");
+
+  return {
+    user: Users.find({}).fetch(),
+    userId: Meteor.userId()
+  };
+})(withStyles(styles)(FocusCard));
