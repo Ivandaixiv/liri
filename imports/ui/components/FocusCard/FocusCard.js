@@ -16,19 +16,18 @@ import {
   FormControl
 } from "@material-ui/core";
 
-
-
 const FocusCard = props => {
   const { classes, user, userId } = props;
-console.log(user);
-const onSubmit = value => {
-  if (value === "fitness" ){
-    Meteor.call('user.updateFocus', userId, value);
-  }
-}
+  console.log(user);
+  const onSubmit = value => {
+    if (value === "fitness") {
+      Meteor.call("user.updateFocus", userId, value);
+    }
+  };
 
   return (
-    <div>
+    <div className={classes.mainContainer}>
+      <Typography className={classes.header}>What is your goal?</Typography>
       <Button
         color="primary"
         onClick={() => {
@@ -40,9 +39,9 @@ const onSubmit = value => {
           <CardMedia
             className={classes.card}
             component="img"
-            image="http://place-puppy.com/200x199"
+            image="/liri.png"
           />
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography variant="body2" className={classes.text} component="p">
             Praesent et lectus ultricies, convallis odio in, auctor erat. Nunc
             ut lobortis nunc. In at semper justo, at hendrerit dui.
           </Typography>
@@ -52,17 +51,17 @@ const onSubmit = value => {
       <Button
         color="primary"
         onClick={() => {
-          onSubmit((value = "Puppy!"));
+          onSubmit((value = "Health"));
         }}
       >
         <Card className={classes.container}>
-          <Typography variant="h4">Puppy</Typography>
+          <Typography variant="h4">Health</Typography>
           <CardMedia
             className={classes.card}
             component="img"
-            image="http://place-puppy.com/200x200"
+            image="/liri.png"
           />
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography variant="body2" className={classes.text} component="p">
             Praesent et lectus ultricies, convallis odio in, auctor erat. Nunc
             ut lobortis nunc. In at semper justo, at hendrerit dui.
           </Typography>
@@ -80,9 +79,9 @@ const onSubmit = value => {
           <CardMedia
             className={classes.card}
             component="img"
-            image="http://place-puppy.com/200x205"
+            image="/liri.png"
           />
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography variant="body2" className={classes.text} component="p">
             Praesent et lectus ultricies, convallis odio in, auctor erat. Nunc
             ut lobortis nunc. In at semper justo, at hendrerit dui.
           </Typography>
@@ -100,9 +99,9 @@ const onSubmit = value => {
           <CardMedia
             className={classes.card}
             component="img"
-            image="http://place-puppy.com/200x204"
+            image="/liri.png"
           />
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography variant="body2" className={classes.text} component="p">
             Praesent et lectus ultricies, convallis odio in, auctor erat. Nunc
             ut lobortis nunc. In at semper justo, at hendrerit dui.
           </Typography>
@@ -120,9 +119,9 @@ const onSubmit = value => {
           <CardMedia
             className={classes.card}
             component="img"
-            image="http://place-puppy.com/200x203"
+            image="/liri.png"
           />
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography variant="body2" className={classes.text} component="p">
             Praesent et lectus ultricies, convallis odio in, auctor erat. Nunc
             ut lobortis nunc. In at semper justo, at hendrerit dui.
           </Typography>
@@ -140,9 +139,9 @@ const onSubmit = value => {
           <CardMedia
             className={classes.card}
             component="img"
-            image="http://place-puppy.com/200x201"
+            image="/liri.png"
           />
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography variant="body2" className={classes.text} component="p">
             Praesent et lectus ultricies, convallis odio in, auctor erat. Nunc
             ut lobortis nunc. In at semper justo, at hendrerit dui.
           </Typography>
