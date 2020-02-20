@@ -9,7 +9,7 @@ if (Meteor.isServer) {
 }
 Meteor.methods({
   // This method will only be called when the user accounts gets created to initialize their pet
-  "pets.addPet"(petName, series) {
+  "pets.addPet"() {
     if (!this.userId) {
       // Checks if the user matches
       throw new Meteor.Error(
