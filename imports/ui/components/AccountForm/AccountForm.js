@@ -14,7 +14,8 @@ import styles from "./styles";
 import { Meteor } from "meteor/meteor";
 import { Accounts } from "meteor/accounts-base";
 import { withTracker } from "meteor/react-meteor-data";
-import { Users } from "../../../api/users";
+import "../../../api/users";
+import "../../../api/pets";
 
 class AccountForm extends Component {
   constructor(props) {
@@ -45,6 +46,7 @@ class AccountForm extends Component {
       }
       if (Meteor.user()) {
         Meteor.call("user.newAccount", Meteor.userId());
+        Meteor.call("pets.addPet");
       }
     });
   };
