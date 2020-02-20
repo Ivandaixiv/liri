@@ -18,8 +18,10 @@ const styles = ({}) =>
       width: "100%", // Fix IE 11 issue.
       marginTop: "5px"
     },
-    submit: {
-      // margin: "(3px, 0px, 2px)"
+    buttons: {
+      display: "flex",
+      justifyContent: "space-between",
+      width: "370px"
     }
   });
 

@@ -161,12 +161,7 @@ class AccountForm extends Component {
                   </Field>
                 </FormControl>
                 <FormControl>
-                  <Grid
-                    container
-                    direction="row"
-                    justify="space-between"
-                    alignItems="center"
-                  >
+                  <div className={classes.buttons}>
                     <Button
                       type="submit"
                       variant="contained"
@@ -179,7 +174,6 @@ class AccountForm extends Component {
                         <Typography>Create an Account</Typography>
                       )}
                     </Button>
-
                     <Button
                       type="button"
                       variant="contained"
@@ -194,10 +188,10 @@ class AccountForm extends Component {
                       {this.state.formToggle ? (
                         <Typography>Create an Account</Typography>
                       ) : (
-                        <Typography>Login to Existing Account</Typography>
+                        <Typography>Login</Typography>
                       )}
                     </Button>
-                  </Grid>
+                  </div>
                 </FormControl>
               </form>
             )}
