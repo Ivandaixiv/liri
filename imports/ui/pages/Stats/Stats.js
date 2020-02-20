@@ -10,7 +10,8 @@ import { Pets } from "../../../api/pets";
 import Box from "@material-ui/core/Box";
 import FireIcon from "@material-ui/icons/Whatshot";
 import ClipboardIcon from "@material-ui/icons/Assignment";
-import { ColorLinearProgress } from "./styles";
+import { ExpLinearProgress } from "./styles";
+import { HPLinearProgress } from "./styles";
 // import PropTypes from "prop-types";
 
 const Stats = props => {
@@ -48,19 +49,33 @@ const Stats = props => {
               </div>
             </div>
           </div>
-          <Box>
-            <Box display="flex" className={classes.petStats}>
-              <Typography>Level: {pets[0] && pets[0].level}</Typography>
-              <Typography> Experience: {user[0].exp}/100</Typography>
+          {pets[0] && (
+            <Box>
+              <Box display="flex" className={classes.petStats}>
+                <Typography> Health: {pets[0].hp}/100</Typography>
+              </Box>
+
+              <HPLinearProgress
+                variant="determinate"
+                value={pets[0].hp}
+                className={classes.bar}
+              />
             </Box>
-            {user[0].exp && (
-              <ColorLinearProgress
+          )}
+          {user[0].exp && (
+            <Box>
+              <Box display="flex" className={classes.petStats}>
+                <Typography>Level: {pets[0] && pets[0].level}</Typography>
+                <Typography> Experience: {user[0].exp}/100</Typography>
+              </Box>
+
+              <ExpLinearProgress
                 variant="determinate"
                 value={user[0].exp}
-                className={classes.expBar}
+                className={classes.bar}
               />
-            )}
-          </Box>
+            </Box>
+          )}
         </Box>
         <img src="/liri.png" className={classes.liri}></img>
       </Box>

@@ -31,7 +31,7 @@ const styles = () =>
     },
     tasks: {
       padding: "0 20px",
-      marginTop: "40px",
+      margin: "40px 0",
       borderRight: "2px solid #4B4B4B"
     },
     fire: {
@@ -54,19 +54,28 @@ const styles = () =>
       width: "15%",
       height: "30%"
     },
-    expBar: {
+    bar: {
       width: "350px"
     },
     petStats: {
+      marginTop: 20,
       justifyContent: "space-between"
     }
   });
-export const ColorLinearProgress = withStyles({
+export const ExpLinearProgress = withStyles({
   colorPrimary: {
     backgroundColor: "#14A76C"
   },
   barColorPrimary: {
     backgroundColor: "#FFDF00"
+  }
+})(LinearProgress);
+export const HPLinearProgress = withStyles({
+  colorPrimary: {
+    backgroundColor: "#14A76C"
+  },
+  barColorPrimary: {
+    backgroundColor: "#F44339"
   }
 })(LinearProgress);
 
