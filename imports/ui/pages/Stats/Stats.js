@@ -10,7 +10,7 @@ import { Pets } from "../../../api/pets";
 import Box from "@material-ui/core/Box";
 import FireIcon from "@material-ui/icons/Whatshot";
 import ClipboardIcon from "@material-ui/icons/Assignment";
-import { LinearProgress } from "@material-ui/core";
+import { ColorLinearProgress } from "./styles";
 // import PropTypes from "prop-types";
 
 const Stats = props => {
@@ -27,8 +27,8 @@ const Stats = props => {
             {user[0].username && user[0].username}'s stats
           </Typography>
           <Typography className={classes.name}>
-            Your account was created{" "}
-            {user[0].createdAt && moment(user[0].createdAt).fromNow()}!
+            {pets[0] && pets[0].name} is{" "}
+            {user[0].createdAt && moment(user[0].createdAt).fromNow(true)} old!
           </Typography>
           <div className={classes.counterContainer}>
             <div className={(classes.counter, classes.tasks)}>
@@ -48,14 +48,19 @@ const Stats = props => {
               </div>
             </div>
           </div>
-
-          {user[0].exp && (
-            <LinearProgress
-              variant="determinate"
-              value={user[0].exp}
-              className={classes.expBar}
-            />
-          )}
+          <Box>
+            <Box display="flex" className={classes.petStats}>
+              <Typography>Level: {pets[0] && pets[0].level}</Typography>
+              <Typography> Experience: {user[0].exp}/100</Typography>
+            </Box>
+            {user[0].exp && (
+              <ColorLinearProgress
+                variant="determinate"
+                value={user[0].exp}
+                className={classes.expBar}
+              />
+            )}
+          </Box>
         </Box>
         <img src="/liri.png" className={classes.liri}></img>
       </Box>

@@ -1,4 +1,6 @@
 import { createStyles } from "@material-ui/styles";
+import { withStyles } from "@material-ui/styles";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
 const styles = () =>
   createStyles({
@@ -53,8 +55,19 @@ const styles = () =>
       height: "30%"
     },
     expBar: {
-      color: "#FFDF00	"
+      width: "350px"
+    },
+    petStats: {
+      justifyContent: "space-between"
     }
   });
+export const ColorLinearProgress = withStyles({
+  colorPrimary: {
+    backgroundColor: "#14A76C"
+  },
+  barColorPrimary: {
+    backgroundColor: "#FFDF00"
+  }
+})(LinearProgress);
 
 export default styles;
