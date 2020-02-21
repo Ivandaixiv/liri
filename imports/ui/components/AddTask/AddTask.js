@@ -16,13 +16,16 @@ import "react-dates/lib/css/_datepicker.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { DateRangePicker } from "react-dates";
 import "../../../api/tasks";
+import "../../../api/users";
 
 const onSubmit = async values => {
   const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
   await sleep(300);
   const { task, goal, startDate, endDate, fullday } = values;
   Meteor.call("task.addTask", task, goal, startDate._d, endDate._d, fullday);
+  Meteor.call("user.addTask", Meteor.userId(), task);
 };
+
 const validate = values => {
   const errors = {};
   if (!values.task) {
