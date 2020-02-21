@@ -1,11 +1,7 @@
 import React, { Component } from "react";
+import { Meteor } from "meteor/meteor";
 import { Form, Field } from "react-final-form";
-import {
-  HiddenField,
-  TextField,
-  Checkbox,
-  Select
-} from "final-form-material-ui";
+import { TextField, Checkbox, Select } from "final-form-material-ui";
 import {
   Typography,
   Paper,
@@ -19,19 +15,21 @@ import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { DateRangePicker } from "react-dates";
+import "../../../api/tasks";
+import "../../../api/users";
 
 const onSubmit = async values => {
   const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
   await sleep(300);
-  window.alert(JSON.stringify(values, 0, 2));
-  console.log(values);
+  const { task, goal, startDate, endDate, fullday } = values;
+  Meteor.call("task.addTask", task, goal, startDate._d, endDate._d, fullday);
 };
+
 const validate = values => {
   const errors = {};
   if (!values.task) {
     errors.task = "Required";
   }
-  console.log("validation result", errors, values);
   return errors;
 };
 
@@ -90,7 +88,6 @@ class AddTask extends Component {
                     name="startDate"
                     type="hidden"
                     render={({ input }) => {
-                      console.log("input props", input);
                       return (
                         <input
                           {...input}
@@ -116,7 +113,7 @@ class AddTask extends Component {
                   <Grid item xs={12}>
                     <Field
                       fullWidth
-                      name="Goal"
+                      name="goal"
                       component={Select}
                       label="What Is Your Goal?"
                       formControlProps={{ fullWidth: true }}
