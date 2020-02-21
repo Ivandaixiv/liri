@@ -11,7 +11,7 @@ if (Meteor.isServer) {
 Meteor.methods({
   "user.newAccount"(userId) {
     Meteor.users.update(userId, {
-      $set: { tasksCompleted: 0, focuses: [], streak: 1, exp: 100 }
+      $set: { tasksCompleted: 0, focuses: [], streak: 1, exp: 1 }
     });
   },
   "user.updateFocus"(userId, focuses) {
