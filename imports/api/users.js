@@ -21,6 +21,11 @@ Meteor.methods({
       $set: { tasksCompleted: 0, focuses: [], streak: 1, exp: 1 }
     });
   },
+  "user.addExp"(userId, exp) {
+    Meteor.users.update(userId, {
+      $inc: { exp: exp }
+    });
+  },
   "user.updateFocus"(userId, focuses) {
     Meteor.users.update(userId, {
       $set: { focuses: focuses }
