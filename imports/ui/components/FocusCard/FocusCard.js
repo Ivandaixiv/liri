@@ -30,7 +30,7 @@ const FocusCard = props => {
         onClick={() => {
           onSubmit(
             Meteor.call("user.addTask", userId, [
-              "Run for thirty minutes today",
+              "Run for thirty minutes",
               "Hold a plank for one minute",
               "Do ten pull-ups"
             ])
@@ -77,15 +77,11 @@ const FocusCard = props => {
         </Card>
       </Button>
 
-<Button
+      <Button
         color="primary"
         onClick={() => {
           onSubmit(
-            Meteor.call("user.addTask", userId, [
-              "Test",
-              "Test2",
-              "Test3"
-            ])
+            Meteor.call("user.addTask", userId, ["Test", "Test2", "Test3"])
           );
         }}
       >
@@ -107,11 +103,7 @@ const FocusCard = props => {
         color="primary"
         onClick={() => {
           onSubmit(
-            Meteor.call("user.addTask", userId, [
-              "Test",
-              "Test2",
-              "Test3"
-            ])
+            Meteor.call("user.addTask", userId, ["Test", "Test2", "Test3"])
           );
         }}
       >
@@ -132,7 +124,9 @@ const FocusCard = props => {
       <Button
         color="primary"
         onClick={() => {
-          onSubmit((value = "PLACEHOLDER TAG"));
+          onSubmit(
+            Meteor.call("user.addTask", userId, ["Test", "Test2", "Test3"])
+          );
         }}
       >
         <Card className={classes.container}>
@@ -152,7 +146,9 @@ const FocusCard = props => {
       <Button
         color="primary"
         onClick={() => {
-          onSubmit((value = "PLACEHOLDER TAG"));
+          onSubmit(
+            Meteor.call("user.addTask", userId, ["Test", "Test2", "Test3"])
+          );
         }}
       >
         <Card className={classes.container}>
