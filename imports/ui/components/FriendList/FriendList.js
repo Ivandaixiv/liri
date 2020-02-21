@@ -4,27 +4,39 @@ import Gravatar from "react-gravatar";
 import { withTracker } from "meteor/react-meteor-data";
 import AddFriend from "./helpers/AddFriend";
 import styles from "./styles";
+import { Users } from "../../../api/users";
 
-const FriendList = ({ currentUser }) => {
+const FriendList = props => {
   const classes = styles();
-  // const screenName = Meteor.user().username;
+  const { friends } = props;
+
   return (
     <List className={classes.list}>
-      {console.log(currentUser)}
-      {/* {friends &&
-        friends.map(friend => ( */}
-      <ListItem button className={classes.item}>
-        <Gravatar className={classes.media} email="blah@blah.com" />
-        <ListItemText className={classes.text}>Username</ListItemText>
-      </ListItem>
-      {/* ))} */}
+      {friends &&
+        friends.map(friend => (
+          <ListItem className={classes.item} button>
+            <Gravatar
+              className={classes.media}
+              email={friend.emails[0].address}
+            />
+            <ListItemText className={classes.text}>
+              {friend.username}
+            </ListItemText>
+          </ListItem>
+        ))}
       <AddFriend />
     </List>
   );
 };
 
 export default withTracker(() => {
+  Meteor.subscribe("user");
+  Meteor.subscribe("friends");
+
+  const friends = Users.find({
+    "profile.friends": { $in: [Meteor.userId()] }
+  }).fetch();
   return {
-    currentUser: Meteor.user()
+    friends
   };
 })(FriendList);
