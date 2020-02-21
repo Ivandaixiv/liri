@@ -21,9 +21,6 @@ import "../../../api/pets";
 
 class TaskCard extends Component {
   render() {
-<<<<<<< HEAD
-    let { classes, task } = this.props;
-=======
     const handleComplete = () => {
       console.log("Completed");
       // Meteor.removeTask
@@ -39,7 +36,6 @@ class TaskCard extends Component {
     const { classes, task, userid } = this.props;
     console.log("EXP", task.exp);
     console.log("Props", this.props);
->>>>>>> master
     return (
       <Card>
         <CardContent className={classes.card}>
@@ -65,14 +61,4 @@ class TaskCard extends Component {
     );
   }
 }
-<<<<<<< HEAD
 export default withStyles(styles)(TaskCard);
-=======
-
-export default withTracker(() => {
-  Meteor.subscribe("tasks");
-  return {
-    userId: Meteor.userId()
-  };
-})(withStyles(styles)(TaskCard));
->>>>>>> master
