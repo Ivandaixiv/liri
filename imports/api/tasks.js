@@ -4,12 +4,12 @@ export const Tasks = new Mongo.Collection("tasks");
 
 if (Meteor.isServer) {
   Meteor.publish("tasks", function tasksPublication() {
-    return Tasks.find({ owner: this.userId });
+    return Tasks.find({ creatorId: this.userId });
   });
 }
 Meteor.methods({
   // How to write a methtod in Meteor methods
-  "task.toggleComplete"(task) {
+  "task.complete"(task) {
     if (task.owner !== this.userId) {
       // Checks if the user matches
       throw new Meteor.Error(
@@ -19,10 +19,10 @@ Meteor.methods({
     }
     // change the complete status
     Tasks.update(task._id, {
-      $set: { complete: !task.complete }
+      $set: { complete: true }
     });
   },
-  "task.removeToDo"(task) {
+  "task.removeTask"(task) {
     if (task.owner !== this.userId) {
       // Checks if the user matches
       throw new Meteor.Error(
@@ -44,7 +44,7 @@ Meteor.methods({
     Tasks.insert({
       task,
       complete: false,
-      creatorId: this.userId,
+      ownerId: this.userId,
       startDate: startDate ? startDate : new Date(),
       endDate: endDate ? endDate : null,
       goal,

@@ -3,9 +3,6 @@ import { Meteor } from "meteor/meteor";
 export const Users = Meteor.users;
 
 if (Meteor.isServer) {
-  Meteor.publish("user", function userPublication() {
-    return Users.find({ _id: this.userId });
-  });
   Meteor.publish("friends", function friendPublication() {
     console.log("this.userid is", this.userId);
     return Users.find(
@@ -13,17 +10,28 @@ if (Meteor.isServer) {
       { fields: { username: 1, profile: 1, emails: 1, createdAt: 1 } }
     );
   });
+
+  if (Meteor.isServer) {
+    Meteor.publish("user", function userPublication() {
+      return Users.find({ _id: this.userId });
+    });
+  }
 }
 
 Meteor.methods({
   "user.newAccount"(userId) {
     Meteor.users.update(userId, {
-      $set: { tasksCompleted: 0, focuses: [], streak: 1, exp: 1 }
+      $set: { tasksCompleted: 0, streak: 1, exp: 1 }
+    });
+  },
+  "user.addExp"(userId, exp) {
+    Meteor.users.update(userId, {
+      $inc: { exp: exp }
     });
   },
   "user.updateFocus"(userId, focuses) {
     Meteor.users.update(userId, {
-      $set: { focuses: focuses }
+      $push: { currentTasks: task }
     });
   },
 
@@ -51,27 +59,39 @@ Meteor.methods({
       Meteor.users.update(Meteor.userId(), {
         $push: { "profile.friends": newFriend._id }
       });
-
       Meteor.users.update(newFriend._id, {
         $push: { "profile.friends": Meteor.userId() }
       });
     }
   },
+
   // Method to remove friends
-  "user.removeFriend"(friendUserId) {
-    if (!friendUserId) {
+  "user.removeFriend"(username) {
+    if (!username) {
       throw new Meteor.Error(
         "users.removeFriend.not-authorized",
         "Unable to remove user"
       );
     }
 
-    Meteor.users.update(Meteor.userId(), {
-      profile: {
-        $pull: {
-          friends: { $in: [friendUserId] }
-        }
-      }
-    });
+    // Meteor.users.update(Meteor.userId(), {
+    //   profile: {
+    //     $pull: {
+    //       friends: { $in: [friendUserId] }
+    //     }
+    //   }
+    // });
+
+    // Meteor.users.update(Meteor.userId(), {
+    //   $pull: { "profile.friends": { $in: [friendUserId] } }
+    // });
+
+    const friendToRemove = Meteor.users.findOne({ username });
+
+    if (friendToRemove && friendToRemove._id !== Meteor.userId()) {
+      Users.update(Meteor.userId(), {
+        $pull: { "profile.friends": friendToRemove._id }
+      });
+    }
   }
 });
