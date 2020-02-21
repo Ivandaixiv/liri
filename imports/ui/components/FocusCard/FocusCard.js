@@ -8,34 +8,24 @@ import {
   CardMedia,
   Button,
   Typography,
-  withStyles,
+  withStyles
 } from "@material-ui/core";
 
 const FocusCard = props => {
-<<<<<<< HEAD
   const { classes, user, userId, tasks } = props;
-console.log(user);
-//console.log(props);
-const onSubmit = value => {
-  if (value === "fitness" ){
-    Meteor.call('user.addTask', userId, value);
-  }else if(value === "health"){
-    Meteor.call('user.addTask', userId, value);
-  }
-}
-=======
-  const { classes, user, userId } = props;
   console.log(user);
+  //console.log(props);
   const onSubmit = value => {
     if (value === "fitness") {
-      Meteor.call("user.updateFocus", userId, value);
+      Meteor.call("user.addTask", userId, value);
+    } else if (value === "health") {
+      Meteor.call("user.addTask", userId, value);
     }
   };
->>>>>>> master
 
   return (
     <div className={classes.mainContainer}>
-      <Typography className={classes.header}>What is your goal?</Typography>
+      
       <Button
         color="primary"
         onClick={() => {
@@ -59,11 +49,7 @@ const onSubmit = value => {
       <Button
         color="primary"
         onClick={() => {
-<<<<<<< HEAD
           onSubmit((value = "health"));
-=======
-          onSubmit((value = "Health"));
->>>>>>> master
         }}
       >
         <Card className={classes.container}>
@@ -162,7 +148,6 @@ const onSubmit = value => {
     </div>
   );
 };
-
 
 export default withTracker(() => {
   Meteor.subscribe("user");
