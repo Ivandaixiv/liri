@@ -14,10 +14,10 @@ import {
 const FocusCard = props => {
   const { classes, user, userId, tasks } = props;
   console.log(user);
-  //console.log(props);
+  console.log(props);
   const onSubmit = value => {
-    if (value === "fitness") {
-      Meteor.call("user.addTask", userId, value);
+    if (value === "fitnesss") {
+      Meteor.call("user.addTask", userId, value, "bsdfs");
     } else if (value === "health") {
       Meteor.call("user.addTask", userId, value);
     }
@@ -28,7 +28,7 @@ const FocusCard = props => {
       <Button
         color="primary"
         onClick={() => {
-          onSubmit((value = "fitness"));
+          onSubmit(Meteor.call("user.addTask", userId, ["Run for thirty minutes today", "Hold a plank for one minute", "Do ten pull-ups" ] ));
         }}
       >
         <Card className={classes.container}>
@@ -48,7 +48,7 @@ const FocusCard = props => {
       <Button
         color="primary"
         onClick={() => {
-          onSubmit((value = "health"));
+          onSubmit(Meteor.call("user.addTask", userId, ["Drink eight glasses of water", "Get at least eight hours of sleep", "Etiam varius tristique nunc vitae venenatis." ] ));
         }}
       >
         <Card className={classes.container}>
@@ -150,7 +150,7 @@ const FocusCard = props => {
 
 export default withTracker(() => {
   Meteor.subscribe("user");
-
+  Meteor.subscribe("tasks");
   return {
     user: Users.find({}).fetch(),
     userId: Meteor.userId(),
