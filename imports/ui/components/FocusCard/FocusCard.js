@@ -106,7 +106,13 @@ const FocusCard = props => {
       <Button
         color="primary"
         onClick={() => {
-          onSubmit();
+          onSubmit(
+            Meteor.call("user.addTask", userId, [
+              "Test",
+              "Test2",
+              "Test3"
+            ])
+          );
         }}
       >
         <Card className={classes.container}>
