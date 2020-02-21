@@ -56,20 +56,32 @@ Meteor.methods({
     }
   },
   // Method to remove friends
-  "user.removeFriend"(friendUserId) {
-    if (!friendUserId) {
+  "user.removeFriend"(username) {
+    if (!username) {
       throw new Meteor.Error(
         "users.removeFriend.not-authorized",
         "Unable to remove user"
       );
     }
 
-    Meteor.users.update(Meteor.userId(), {
-      profile: {
-        $pull: {
-          friends: { $in: [friendUserId] }
-        }
-      }
-    });
+    // Meteor.users.update(Meteor.userId(), {
+    //   profile: {
+    //     $pull: {
+    //       friends: { $in: [friendUserId] }
+    //     }
+    //   }
+    // });
+
+    // Meteor.users.update(Meteor.userId(), {
+    //   $pull: { "profile.friends": { $in: [friendUserId] } }
+    // });
+
+    const friendToRemove = Meteor.users.findOne({ username });
+
+    if (friendToRemove && friendToRemove._id !== Meteor.userId()) {
+      Users.update(Meteor.userId(), {
+        $pull: { "profile.friends": friendToRemove._id }
+      });
+    }
   }
 });

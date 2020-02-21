@@ -10,19 +10,18 @@ const FriendList = props => {
   const classes = styles();
   const { friends } = props;
 
-  console.log("friends", friends);
-
   return (
-    <List>
+    <List className={classes.list}>
       {friends &&
         friends.map(friend => (
-          // <div key={friend._id}>{friend.username}</div>
-          <ListItem button>
+          <ListItem className={classes.item} button>
             <Gravatar
               className={classes.media}
               email={friend.emails[0].address}
             />
-            <ListItemText>{friend.username}</ListItemText>
+            <ListItemText className={classes.text}>
+              {friend.username}
+            </ListItemText>
           </ListItem>
         ))}
       <AddFriend />
@@ -33,8 +32,7 @@ const FriendList = props => {
 export default withTracker(() => {
   Meteor.subscribe("user");
   Meteor.subscribe("friends");
-  const currentUser = Meteor.user();
-  console.log("this.userId", Meteor.userId());
+
   const friends = Users.find({
     "profile.friends": { $in: [Meteor.userId()] }
   }).fetch();
