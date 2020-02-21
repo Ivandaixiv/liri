@@ -47,7 +47,7 @@ class AccountForm extends Component {
     if (!values.password) {
       errors.password = <Box color="error.main">REQUIRED</Box>;
     }
-    if (!values.username) {
+    if (!values.username && !this.state.formToggle) {
       errors.username = <Box color="error.main">REQUIRED</Box>;
     }
     return errors;
