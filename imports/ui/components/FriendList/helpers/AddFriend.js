@@ -10,18 +10,29 @@ const AddFriend = () => {
 
   return (
     <Container maxWidth="lg" className="scoreboard-container">
-      <p className={classes.text}>{usernameInput}</p>
-      <input
-        type="text"
-        value={usernameInput}
-        onChange={event => setUsernameInput(event.target.value)}
-      />
+      <div className={classes.inputContainer}>
+        <input
+          className={classes.input}
+          type="text"
+          value={usernameInput}
+          onChange={event => setUsernameInput(event.target.value)}
+        />
+      </div>
       <Box className={classes.buttonbox}>
         <Button
+          variant="contained"
+          color="primary"
           className={classes.button}
           onClick={() => Meteor.call("user.addFriend", usernameInput)}
         >
           Add Friend
+        </Button>
+        <Button
+          variant="contained"
+          className={classes.button}
+          onClick={() => Meteor.call("user.removeFriend", usernameInput)}
+        >
+          Remove Friend
         </Button>
       </Box>
     </Container>
