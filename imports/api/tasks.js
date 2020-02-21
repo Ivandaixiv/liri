@@ -23,7 +23,7 @@ Meteor.methods({
     });
   },
   "task.removeTask"(task) {
-    if (task.owner !== this.userId) {
+    if (task.ownerId !== this.userId) {
       // Checks if the user matches
       throw new Meteor.Error(
         "task.removeTask.not-authorized",

@@ -24,8 +24,9 @@ Meteor.methods({
       $set: { tasksCompleted: 0, streak: 1, exp: 1 }
     });
   },
-  "user.addExp"(userId, exp) {
-    Meteor.users.update(userId, {
+  "user.addExp"(exp) {
+    console.log("Adds EXP", Meteor.userId());
+    Meteor.users.update(Meteor.userId(), {
       $inc: { exp: exp }
     });
   },

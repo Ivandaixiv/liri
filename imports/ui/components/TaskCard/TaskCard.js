@@ -17,17 +17,23 @@ import moment from "moment";
 import Box from "@material-ui/core/Box";
 import "../../../api/tasks";
 import "../../../api/users";
+import "../../../api/pets";
 
 class TaskCard extends Component {
   render() {
     const handleComplete = () => {
       console.log("Completed");
+      // Meteor.removeTask
+      Meteor.call("task.removeTask", task);
+      Meteor.call("user.addExp", task.exp);
     };
     const handleDelete = () => {
       console.log("Deleted");
+      Meteor.call("task.removeTask", task);
+      // Updates pets health
     };
-    let { classes, task } = this.props;
-    console.log(task);
+    const { classes, task, userid } = this.props;
+    console.log("EXP", task.exp);
     console.log("Props", this.props);
     return (
       <Card>
