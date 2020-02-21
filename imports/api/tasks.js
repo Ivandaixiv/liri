@@ -32,7 +32,7 @@ Meteor.methods({
     }
     Tasks.remove(task._id);
   },
-  "task.addTask"(taskTitle, dueDate, tags) {
+  "task.addTask"(task, goal, startDate, endDate, fullday) {
     if (!this.userId) {
       // Checks if the user matches
       throw new Meteor.Error(
@@ -42,11 +42,14 @@ Meteor.methods({
     }
 
     Tasks.insert({
-      title: taskTitle,
+      task,
       complete: false,
       creatorId: this.userId,
-      dueDate: dueDate ? dueDate : null,
-      tags
+      startDate: startDate ? startDate : new Date(),
+      endDate: endDate ? endDate : null,
+      goal,
+      fullday,
+      exp: task.length
     });
   }
 });
