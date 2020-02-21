@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { Form, Field } from "react-final-form";
-import { TextField, Checkbox, Select } from "final-form-material-ui";
+import {
+  HiddenField,
+  TextField,
+  Checkbox,
+  Select
+} from "final-form-material-ui";
 import {
   Typography,
   Paper,
@@ -19,12 +24,14 @@ const onSubmit = async values => {
   const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
   await sleep(300);
   window.alert(JSON.stringify(values, 0, 2));
+  console.log(values);
 };
 const validate = values => {
   const errors = {};
   if (!values.task) {
     errors.task = "Required";
   }
+  console.log("validation result", errors, values);
   return errors;
 };
 
@@ -50,7 +57,20 @@ class AddTask extends Component {
           onSubmit={onSubmit}
           initialValues={{ fullday: false }}
           validate={validate}
-          render={({ handleSubmit, reset, submitting, pristine, values }) => (
+          mutators={{
+            setDates: ([{ startDate, endDate }], state, utils) => {
+              utils.changeValue(state, "startDate", () => startDate);
+              utils.changeValue(state, "endDate", () => endDate);
+            }
+          }}
+          render={({
+            form: { mutators },
+            handleSubmit,
+            reset,
+            submitting,
+            pristine,
+            values
+          }) => (
             <form onSubmit={handleSubmit} noValidate>
               <Paper style={{ padding: 16 }}>
                 <Typography>Pick your dates: </Typography>
@@ -58,21 +78,33 @@ class AddTask extends Component {
                   <DateRangePicker
                     startDateId="startDate"
                     endDateId="endDate"
-                    startDate={this.state.startDate}
-                    endDate={this.state.endDate}
-                    onDatesChange={({ startDate, endDate }) => {
-                      this.setState({ startDate, endDate });
-                    }}
+                    startDate={values.startDate}
+                    endDate={values.endDate}
+                    onDatesChange={mutators.setDates}
                     focusedInput={this.state.focusedInput}
                     onFocusChange={focusedInput => {
                       this.setState({ focusedInput });
+                    }}
+                  />
+                  <Field
+                    name="startDate"
+                    type="hidden"
+                    render={({ input }) => {
+                      console.log("input props", input);
+                      return (
+                        <input
+                          {...input}
+                          type="hidden"
+                          value={this.state.startDate}
+                        />
+                      );
                     }}
                   />
                 </Grid>
                 <Grid container alignItems="flex-start" spacing={2}>
                   <Grid item xs={12}>
                     <Field
-                      name="New Task"
+                      name="task"
                       fullWidth
                       required
                       multiline
