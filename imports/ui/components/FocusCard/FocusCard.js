@@ -28,7 +28,13 @@ const FocusCard = props => {
       <Button
         color="primary"
         onClick={() => {
-          onSubmit(Meteor.call("user.addTask", userId, ["Run for thirty minutes today", "Hold a plank for one minute", "Do ten pull-ups" ] ));
+          onSubmit(
+            Meteor.call("user.addTask", userId, [
+              "Run for thirty minutes today",
+              "Hold a plank for one minute",
+              "Do ten pull-ups"
+            ])
+          );
         }}
       >
         <Card className={classes.container}>
@@ -48,7 +54,13 @@ const FocusCard = props => {
       <Button
         color="primary"
         onClick={() => {
-          onSubmit(Meteor.call("user.addTask", userId, ["Drink eight glasses of water", "Get at least eight hours of sleep", "Etiam varius tristique nunc vitae venenatis." ] ));
+          onSubmit(
+            Meteor.call("user.addTask", userId, [
+              "Etiam varius tristique nunc vitae venenatis.",
+              "Etiam varius vitae venenatis.",
+              "venenatis."
+            ])
+          );
         }}
       >
         <Card className={classes.container}>
@@ -68,7 +80,13 @@ const FocusCard = props => {
       <Button
         color="primary"
         onClick={() => {
-          onSubmit((value = "Test"));
+          onSubmit(
+            Meteor.call("user.addTask", userId, [
+              "Drink eight glasses of water",
+              "Get at least eight hours of sleep",
+              "Etiam varius tristique nunc vitae venenatis."
+            ])
+          );
         }}
       >
         <Card className={classes.container}>
