@@ -12,6 +12,7 @@ import {
 } from "@material-ui/core";
 
 const FocusCard = props => {
+<<<<<<< HEAD
   const { classes, user, userId, tasks } = props;
   console.log(user);
   console.log(props);
@@ -20,11 +21,22 @@ const FocusCard = props => {
       Meteor.call("user.addTask", userId, value);
     } else if (value === "health") {
       Meteor.call("user.addTask", userId, value);
+=======
+  const { classes, user, userId } = props;
+  console.log(user);
+  const onSubmit = value => {
+    if (value === "fitness") {
+      Meteor.call("user.updateFocus", userId, value);
+>>>>>>> master
     }
   };
 
   return (
     <div className={classes.mainContainer}>
+<<<<<<< HEAD
+=======
+      <Typography className={classes.header}>What is your goal?</Typography>
+>>>>>>> master
       <Button
         color="primary"
         onClick={() => {
@@ -54,6 +66,7 @@ const FocusCard = props => {
       <Button
         color="primary"
         onClick={() => {
+<<<<<<< HEAD
           onSubmit(
             Meteor.call("user.addTask", userId, [
               "Drink eight glasses of water",
@@ -61,6 +74,9 @@ const FocusCard = props => {
               "Etiam varius tristique nunc vitae venenatis."
             ])
           );
+=======
+          onSubmit((value = "Health"));
+>>>>>>> master
         }}
       >
         <Card className={classes.container}>
