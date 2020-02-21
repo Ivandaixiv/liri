@@ -17,7 +17,7 @@ const FocusCard = props => {
   console.log(props);
   const onSubmit = value => {
     if (value === "fitnesss") {
-      Meteor.call("user.addTask", userId, value, "bsdfs");
+      Meteor.call("user.addTask", userId, value);
     } else if (value === "health") {
       Meteor.call("user.addTask", userId, value);
     }
@@ -56,9 +56,9 @@ const FocusCard = props => {
         onClick={() => {
           onSubmit(
             Meteor.call("user.addTask", userId, [
-              "Etiam varius tristique nunc vitae venenatis.",
-              "Etiam varius vitae venenatis.",
-              "venenatis."
+              "Drink eight glasses of water",
+              "Get at least eight hours of sleep",
+              "Etiam varius tristique nunc vitae venenatis."
             ])
           );
         }}
@@ -77,14 +77,14 @@ const FocusCard = props => {
         </Card>
       </Button>
 
-      <Button
+<Button
         color="primary"
         onClick={() => {
           onSubmit(
             Meteor.call("user.addTask", userId, [
-              "Drink eight glasses of water",
-              "Get at least eight hours of sleep",
-              "Etiam varius tristique nunc vitae venenatis."
+              "Test",
+              "Test2",
+              "Test3"
             ])
           );
         }}
