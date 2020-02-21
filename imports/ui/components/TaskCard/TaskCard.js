@@ -1,19 +1,34 @@
 import React, { Component } from "react";
-import { Card, CardContent, Typography, Divider } from "@material-ui/core";
+import { Meteor } from "meteor/meteor";
+import {
+  Card,
+  CardContent,
+  Typography,
+  Divider,
+  IconButton
+} from "@material-ui/core";
 import styles from "./styles";
 import { withStyles } from "@material-ui/styles";
 import AddCircleOutlineOutlinedIcon from "@material-ui/icons/AddCircleOutlineOutlined";
 import DoneIcon from "@material-ui/icons/Done";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import { withTracker } from "meteor/react-meteor-data";
-import { Tasks } from "../../../api/tasks";
 import moment from "moment";
 import Box from "@material-ui/core/Box";
+import "../../../api/tasks";
+import "../../../api/users";
 
 class TaskCard extends Component {
   render() {
+    const handleComplete = () => {
+      console.log("Completed");
+    };
+    const handleDelete = () => {
+      console.log("Deleted");
+    };
     let { classes, task } = this.props;
     console.log(task);
+    console.log("Props", this.props);
     return (
       <Card>
         <CardContent className={classes.card}>
@@ -26,9 +41,12 @@ class TaskCard extends Component {
               {task && moment(task.startDate).fromNow()}
             </div>
             <div>
-              <DoneIcon />
-              <DeleteOutlineIcon />
-              <AddCircleOutlineOutlinedIcon />
+              <IconButton onClick={handleComplete}>
+                <DoneIcon />
+              </IconButton>
+              <IconButton onClick={handleDelete}>
+                <DeleteOutlineIcon />
+              </IconButton>
             </div>
           </Box>
         </CardContent>
@@ -40,7 +58,6 @@ class TaskCard extends Component {
 export default withTracker(() => {
   Meteor.subscribe("tasks");
   return {
-    userId: Meteor.userId(),
-    tasks: Tasks.find({}).fetch()
+    userId: Meteor.userId()
   };
 })(withStyles(styles)(TaskCard));

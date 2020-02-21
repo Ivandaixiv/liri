@@ -4,7 +4,7 @@ export const Tasks = new Mongo.Collection("tasks");
 
 if (Meteor.isServer) {
   Meteor.publish("tasks", function tasksPublication() {
-    return Tasks.find({ creatorId: this.userId });
+    return Tasks.find({ ownerId: this.userId });
   });
 }
 Meteor.methods({
