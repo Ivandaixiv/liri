@@ -26,6 +26,7 @@ class TaskCard extends Component {
       // Meteor.removeTask
       Meteor.call("task.removeTask", task);
       Meteor.call("user.addExp", task.exp);
+      Meteor.call("user.addStreak");
     };
     const handleDelete = () => {
       console.log("Deleted");

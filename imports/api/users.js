@@ -25,9 +25,13 @@ Meteor.methods({
     });
   },
   "user.addExp"(exp) {
-    console.log("Adds EXP", Meteor.userId());
     Meteor.users.update(Meteor.userId(), {
-      $inc: { exp: exp }
+      $inc: { exp: exp, tasksCompleted: 1 }
+    });
+  },
+  "user.addStreak"() {
+    Meteor.users.update(Meteor.userId(), {
+      $inc: { streak: 1 }
     });
   },
   "user.updateFocus"(userId, focuses) {
