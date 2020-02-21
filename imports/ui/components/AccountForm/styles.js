@@ -1,9 +1,27 @@
 import { createStyles } from "@material-ui/core";
 
-const styles = ({ theme }) =>
+const styles = ({}) =>
   createStyles({
-    textFields: {
-      height: "50px"
+    paper: {
+      marginTop: "25vh",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      fontFamily: "sans-serif",
+      textAlign: "center"
+    },
+    avatar: {
+      margin: "5px",
+      backgroundColor: "#D92121"
+    },
+    form: {
+      width: "100%", // Fix IE 11 issue.
+      marginTop: "5px"
+    },
+    buttons: {
+      display: "flex",
+      justifyContent: "space-between",
+      width: "370px"
     }
   });
 

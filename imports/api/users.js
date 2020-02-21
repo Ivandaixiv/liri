@@ -2,6 +2,15 @@ import { Meteor } from "meteor/meteor";
 
 export const Users = Meteor.users;
 
+// if (Meteor.isServer) {
+//   Meteor.publish("user", function userPublication() {
+//     return Users.find(
+//       { _id: this.userId },
+//       { fields: { profile: 1, username: 1, email: 1 } }
+//     );
+//   });
+// }
+
 if (Meteor.isServer) {
   Meteor.publish("user", function userPublication() {
     return Users.find({ _id: this.userId });
@@ -11,7 +20,12 @@ if (Meteor.isServer) {
 Meteor.methods({
   "user.newAccount"(userId) {
     Meteor.users.update(userId, {
-      $set: { tasksCompleted: 0, focuses: [], streak: 1, exp: 100 }
+      $set: { tasksCompleted: 0, currentTasks: [], streak: 1, exp: 100 }
+    });
+  },
+  "user.addTask"(userId, task) {
+    Meteor.users.update(userId, {
+      $push: { currentTasks: task }
     });
   },
 

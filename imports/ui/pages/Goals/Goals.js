@@ -5,11 +5,12 @@ import { Card, CardContent, Typography, Grid } from "@material-ui/core";
 import TaskCard from "../../components/TaskCard";
 import { withTracker } from "meteor/react-meteor-data";
 import { Tasks } from "../../../api/tasks";
+import AddTask from "../../components/AddTask";
 
 class Goals extends Component {
   render() {
     const { classes, tasks } = this.props;
-    console.log(this.props.tasks);
+    // console.log(this.props.userId);
     return (
       <div className={classes.pad}>
         <Card className={classes.card}>
@@ -24,23 +25,30 @@ class Goals extends Component {
             </div>
           </CardContent>
         </Card>
+
         <Grid item xs="auto" className={classes.gridSpace}>
           <Grid container justify="center" spacing={3}>
-            {tasks.length &&
-              tasks.map(task => (
-                <Grid key={task._id}>
-                  <TaskCard task={task} />
-                </Grid>
-              ))}
+            {tasks.length > 0 &&
+              tasks.map(task => {
+                return (
+                  <Grid key={task._id}>
+                    <TaskCard task={task} />
+                  </Grid>
+                );
+              })}
           </Grid>
         </Grid>
+
+        <AddTask />
       </div>
     );
   }
 }
 
 export default withTracker(() => {
+  Meteor.subscribe("tasks");
   return {
+    userId: Meteor.userId(),
     tasks: Tasks.find({}).fetch()
   };
 })(withStyles(styles)(Goals));

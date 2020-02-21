@@ -7,9 +7,15 @@ const styles = () =>
       width: "50px",
       objectFit: "scale-down"
     },
+    menuTitle: {
+      margin: "0 0 0 15px"
+    },
     link: {
       textDecoration: "none",
       color: "#212121"
+    },
+    icon: {
+      marginRight: 10
     },
     toolbar: {
       display: "flex",
@@ -20,7 +26,11 @@ const styles = () =>
       flexDirection: "row"
     },
     titleText: {
+      color: "#FFFFFF",
       marginTop: "10px"
+    },
+    icons: {
+      color: "#FFFFFF"
     }
   });
 
