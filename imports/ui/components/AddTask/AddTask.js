@@ -23,7 +23,6 @@ const onSubmit = async values => {
   await sleep(300);
   const { task, goal, startDate, endDate, fullday } = values;
   Meteor.call("task.addTask", task, goal, startDate._d, endDate._d, fullday);
-  Meteor.call("user.addTask", Meteor.userId(), task);
 };
 
 const validate = values => {
