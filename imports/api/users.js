@@ -23,11 +23,6 @@ Meteor.methods({
       $set: { tasksCompleted: 0, currentTasks: [], streak: 1, exp: 100 }
     });
   },
-  // "user.updateFocus"(userId, focuses) {
-  //   Meteor.users.update(userId, {
-  //     $set: { focuses: focuses }
-  //   });
-  // },
   "user.addTask"(userId, task) {
     Meteor.users.update(userId, {
       $push: { currentTasks: task }

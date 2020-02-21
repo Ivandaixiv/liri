@@ -5,7 +5,7 @@ const styles = () =>
     card: {
       width: "500px",
       height: "300px",
-      objectFit: "contain",
+      objectFit: "contain"
     },
     container: {
       width: "500px",
@@ -25,7 +25,6 @@ const styles = () =>
       borderTop: "2px solid #4B4B4B"
     },
     header: {
-      
       fontSize: "2.5rem"
     }
   });

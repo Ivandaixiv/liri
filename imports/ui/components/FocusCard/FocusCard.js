@@ -25,7 +25,6 @@ const FocusCard = props => {
 
   return (
     <div className={classes.mainContainer}>
-      
       <Button
         color="primary"
         onClick={() => {

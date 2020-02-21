@@ -7,12 +7,15 @@ const styles = () =>
       width: "50px",
       objectFit: "scale-down"
     },
-    menu: {
+    menuTitle: {
       margin: "0 0 0 15px"
     },
     link: {
       textDecoration: "none",
       color: "#212121"
+    },
+    icon: {
+      marginRight: 10
     },
     toolbar: {
       display: "flex",
