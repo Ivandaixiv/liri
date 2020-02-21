@@ -7,14 +7,6 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 const localizer = momentLocalizer(moment);
 
 moment.locale("en-CA");
-
-const ColoredDateCellWrapper = ({ children }) =>
-  React.cloneElement(React.Children.only(children), {
-    style: {
-      backgroundColor: "lightblue"
-    }
-  });
-
 class GCalendar extends Component {
   render() {
     return (
@@ -41,9 +33,6 @@ class GCalendar extends Component {
           startAccessor="start"
           endAccessor="end"
           style={{ height: 800 }}
-          components={{
-            timeSlotWrapper: ColoredDateCellWrapper
-          }}
           localizer={localizer}
         />
       </div>
