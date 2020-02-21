@@ -1,25 +1,33 @@
 import React, { Component } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
-// import ApiCalendar from "react-google-calendar-api"; // cannot use OAuth or use API credentials without verification and having a production app in the Play Store
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-
+import { Tasks } from "../../../api/tasks";
 const localizer = momentLocalizer(moment);
+import { withTracker } from "meteor/react-meteor-data";
 
 moment.locale("en-CA");
-class GCalendar extends Component {
+
+// let dates = task.map(task => {
+//   if (task.startDate && task.endDate) {
+//     var data = { startDate: task.startDate, endDate: task.endDate };
+//     return data;
+//   }
+// });
+class BigCalendar extends Component {
   render() {
+    let { tasks } = this.props;
+    console.log(tasks);
     return (
       <div>
-        {/* <button onClick={e => ApiCalendar.handleAuthClick()}>sign-in</button> */}
         <Calendar
           events={[
             {
               id: 0,
               title: "RED Academy - Web/App Development Bootcamp",
               allDay: false,
-              start: new Date(2020, 1, 19, 9, 0),
-              end: new Date(2020, 1, 19, 17, 0)
+              start: new Date(2020, 1, 21, 18, 15),
+              end: new Date(2020, 1, 23, 19, 45)
             },
             {
               title: "Dinner Date",
@@ -39,4 +47,11 @@ class GCalendar extends Component {
     );
   }
 }
-export default GCalendar;
+
+export default withTracker(() => {
+  Meteor.subscribe("tasks");
+  return {
+    userId: Meteor.userId(),
+    tasks: Tasks.find({}).fetch()
+  };
+})(BigCalendar);

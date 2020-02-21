@@ -36,11 +36,4 @@ class TaskCard extends Component {
     );
   }
 }
-
-export default withTracker(() => {
-  Meteor.subscribe("tasks");
-  return {
-    userId: Meteor.userId(),
-    tasks: Tasks.find({}).fetch()
-  };
-})(withStyles(styles)(TaskCard));
+export default withStyles(styles)(TaskCard);
