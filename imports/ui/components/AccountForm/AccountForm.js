@@ -14,9 +14,22 @@ import styles from "./styles";
 import { Meteor } from "meteor/meteor";
 import { Accounts } from "meteor/accounts-base";
 import { withTracker } from "meteor/react-meteor-data";
+import Container from "@material-ui/core/Container";
+import Box from "@material-ui/core/Box";
 import "../../../api/users";
 import "../../../api/pets";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Avatar from "@material-ui/core/Avatar";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {"Copyright © "}
+      Liri Productivity App {new Date().getFullYear()}{" "}
+    </Typography>
+  );
+}
 class AccountForm extends Component {
   constructor(props) {
     super(props);
@@ -29,10 +42,13 @@ class AccountForm extends Component {
   validate = values => {
     const errors = {};
     if (!values.email) {
-      errors.email = "Required";
+      errors.email = <Box color="error.main">REQUIRED</Box>;
     }
     if (!values.password) {
-      errors.password = "Required";
+      errors.password = <Box color="error.main">REQUIRED</Box>;
+    }
+    if (!values.username && !this.state.formToggle) {
+      errors.username = <Box color="error.main">REQUIRED</Box>;
     }
     return errors;
   };
@@ -50,6 +66,7 @@ class AccountForm extends Component {
       }
     });
   };
+
   login = values => {
     const { email, password } = values;
 
@@ -64,106 +81,132 @@ class AccountForm extends Component {
     const { classes } = this.props;
     console.log("Logged In: ", Meteor.userId());
     return (
-      <Form
-        onSubmit={values =>
-          !this.state.formToggle ? this.signup(values) : this.login(values)
-        }
-        validate={this.validate}
-        render={({ handleSubmit, pristine, invalid, submitting, form }) => (
-          <form onSubmit={handleSubmit} className={classes.accountForm}>
-            {!this.state.formToggle && (
-              <FormControl fullWidth>
-                <InputLabel htmlFor="fullname">Username</InputLabel>
-                <Field name="username">
-                  {({ input, meta }) => (
-                    <>
-                      <Input
-                        id="username"
-                        type="text"
-                        inputProps={{
-                          ...input,
-                          autoComplete: "off"
-                        }}
-                        value={input.value}
-                      />
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Form
+            onSubmit={values =>
+              !this.state.formToggle ? this.signup(values) : this.login(values)
+            }
+            validate={this.validate}
+            render={({ handleSubmit, pristine, invalid, submitting, form }) => (
+              <form onSubmit={handleSubmit} className={classes.form}>
+                {!this.state.formToggle && (
+                  <FormControl fullWidth>
+                    <InputLabel htmlFor="fullname">Username</InputLabel>
+                    <Field name="username">
+                      {({ input, meta }) => (
+                        <>
+                          <Input
+                            id="username"
+                            type="text"
+                            inputProps={{
+                              ...input,
+                              autoComplete: "off"
+                            }}
+                            value={input.value}
+                          />
+                          {meta.touched && meta.error && (
+                            <span style={{ fontFamily: "georgia" }}>
+                              {meta.error}
+                            </span>
+                          )}
+                        </>
+                      )}
+                    </Field>
+                  </FormControl>
+                )}
+                <FormControl fullWidth>
+                  <InputLabel htmlFor="email">Email</InputLabel>
+                  <Field name="email">
+                    {({ input, meta }) => (
+                      <>
+                        <Input
+                          id="email"
+                          type="text"
+                          inputProps={{
+                            ...input,
+                            autoComplete: "off"
+                          }}
+                          value={input.value}
+                        />
+                        {meta.touched && meta.error && (
+                          <span style={{ fontFamily: "georgia" }}>
+                            {meta.error}
+                          </span>
+                        )}
+                      </>
+                    )}
+                  </Field>
+                </FormControl>
+                <FormControl fullWidth style={{ paddingBottom: "20px" }}>
+                  <InputLabel htmlFor="password">Password</InputLabel>
+                  <Field name="password">
+                    {({ input, meta }) => (
+                      <>
+                        <Input
+                          id="password"
+                          type="password"
+                          inputProps={{
+                            ...input,
+                            autoComplete: "off"
+                          }}
+                          value={input.value}
+                        />
 
-                      {meta.touched && meta.error && <span>{meta.error}</span>}
-                    </>
-                  )}
-                </Field>
-              </FormControl>
-            )}
-            <FormControl fullWidth>
-              <InputLabel htmlFor="email">Email</InputLabel>
-              <Field name="email">
-                {({ input, meta }) => (
-                  <>
-                    <Input
-                      id="email"
-                      type="text"
-                      inputProps={{
-                        ...input,
-                        autoComplete: "off"
+                        {meta.touched && meta.error && (
+                          <span style={{ fontFamily: "georgia" }}>
+                            {meta.error}
+                          </span>
+                        )}
+                      </>
+                    )}
+                  </Field>
+                </FormControl>
+                <FormControl>
+                  <div className={classes.buttons}>
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      color="secondary"
+                      disabled={pristine || invalid}
+                    >
+                      {this.state.formToggle ? (
+                        <Typography>Sign in</Typography>
+                      ) : (
+                        <Typography>Create an Account</Typography>
+                      )}
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="contained"
+                      color="secondary"
+                      onClick={() => {
+                        form.reset();
+                        this.setState({
+                          formToggle: !this.state.formToggle
+                        });
                       }}
-                      value={input.value}
-                    />
-                    {meta.touched && meta.error && <span>{meta.error}</span>}
-                  </>
-                )}
-              </Field>
-            </FormControl>
-            <FormControl fullWidth>
-              <InputLabel htmlFor="password">Password</InputLabel>
-              <Field name="password">
-                {({ input, meta }) => (
-                  <Input
-                    id="password"
-                    type="password"
-                    inputProps={{
-                      ...input,
-                      autoComplete: "off"
-                    }}
-                    value={input.value}
-                  />
-                )}
-              </Field>
-            </FormControl>
-            <FormControl>
-              <Grid
-                container
-                direction="row"
-                justify="space-between"
-                alignItems="center"
-              >
-                <Button
-                  type="submit"
-                  variant="contained"
-                  size="large"
-                  color="secondary"
-                  disabled={pristine || invalid}
-                >
-                  {this.state.formToggle ? "Enter" : "Create Account"}
-                </Button>
-                <Typography>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      form.reset();
-                      this.setState({
-                        formToggle: !this.state.formToggle
-                      });
-                    }}
-                  >
-                    {this.state.formToggle
-                      ? "Create an account."
-                      : "Login to existing account."}
-                  </button>
-                </Typography>
-              </Grid>
-            </FormControl>
-          </form>
-        )}
-      />
+                    >
+                      {this.state.formToggle ? (
+                        <Typography>Create an Account</Typography>
+                      ) : (
+                        <Typography>Login</Typography>
+                      )}
+                    </Button>
+                  </div>
+                </FormControl>
+              </form>
+            )}
+          />
+        </div>
+        <Box mt={8}>
+          <Copyright />
+        </Box>
+      </Container>
     );
   }
 }
