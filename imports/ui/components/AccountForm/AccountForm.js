@@ -4,7 +4,6 @@ import { Form, Field } from "react-final-form";
 import {
   FormControl,
   Input,
-  Grid,
   InputLabel,
   Typography,
   Button
@@ -58,7 +57,7 @@ class AccountForm extends Component {
 
     Accounts.createUser({ username, email, password }, error => {
       if (error) {
-        throw new Error(error);
+        alert(error);
       }
       if (Meteor.user()) {
         Meteor.call("user.newAccount", Meteor.userId());
@@ -192,7 +191,7 @@ class AccountForm extends Component {
                       }}
                     >
                       {this.state.formToggle ? (
-                        <Typography>Create an Account</Typography>
+                        <Typography>Register</Typography>
                       ) : (
                         <Typography>Login</Typography>
                       )}
