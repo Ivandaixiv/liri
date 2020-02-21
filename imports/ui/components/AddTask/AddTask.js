@@ -90,7 +90,6 @@ class AddTask extends Component {
                     name="startDate"
                     type="hidden"
                     render={({ input }) => {
-                      console.log("input props", input);
                       return (
                         <input
                           {...input}
