@@ -13,8 +13,6 @@ import {
 
 const FocusCard = props => {
   const { classes, user, userId, tasks } = props;
-  console.log(user);
-  console.log(props);
   const onSubmit = value => {
     if (value === "fitnesss") {
       Meteor.call("user.addTask", userId, value);
