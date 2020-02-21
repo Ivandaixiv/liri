@@ -10,7 +10,6 @@ import AddTask from "../../components/AddTask";
 class Goals extends Component {
   render() {
     const { classes, tasks } = this.props;
-    // console.log(this.props.userId);
     return (
       <div className={classes.pad}>
         <Card className={classes.card}>
