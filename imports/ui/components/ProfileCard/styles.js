@@ -9,7 +9,8 @@ const styles = () =>
       fontSize: "2rem",
       display: "flex",
       alignItems: "center",
-      marginLeft: "1rem"
+      marginLeft: "1rem",
+      
     },
     avatar: {
         height: "100px",
@@ -22,6 +23,8 @@ const styles = () =>
     title: {
         fontSize: "4rem",
         marginLeft: "10px",
+        borderBottom: "2px solid #4B4B4B",
+        marginRight: "10px",
 
     },
     innerContainer: {

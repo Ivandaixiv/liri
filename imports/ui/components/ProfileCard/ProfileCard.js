@@ -17,13 +17,17 @@ const ProfileCard = props => {
       <Card>
         <Typography className={classes.title}>Profile</Typography>
         <div className={classes.innerContainer}>
+          <div>
         <Gravatar
           className={classes.avatar}
           email={data.emails[0].address || "fakeemail@gmail.com"}
         />
+        </div>
+        <div>
         <Typography className={classes.text}>
           {data.username}
         </Typography>
+        </div>
         </div>
       </Card>
     </div>
