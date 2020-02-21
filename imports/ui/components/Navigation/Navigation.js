@@ -14,6 +14,10 @@ import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import ExitIcon from "@material-ui/icons/PowerSettingsNew";
 import { withRouter, Link, NavLink } from "react-router-dom";
+import HomeIcon from "@material-ui/icons/Home";
+import ClipboardIcon from "@material-ui/icons/Assignment";
+import CalendarIcon from "@material-ui/icons/CalendarToday";
+import ScoreIcon from "@material-ui/icons/Timeline";
 
 const Navigation = props => {
   const { classes } = props;
@@ -60,20 +64,28 @@ const Navigation = props => {
               open={open}
               onClose={handleClose}
             >
-              <Typography variant="h5" className={classes.menu}>
+              <Typography variant="h5" className={classes.menuTitle}>
                 Menu
               </Typography>
               <Link to="/home" className={classes.link}>
-                <MenuItem onClick={handleClose}>Home</MenuItem>
+                <MenuItem onClick={handleClose}>
+                  <HomeIcon className={classes.icon} /> Home
+                </MenuItem>
               </Link>
               <Link to="/goals" className={classes.link}>
-                <MenuItem onClick={handleClose}>Goals</MenuItem>
+                <MenuItem onClick={handleClose}>
+                  <ClipboardIcon className={classes.icon} /> Goals
+                </MenuItem>
               </Link>
               <Link to="/calendar" className={classes.link}>
-                <MenuItem onClick={handleClose}>Calendar</MenuItem>
+                <MenuItem onClick={handleClose}>
+                  <CalendarIcon className={classes.icon} /> Calendar
+                </MenuItem>
               </Link>
               <Link to="/scoreboard" className={classes.link}>
-                <MenuItem onClick={handleClose}>Scoreboard</MenuItem>
+                <MenuItem onClick={handleClose}>
+                  <ScoreIcon className={classes.icon} /> Scoreboard
+                </MenuItem>
               </Link>
             </Menu>
 
