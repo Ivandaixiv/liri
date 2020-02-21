@@ -13,7 +13,6 @@ import Box from "@material-ui/core/Box";
 class TaskCard extends Component {
   render() {
     let { classes, task } = this.props;
-    console.log(task);
     return (
       <Card>
         <CardContent className={classes.card}>

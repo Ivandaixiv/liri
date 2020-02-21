@@ -8,34 +8,27 @@ import { withTracker } from "meteor/react-meteor-data";
 
 moment.locale("en-CA");
 
-// let dates = task.map(task => {
-//   if (task.startDate && task.endDate) {
-//     var data = { startDate: task.startDate, endDate: task.endDate };
-//     return data;
-//   }
-// });
 class BigCalendar extends Component {
+  formatDates = () => {
+    const dates = this.props.tasks.map(task => {
+      if (task.startDate && task.endDate) {
+        task.fullday = true;
+        return {
+          title: task.task,
+          allDay: task.fullday,
+          start: moment(task.startDate).format("YYYY-MM-DD"),
+          end: moment(task.endDate).format("YYYY-MM-DD")
+        };
+      }
+    });
+    return dates;
+  };
+
   render() {
-    let { tasks } = this.props;
-    console.log(tasks);
     return (
       <div>
         <Calendar
-          events={[
-            {
-              id: 0,
-              title: "RED Academy - Web/App Development Bootcamp",
-              allDay: false,
-              start: new Date(2020, 1, 21, 18, 15),
-              end: new Date(2020, 1, 23, 19, 45)
-            },
-            {
-              title: "Dinner Date",
-              allDay: false,
-              start: new Date(2020, 1, 19, 18, 15),
-              end: new Date(2020, 1, 19, 19, 45)
-            }
-          ]}
+          events={this.formatDates()}
           step={30}
           showMultiDayTimes
           startAccessor="start"
