@@ -28,9 +28,9 @@ Meteor.methods({
   //     $set: { focuses: focuses }
   //   });
   // },
-  "user.addTask"(userId, tasks) {
+  "user.addTask"(userId, task) {
     Meteor.users.update(userId, {
-      $set: { tasks: tasks }
+      $push: { currentTasks: task }
     });
   },
 
