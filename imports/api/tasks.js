@@ -44,7 +44,7 @@ Meteor.methods({
     Tasks.insert({
       task,
       complete: false,
-      creatorId: this.userId,
+      ownerId: this.userId,
       startDate: startDate ? startDate : new Date(),
       endDate: endDate ? endDate : null,
       goal,
