@@ -2,19 +2,20 @@ import { Meteor } from "meteor/meteor";
 
 export const Users = Meteor.users;
 
-// if (Meteor.isServer) {
-//   Meteor.publish("user", function userPublication() {
-//     return Users.find(
-//       { _id: this.userId },
-//       { fields: { profile: 1, username: 1, email: 1 } }
-//     );
-//   });
-// }
-
 if (Meteor.isServer) {
-  Meteor.publish("user", function userPublication() {
-    return Users.find({ _id: this.userId });
+  Meteor.publish("friends", function friendPublication() {
+    console.log("this.userid is", this.userId);
+    return Users.find(
+      { "profile.friends": { $in: [this.userId] } },
+      { fields: { username: 1, profile: 1, emails: 1, createdAt: 1 } }
+    );
   });
+
+  if (Meteor.isServer) {
+    Meteor.publish("user", function userPublication() {
+      return Users.find({ _id: this.userId });
+    });
+  }
 }
 
 Meteor.methods({
@@ -29,15 +30,15 @@ Meteor.methods({
     });
   },
 
-  "user.findFriend"() {
-    if (Meteor.userId()) {
-      const userIds = Meteor.users
-        .find({})
-        .fetch()
-        .map(user => user.friends);
-      return userIds;
-    }
+  "friend.friends"() {
+    console.log("find users with friends containing", Meteor.userId());
+    const response = Users.find({
+      "profile.friends": { $in: [Meteor.userId()] }
+    }).fetch();
+    console.log("server response", response);
+    return response;
   },
+
   // Method to add friends
   "user.addFriend"(username) {
     if (!username) {
@@ -49,12 +50,16 @@ Meteor.methods({
 
     const newFriend = Meteor.users.findOne({ username });
 
-    if (newFriend) {
+    if (newFriend && newFriend._id !== Meteor.userId()) {
       Meteor.users.update(Meteor.userId(), {
         $push: { "profile.friends": newFriend._id }
       });
+      Meteor.users.update(newFriend._id, {
+        $push: { "profile.friends": Meteor.userId() }
+      });
     }
   },
+
   // Method to remove friends
   "user.removeFriend"(username) {
     if (!username) {
