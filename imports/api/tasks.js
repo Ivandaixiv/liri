@@ -9,7 +9,7 @@ if (Meteor.isServer) {
 }
 Meteor.methods({
   // How to write a methtod in Meteor methods
-  "task.toggleComplete"(task) {
+  "task.complete"(task) {
     if (task.owner !== this.userId) {
       // Checks if the user matches
       throw new Meteor.Error(
@@ -19,10 +19,10 @@ Meteor.methods({
     }
     // change the complete status
     Tasks.update(task._id, {
-      $set: { complete: !task.complete }
+      $set: { complete: true }
     });
   },
-  "task.removeToDo"(task) {
+  "task.removeTask"(task) {
     if (task.owner !== this.userId) {
       // Checks if the user matches
       throw new Meteor.Error(
