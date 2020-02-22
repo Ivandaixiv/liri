@@ -24,7 +24,7 @@ Meteor.methods({
       $set: { tasksCompleted: 0, streak: 1, exp: 1 }
     });
   },
-  "user.addExp"(exp) {
+  "user.addCounters"(exp) {
     Meteor.users.update(Meteor.userId(), {
       $inc: { exp: exp, tasksCompleted: 1 }
     });
@@ -32,6 +32,11 @@ Meteor.methods({
   "user.addStreak"() {
     Meteor.users.update(Meteor.userId(), {
       $inc: { streak: 1 }
+    });
+  },
+  "user.removeStreak"() {
+    Meteor.users.update(Meteor.userId(), {
+      $set: { streak: 1 }
     });
   },
   "user.updateFocus"(userId, focuses) {
