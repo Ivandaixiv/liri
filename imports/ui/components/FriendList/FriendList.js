@@ -10,6 +10,8 @@ const FriendList = props => {
   const classes = styles();
   const { friends } = props;
 
+  console.log(friends);
+
   return (
     <List className={classes.list}>
       {friends &&
