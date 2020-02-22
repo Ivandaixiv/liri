@@ -3,19 +3,17 @@ import { Meteor } from "meteor/meteor";
 export const Users = Meteor.users;
 
 if (Meteor.isServer) {
-  Meteor.publish("friends", function friendPublication() {
-    console.log("this.userid is", this.userId);
+  Meteor.publish(null, function friendPublication() {
     return Users.find(
       { "profile.friends": { $in: [this.userId] } },
-      { fields: { username: 1, profile: 1, emails: 1, createdAt: 1 } }
+      {
+        fields: { username: 1, profile: 1, emails: 1, createdAt: 1, streak: 1 }
+      }
     );
   });
-
-  if (Meteor.isServer) {
-    Meteor.publish("user", function userPublication() {
-      return Users.find({ _id: this.userId });
-    });
-  }
+  Meteor.publish("user", function userPublication() {
+    return Users.find({ _id: this.userId });
+  });
 }
 
 Meteor.methods({
@@ -79,23 +77,14 @@ Meteor.methods({
       );
     }
 
-    // Meteor.users.update(Meteor.userId(), {
-    //   profile: {
-    //     $pull: {
-    //       friends: { $in: [friendUserId] }
-    //     }
-    //   }
-    // });
-
-    // Meteor.users.update(Meteor.userId(), {
-    //   $pull: { "profile.friends": { $in: [friendUserId] } }
-    // });
-
     const friendToRemove = Meteor.users.findOne({ username });
 
     if (friendToRemove && friendToRemove._id !== Meteor.userId()) {
       Users.update(Meteor.userId(), {
         $pull: { "profile.friends": friendToRemove._id }
+      });
+      Users.update(friendToRemove._id, {
+        $pull: { "profile.friends": Meteor.userId() }
       });
     }
   }
