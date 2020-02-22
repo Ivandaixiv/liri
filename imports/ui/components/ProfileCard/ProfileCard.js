@@ -4,6 +4,8 @@ import { Card, Typography, withStyles } from "@material-ui/core";
 import styles from "./styles";
 import Gravatar from "react-gravatar";
 import { withTracker } from "meteor/react-meteor-data";
+import FireIcon from "@material-ui/icons/Whatshot";
+import ClipboardIcon from "@material-ui/icons/Assignment";
 
 const ProfileCard = props => {
   const { classes, data } = props;
@@ -27,20 +29,29 @@ const ProfileCard = props => {
           <div className={classes.textContainer}>
             <Typography className={classes.text}>{data.username}</Typography>
           </div>
-          <Typography className={classes.emailText}>
-            {data.emails[0].address}
-          </Typography>
+          <div>
+            <Typography className={classes.emailText}>
+              Email: {data.emails[0].address}
+            </Typography>
+            <Typography className={classes.emailText}>
+              Tasks Completed: {data.tasksCompleted}
+              <ClipboardIcon color="primary" />
+            </Typography>
+            <Typography className={classes.emailText}>
+              Streak Count: {data.streak}
+              <FireIcon className={classes.fire} />
+            </Typography>
+            
+
+          </div>
         </div>
       </Card>
     </div>
   );
 };
 
-// export default withStyles(styles)(ProfileCard);
-
 export default withTracker(() => {
   Meteor.subscribe("users");
-  // const data = Meteor.user();
   return {
     data: Meteor.user()
   };

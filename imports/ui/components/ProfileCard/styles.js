@@ -6,7 +6,7 @@ const styles = () =>
       backgroundColor: "#272727"
     },
     text: {
-      fontSize: "2.5rem",
+      fontSize: "2rem",
       display: "flex",
       alignItems: "center",
       marginLeft: "1rem"
@@ -20,7 +20,7 @@ const styles = () =>
       padding: "1rem"
     },
     title: {
-      fontSize: "4rem",
+      fontSize: "2.5rem",
       marginLeft: "10px",
       borderBottom: "2px solid #4B4B4B",
       marginRight: "10px"
@@ -40,8 +40,11 @@ const styles = () =>
       display: "flex",
       alignItems: "center",
       marginLeft: "1rem",
-      fontSize: "2rem"
-      
+      fontSize: "1.3rem",
+      marginTop: ".5rem"
+    },
+    fire: {
+      color: "#FF652F"
     }
   });
 export default styles;
