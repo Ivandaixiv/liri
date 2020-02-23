@@ -26,7 +26,6 @@ Meteor.methods({
   "user.addCounters"(exp) {
     const currentUserXP = Meteor.users.find(Meteor.userId()).fetch()[0].exp;
     const totalExp = currentUserXP + exp;
-    console.log(currentUserXP);
     if (totalExp > 99) {
       let remainingExp = totalExp % 100;
       Meteor.users.update(Meteor.userId(), {

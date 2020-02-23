@@ -25,12 +25,19 @@ class TaskCard extends Component {
     // Meteor.removeTask
     Meteor.call("task.removeTask", this.props.task);
     Meteor.call("user.addCounters", this.props.task.exp);
+    console.log(this.props.task.exp);
+    console.log("This is being called");
+    Meteor.call(
+      "pets.addCounters",
+      this.props.task.exp,
+      this.props.pets[0].ownerId
+    );
     Meteor.call("user.addStreak");
   };
   handleDelete = () => {
     console.log("Deleted");
     Meteor.call("task.removeTask", this.props.task);
-    Meteor.call("pets.takeHP", pets[0]);
+    Meteor.call("pets.takeHP", this.props.pets[0]);
     Meteor.call("user.removeStreak");
     // Updates pets health
   };

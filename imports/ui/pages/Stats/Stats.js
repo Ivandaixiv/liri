@@ -62,16 +62,16 @@ const Stats = props => {
               />
             </Box>
           )}
-          {user[0].exp && (
+          {pets[0] && (
             <Box>
               <Box display="flex" className={classes.petStats}>
-                <Typography>Level: {user[0] && user[0].level}</Typography>
-                <Typography> Experience: {user[0].exp}/100</Typography>
+                <Typography>Level: {pets[0] && pets[0].level}</Typography>
+                <Typography> Experience: {pets[0].exp}/100</Typography>
               </Box>
 
               <ExpLinearProgress
                 variant="determinate"
-                value={user[0].exp}
+                value={pets[0].exp}
                 className={classes.bar}
               />
             </Box>
