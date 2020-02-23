@@ -65,7 +65,7 @@ const Stats = props => {
           {user[0].exp && (
             <Box>
               <Box display="flex" className={classes.petStats}>
-                <Typography>Level: {pets[0] && pets[0].level}</Typography>
+                <Typography>Level: {user[0] && user[0].level}</Typography>
                 <Typography> Experience: {user[0].exp}/100</Typography>
               </Box>
 

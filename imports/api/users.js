@@ -4,16 +4,15 @@ export const Users = Meteor.users;
 
 if (Meteor.isServer) {
   Meteor.publish("friends", function friendPublication() {
-    console.log("this.userid is", this.userId);
     return Users.find(
-      { "profile.friends": { $in: [this.userId] } },
+      { "profile.friends": { $in: [Meteor.userId()] } },
       { fields: { username: 1, profile: 1, emails: 1, createdAt: 1 } }
     );
   });
 
   if (Meteor.isServer) {
     Meteor.publish("user", function userPublication() {
-      return Users.find({ _id: this.userId });
+      return Users.find(Meteor.userId());
     });
   }
 }
@@ -25,9 +24,20 @@ Meteor.methods({
     });
   },
   "user.addCounters"(exp) {
-    Meteor.users.update(Meteor.userId(), {
-      $inc: { exp: exp, tasksCompleted: 1 }
-    });
+    const currentUserXP = Meteor.users.find(Meteor.userId()).fetch()[0].exp;
+    const totalExp = currentUserXP + exp;
+    console.log(currentUserXP);
+    if (totalExp > 99) {
+      let remainingExp = totalExp % 100;
+      Meteor.users.update(Meteor.userId(), {
+        $inc: { level: 1 },
+        $set: { exp: 1 + remainingExp }
+      });
+    } else {
+      Meteor.users.update(Meteor.userId(), {
+        $inc: { exp: exp, tasksCompleted: 1 }
+      });
+    }
   },
   "user.addStreak"() {
     Meteor.users.update(Meteor.userId(), {

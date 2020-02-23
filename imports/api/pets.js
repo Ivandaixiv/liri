@@ -31,7 +31,7 @@ Meteor.methods({
     if (pet.ownerId !== this.userId) {
       // Checks if the user matches
       throw new Meteor.Error(
-        "pets.switchPet.not-authorized",
+        "pets.takeHP.not-authorized",
         "You are not allowed affect this pet."
       );
     }

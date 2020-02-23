@@ -19,23 +19,23 @@ import "../../../api/users";
 import { Pets } from "../../../api/pets";
 
 class TaskCard extends Component {
+  handleComplete = () => {
+    console.log("Completed");
+
+    // Meteor.removeTask
+    Meteor.call("task.removeTask", this.props.task);
+    Meteor.call("user.addCounters", this.props.task.exp);
+    Meteor.call("user.addStreak");
+  };
+  handleDelete = () => {
+    console.log("Deleted");
+    Meteor.call("task.removeTask", this.props.task);
+    Meteor.call("pets.takeHP", pets[0]);
+    Meteor.call("user.removeStreak");
+    // Updates pets health
+  };
   render() {
     const { classes, task, pets } = this.props;
-    const handleComplete = () => {
-      console.log("Completed");
-      // Meteor.removeTask
-      Meteor.call("task.removeTask", task);
-      Meteor.call("user.addCounters", task.exp);
-      Meteor.call("user.addStreak");
-    };
-    const handleDelete = () => {
-      console.log("Deleted");
-      Meteor.call("task.removeTask", task);
-      Meteor.call("pets.takeHP", pets[0]);
-      Meteor.call("user.removeStreak");
-      // Updates pets health
-    };
-    console.log("Pets", pets[0]);
     return (
       <Card>
         <CardContent className={classes.card}>
@@ -48,10 +48,10 @@ class TaskCard extends Component {
               {task && moment(task.startDate).fromNow()}
             </div>
             <div>
-              <IconButton onClick={handleComplete}>
+              <IconButton onClick={this.handleComplete}>
                 <DoneIcon />
               </IconButton>
-              <IconButton onClick={handleDelete}>
+              <IconButton onClick={this.handleDelete}>
                 <DeleteOutlineIcon />
               </IconButton>
             </div>
