@@ -43,6 +43,21 @@ class TaskCard extends Component {
   };
   render() {
     const { classes, task, pets } = this.props;
+    const handleComplete = () => {
+      console.log("Completed");
+      // Meteor.removeTask
+      Meteor.call("task.removeTask", task);
+      Meteor.call("user.addExp", task.exp);
+      Meteor.call("user.addStreak");
+    };
+    const handleDelete = () => {
+      console.log("Deleted");
+      Meteor.call("task.removeTask", task);
+      // Updates pets health
+    };
+    const { classes, task, userid } = this.props;
+    console.log("EXP", task.exp);
+    console.log("Props", this.props);
     return (
       <Card>
         <CardContent className={classes.card}>
