@@ -43,7 +43,7 @@ class AddTask extends Component {
   }
   render() {
     return (
-      <div style={{ padding: 16, margin: "auto", maxWidth: 600 }}>
+      <div style={{ padding: 16, margin: "auto", maxWidth: 800, height: 500 }}>
         <CssBaseline />
         <Typography variant="h5" align="center" component="h2" gutterBottom>
           New Goals
@@ -69,7 +69,12 @@ class AddTask extends Component {
             pristine,
             values
           }) => (
-            <form onSubmit={handleSubmit} noValidate>
+            <form
+              onSubmit={event => {
+                handleSubmit(event).then(reset);
+              }}
+              noValidate
+            >
               <Paper style={{ padding: 16 }}>
                 <Typography>Pick your dates: </Typography>
                 <Grid item xs={12}>
