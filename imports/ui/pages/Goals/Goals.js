@@ -10,6 +10,7 @@ import Popover from "@material-ui/core/Popover";
 import PopupState, { bindTrigger, bindPopover } from "material-ui-popup-state";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
+import Clock from "../../components/Clock";
 
 class Goals extends Component {
   render() {
@@ -26,6 +27,7 @@ class Goals extends Component {
                 <div>
                   <div>
                     <Typography className={classes.bold}>My Goals</Typography>{" "}
+                    <Clock />
                   </div>
                   <div>
                     <PopupState variant="popover" popupId="demo-popup-popover">
