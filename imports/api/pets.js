@@ -25,7 +25,8 @@ Meteor.methods({
       exp: 1,
       // future consideration: choose your pet
       species: 1,
-      ownerId: this.userId
+      ownerId: this.userId,
+      deathCounter: 0
     });
   },
   "pets.takeHP"(pet) {
@@ -39,6 +40,12 @@ Meteor.methods({
     Pets.update(pet._id, {
       $inc: { hp: -10 }
     });
+    if (pet.hp <= 10) {
+      Pets.update(pet._id, {
+        $inc: { deathCounter: 1 },
+        $set: { hp: 100 }
+      });
+    }
   },
   "pets.addCounters"(exp, ownerId) {
     const currentUserXP = Pets.find({ ownerId: ownerId }).fetch()[0].exp;

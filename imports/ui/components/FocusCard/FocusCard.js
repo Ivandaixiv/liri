@@ -3,6 +3,8 @@ import styles from "./styles";
 import { withTracker } from "meteor/react-meteor-data";
 import { Users } from "../../../api/users";
 import { Tasks } from "../../../api/tasks";
+import "../../../api/tasks";
+import "../../../api/users";
 import {
   Card,
   CardMedia,
@@ -11,11 +13,15 @@ import {
   withStyles
 } from "@material-ui/core";
 
+
+
 const FocusCard = props => {
   const { classes, user, userId, tasks } = props;
+  console.log(props)
   const onSubmit = value => {
-    if (value === "fitnesss") {
-      Meteor.call("user.addTask", userId, value);
+    const { task } = values;
+    if (value === "fitness") {
+
     } else if (value === "health") {
       Meteor.call("user.addTask", userId, value);
     }
@@ -26,13 +32,7 @@ const FocusCard = props => {
       <Button
         color="primary"
         onClick={() => {
-          onSubmit(
-            Meteor.call("user.addTask", userId, [
-              "Run for thirty minutes",
-              "Hold a plank for one minute",
-              "Do ten pull-ups"
-            ])
-          );
+          Meteor.call("task.addTask", task)
         }}
       >
         <Card className={classes.container}>
@@ -52,13 +52,7 @@ const FocusCard = props => {
       <Button
         color="primary"
         onClick={() => {
-          onSubmit(
-            Meteor.call("user.addTask", userId, [
-              "Drink eight glasses of water",
-              "Get at least eight hours of sleep",
-              "Etiam varius tristique nunc vitae venenatis."
-            ])
-          );
+
         }}
       >
         <Card className={classes.container}>
