@@ -11,8 +11,11 @@ const styles = () =>
       flexDirection: "column",
       justifyContent: "space-evenly",
       minHeight: 150,
-      paddingBottom: "10px"
+      paddingBottom: "10px",
+      backgroundColor: "#46bf8f"
+      // opacity: "0.95"
     },
+    cardContent: {},
     title: {
       paddingTop: "40px",
       paddingLeft: "60px",

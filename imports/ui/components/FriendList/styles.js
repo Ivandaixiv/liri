@@ -15,9 +15,7 @@ const useStyles = makeStyles({
     maxWidth: "75vw",
     marginTop: "20px"
   },
-  grid: {
-    // margin: "0 auto"
-  },
+  grid: {},
   box: {
     textAlign: "center"
   },
