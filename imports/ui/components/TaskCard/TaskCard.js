@@ -11,12 +11,13 @@ import styles from "./styles";
 import { withStyles } from "@material-ui/styles";
 import DoneIcon from "@material-ui/icons/Done";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
-import { withTracker } from "meteor/react-meteor-data";
 import moment from "moment";
 import Box from "@material-ui/core/Box";
 import "../../../api/tasks";
 import "../../../api/users";
 import { Pets } from "../../../api/pets";
+import { withTracker } from "meteor/react-meteor-data";
+
 class TaskCard extends Component {
   handleComplete = () => {
     console.log("Completed");
