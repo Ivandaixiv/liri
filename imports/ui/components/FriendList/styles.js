@@ -2,11 +2,17 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles({
   text: {},
-  inputContainer: {
+  alert: {},
+  box: {
+    textAlign: "center"
+  },
+  inputcontainer: {
     marginTop: "20px"
   },
   input: {
-    marginTop: "20px"
+    width: "17.4rem",
+    marginTop: "20px",
+    marginBottom: "20px"
   },
   media: {
     marginRight: "10px"
@@ -20,12 +26,13 @@ const useStyles = makeStyles({
     maxWidth: "600px",
     margin: "0 auto"
   },
-  // button: {
-  //   color: "white",
-  //   boxShadow:
-  //     "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)"
-  // },
+  removebtn: {
+    marginLeft: "10px"
+  },
   buttonbox: {
+    marginTop: "20px"
+  },
+  alerts: {
     marginTop: "20px"
   }
 });
