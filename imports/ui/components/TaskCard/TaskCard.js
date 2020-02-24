@@ -17,7 +17,6 @@ import Box from "@material-ui/core/Box";
 import "../../../api/tasks";
 import "../../../api/users";
 import { Pets } from "../../../api/pets";
-
 class TaskCard extends Component {
   handleComplete = () => {
     console.log("Completed");
