@@ -1,3 +1,3 @@
-import GCalendar from "./Calendar";
+import BigCalendar from "./Calendar";
 
-export default GCalendar;
+export default BigCalendar;
