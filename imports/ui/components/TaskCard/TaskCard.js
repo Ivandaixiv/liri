@@ -16,6 +16,7 @@ import Box from "@material-ui/core/Box";
 import "../../../api/tasks";
 import "../../../api/users";
 import { Pets } from "../../../api/pets";
+import { withTracker } from "meteor/react-meteor-data";
 
 class TaskCard extends Component {
   handleComplete = () => {
@@ -41,7 +42,7 @@ class TaskCard extends Component {
     // Updates pets health
   };
   render() {
-    const { classes, task, pets } = this.props;
+    const { classes, task, pets, userid } = this.props;
     const handleComplete = () => {
       console.log("Completed");
       // Meteor.removeTask
@@ -54,7 +55,6 @@ class TaskCard extends Component {
       Meteor.call("task.removeTask", task);
       // Updates pets health
     };
-    const { classes, task, userid } = this.props;
     console.log("EXP", task.exp);
     console.log("Props", this.props);
     return (
@@ -82,9 +82,6 @@ class TaskCard extends Component {
     );
   }
 }
-<<<<<<< HEAD
-export default withStyles(styles)(TaskCard);
-=======
 
 export default withTracker(() => {
   Meteor.subscribe("pets");
@@ -93,4 +90,3 @@ export default withTracker(() => {
     pets: Pets.find({}).fetch()
   };
 })(withStyles(styles)(TaskCard));
->>>>>>> master
