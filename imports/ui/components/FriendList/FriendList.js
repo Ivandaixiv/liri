@@ -6,8 +6,7 @@ import {
   Card,
   Grid,
   ListSubheader,
-  Divider,
-  Typography
+  Divider
 } from "@material-ui/core";
 import Gravatar from "react-gravatar";
 import { withTracker } from "meteor/react-meteor-data";

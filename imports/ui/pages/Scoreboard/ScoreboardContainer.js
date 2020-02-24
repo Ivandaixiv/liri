@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import Scoreboard from "./Scoreboard";
 import FriendList from "../../components/FriendList/FriendList";
+import styles from "./styles";
+import { Container } from "@material-ui/core";
 
-class ScoreboardContainer extends Component {
-  render() {
-    return (
-      <div className="scoreboard-container">
-        <FriendList />
-      </div>
-    );
-  }
-}
+const ScoreboardContainer = () => {
+  const classes = styles();
+  return (
+    <Container className={classes.container}>
+      <FriendList />
+    </Container>
+  );
+};
 export default ScoreboardContainer;
