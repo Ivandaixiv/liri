@@ -9,10 +9,8 @@ import {
 } from "@material-ui/core";
 import styles from "./styles";
 import { withStyles } from "@material-ui/styles";
-import AddCircleOutlineOutlinedIcon from "@material-ui/icons/AddCircleOutlineOutlined";
 import DoneIcon from "@material-ui/icons/Done";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
-import { withTracker } from "meteor/react-meteor-data";
 import moment from "moment";
 import Box from "@material-ui/core/Box";
 import "../../../api/tasks";
