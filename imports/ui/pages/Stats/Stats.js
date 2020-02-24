@@ -25,7 +25,7 @@ const Stats = props => {
       <Box className={classes.statsContainer}>
         <Box className={classes.statsBox}>
           <Typography variant="h4">
-            {user[0].username && user[0].username}'s stats
+            {user[0].username ? user[0].username : "Your Account"}'s stats
           </Typography>
           <Typography className={classes.name}>
             {pets[0] && pets[0].name} is{" "}

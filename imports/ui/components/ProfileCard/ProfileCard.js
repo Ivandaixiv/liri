@@ -32,7 +32,6 @@ const ProfileCard = props => {
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
-  if (!data) return null;
   return (
     <div className={classes.container}>
       <Card>
@@ -41,7 +40,7 @@ const ProfileCard = props => {
           <div>
             <Gravatar
               className={classes.avatar}
-              email={data.emails[0].address || "fakeemail@gmail.com"}
+              email={data.emails[0] && data.emails[0].address}
             />
           </div>
           <div className={classes.textContainer}>
@@ -53,7 +52,7 @@ const ProfileCard = props => {
                 color="primary"
                 onClick={handleClick}
               >
-                Open Popover
+                Edit Profile
               </Button>
               <Popover
                 id={id}
