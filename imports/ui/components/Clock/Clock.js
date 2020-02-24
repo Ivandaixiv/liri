@@ -14,12 +14,16 @@ class Clock extends Component {
   }
 
   tick() {
-    // this.state.date = new Date(); - wrong way
     this.setState({ date: new Date() });
   }
 
   render() {
-    return <h2>Current Time: {this.state.date.toLocaleTimeString()}</h2>;
+    return (
+      <h2>
+        Current Time: {this.state.date.toLocaleDateString()}{" "}
+        {this.state.date.toLocaleTimeString()}
+      </h2>
+    );
   }
 }
 export default Clock;
