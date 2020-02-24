@@ -51,10 +51,14 @@ const Stats = props => {
           </div>
           {pets[0] && (
             <Box>
-              <Box display="flex" className={classes.petStats}>
-                <Typography> Health: {pets[0].hp}/100</Typography>
+              <Box>
+                <Box display="flex" className={classes.petStats}>
+                  <Typography> Health: {pets[0].hp}/100</Typography>
+                </Box>
+                <Box display="flex" className={classes.petStats}>
+                  <Typography> Deaths: {pets[0].deathCounter}</Typography>
+                </Box>
               </Box>
-
               <HPLinearProgress
                 variant="determinate"
                 value={pets[0].hp}
