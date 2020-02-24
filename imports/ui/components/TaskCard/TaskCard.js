@@ -58,8 +58,8 @@ class TaskCard extends Component {
     console.log("EXP", task.exp);
     console.log("Props", this.props);
     return (
-      <Card>
-        <CardContent className={classes.card}>
+      <Card className={classes.card}>
+        <CardContent className={classes.cardContent}>
           <span className={classes.userInfo}>{task && task.task}</span>
           <br />
           <Divider />
