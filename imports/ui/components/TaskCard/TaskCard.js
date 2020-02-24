@@ -10,7 +10,7 @@ import {
 import styles from "./styles";
 import { withStyles } from "@material-ui/styles";
 import DoneIcon from "@material-ui/icons/Done";
-import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
+import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
 import moment from "moment";
 import Box from "@material-ui/core/Box";
 import "../../../api/tasks";
@@ -44,7 +44,6 @@ class TaskCard extends Component {
   render() {
     const { classes, task, pets, userid } = this.props;
     const handleComplete = () => {
-      console.log("Completed");
       // Meteor.removeTask
       Meteor.call("task.removeTask", task);
       Meteor.call("user.addExp", task.exp);
@@ -70,10 +69,10 @@ class TaskCard extends Component {
             </div>
             <div>
               <IconButton onClick={this.handleComplete}>
-                <DoneIcon />
+                <DoneIcon color="primary" />
               </IconButton>
               <IconButton onClick={this.handleDelete}>
-                <DeleteOutlineIcon />
+                <DeleteOutlinedIcon style={{ color: "red" }} />
               </IconButton>
             </div>
           </Box>

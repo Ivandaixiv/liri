@@ -1,5 +1,13 @@
 import React from "react";
-import { List, ListItem, ListItemText } from "@material-ui/core";
+import {
+  List,
+  ListItem,
+  ListItemText,
+  Card,
+  Grid,
+  ListSubheader,
+  Divider
+} from "@material-ui/core";
 import Gravatar from "react-gravatar";
 import { withTracker } from "meteor/react-meteor-data";
 import AddFriend from "./helpers/AddFriend";
@@ -13,21 +21,41 @@ const FriendList = props => {
   console.log(friends);
 
   return (
-    <List className={classes.list}>
-      {friends &&
-        friends.map(friend => (
-          <ListItem className={classes.item} button>
-            <Gravatar
-              className={classes.media}
-              email={friend.emails[0].address}
-            />
-            <ListItemText className={classes.text}>
-              {friend.username}
-            </ListItemText>
-          </ListItem>
-        ))}
-      <AddFriend />
-    </List>
+    <Grid
+      container
+      direction="column"
+      justify="center"
+      alignItems="center"
+      className={classes.grid}
+    >
+      <Card className={classes.addcard}>
+        <AddFriend />
+      </Card>
+      <Card className={classes.card}>
+        <List
+          subheader={
+            <ListSubheader className={classes.header}>
+              {friends.length} Friends
+            </ListSubheader>
+          }
+          className={classes.list}
+        >
+          <Divider className={classes.divider} />
+          {friends &&
+            friends.map(friend => (
+              <ListItem className={classes.item} button>
+                <Gravatar
+                  className={classes.media}
+                  email={friend.emails[0].address}
+                />
+                <ListItemText className={classes.text}>
+                  {friend.username}
+                </ListItemText>
+              </ListItem>
+            ))}
+        </List>
+      </Card>
+    </Grid>
   );
 };
 
