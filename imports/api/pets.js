@@ -71,6 +71,12 @@ Meteor.methods({
           $set: { exp: 1 + remainingExp, hp: 100 }
         }
       );
+      const currentLevel = Pets.find({ ownerId: ownerId }).fetch()[0].level;
+      if (currentLevel >= 10) {
+        Pets.update({ ownerId: ownerId }, { $set: { stage: "young" } });
+      } else if (currentLevel >= 20) {
+        Pets.update({ ownerId: ownerId }, { $set: { stage: "adult" } });
+      }
     } else {
       Pets.update(
         { ownerId: ownerId },
@@ -100,14 +106,4 @@ Meteor.methods({
       Pets.update({ ownerId: ownerId }, { $set: { stage: "adult" } });
     }
   }
-  // "pets.displayLiri"(pet) {
-  //   if (task.owner !== this.userId) {
-  //     // Checks if the user matches
-  //     throw new Meteor.Error(
-  //       "pets.displayLiri.not-authorized",
-  //       "You are not allowed to display this pet."
-  //     );
-  //   }
-  //   Pets;
-  // }
 });
