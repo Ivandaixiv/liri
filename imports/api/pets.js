@@ -26,7 +26,8 @@ Meteor.methods({
       // future consideration: choose your pet
       species: "white",
       ownerId: this.userId,
-      deathCounter: 0
+      deathCounter: 0,
+      stage: "egg"
     });
   },
   "pets.updatePet"(pet, name, species) {
@@ -72,6 +73,12 @@ Meteor.methods({
           $set: { exp: 1 + remainingExp, hp: 100 }
         }
       );
+      const currentLevel = Pets.find({ ownerId: ownerId }).fetch()[0].level;
+      if (currentLevel >= 10) {
+        Pets.update({ ownerId: ownerId }, { $set: { stage: "young" } });
+      } else if (currentLevel >= 20) {
+        Pets.update({ ownerId: ownerId }, { $set: { stage: "adult" } });
+      }
     } else {
       Pets.update(
         { ownerId: ownerId },
