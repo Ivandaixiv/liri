@@ -42,7 +42,7 @@ class TaskCard extends Component {
     // Updates pets health
   };
   render() {
-    const { classes, task, pets } = this.props;
+    // const { classes, task, pets } = this.props;
     const handleComplete = () => {
       console.log("Completed");
       // Meteor.removeTask
