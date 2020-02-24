@@ -11,12 +11,12 @@ import styles from "./styles";
 import { withStyles } from "@material-ui/styles";
 import DoneIcon from "@material-ui/icons/Done";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
-import { withTracker } from "meteor/react-meteor-data";
 import moment from "moment";
 import Box from "@material-ui/core/Box";
 import "../../../api/tasks";
 import "../../../api/users";
 import { Pets } from "../../../api/pets";
+import { withTracker } from "meteor/react-meteor-data";
 
 class TaskCard extends Component {
   handleComplete = () => {
@@ -42,7 +42,7 @@ class TaskCard extends Component {
     // Updates pets health
   };
   render() {
-    const { classes, task, pets } = this.props;
+    const { classes, task, pets, userid } = this.props;
     const handleComplete = () => {
       console.log("Completed");
       // Meteor.removeTask
@@ -58,8 +58,8 @@ class TaskCard extends Component {
     console.log("EXP", task.exp);
     console.log("Props", this.props);
     return (
-      <Card>
-        <CardContent className={classes.card}>
+      <Card className={classes.card}>
+        <CardContent className={classes.cardContent}>
           <span className={classes.userInfo}>{task && task.task}</span>
           <br />
           <Divider />
