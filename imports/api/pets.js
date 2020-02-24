@@ -4,12 +4,12 @@ export const Pets = new Mongo.Collection("pets");
 
 if (Meteor.isServer) {
   Meteor.publish("pets", function petsPublication() {
-    return Pets.find({ owner: this.userId });
+    return Pets.find({ ownerId: this.userId });
   });
 }
 Meteor.methods({
   // This method will only be called when the user accounts gets created to initialize their pet
-  "pets.addPet"(petName, series) {
+  "pets.addPet"() {
     if (!this.userId) {
       // Checks if the user matches
       throw new Meteor.Error(
@@ -18,12 +18,49 @@ Meteor.methods({
       );
     }
     Pets.insert({
-      name: petName ? petName : "Your Liri",
+      // future consideration: add custom name
+      name: "Your Liri",
       hp: 100,
-      stage: 1,
-      species: series ? series : 1,
+      level: 1,
+      exp: 1,
+      // future consideration: choose your pet
+      species: 1,
       ownerId: this.userId
     });
+  },
+  "pets.takeHP"(pet) {
+    if (pet.ownerId !== this.userId) {
+      // Checks if the user matches
+      throw new Meteor.Error(
+        "pets.takeHP.not-authorized",
+        "You are not allowed affect this pet."
+      );
+    }
+    Pets.update(pet._id, {
+      $inc: { hp: -10 }
+    });
+  },
+  "pets.addCounters"(exp, ownerId) {
+    const currentUserXP = Pets.find({ ownerId: ownerId }).fetch()[0].exp;
+    const totalExp = currentUserXP + exp;
+    console.log("OwnerID: ", ownerId, "Exp:", exp);
+    if (totalExp > 99) {
+      let remainingExp = totalExp % 100;
+      Pets.update(
+        { ownerId: ownerId },
+        {
+          $inc: { level: 1 },
+          $set: { exp: 1 + remainingExp, hp: 100 }
+        }
+      );
+    } else {
+      Pets.update(
+        { ownerId: ownerId },
+        {
+          $inc: { exp: exp }
+        }
+      );
+    }
   },
   "pets.switchPet"(pet, user, specie) {
     if (user._id !== this.userId) {
