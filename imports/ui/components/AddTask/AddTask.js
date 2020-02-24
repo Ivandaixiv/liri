@@ -69,7 +69,12 @@ class AddTask extends Component {
             pristine,
             values
           }) => (
-            <form onSubmit={handleSubmit} noValidate>
+            <form
+              onSubmit={event => {
+                handleSubmit(event).then(reset);
+              }}
+              noValidate
+            >
               <Paper style={{ padding: 16 }}>
                 <Typography>Pick your dates: </Typography>
                 <Grid item xs={12}>
