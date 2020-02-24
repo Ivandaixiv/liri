@@ -13,6 +13,7 @@ class BigCalendar extends Component {
     const dates = this.props.tasks.map(task => {
       if (task.startDate && task.endDate) {
         task.fullday = true;
+
         return {
           title: task.task,
           allDay: task.fullday,

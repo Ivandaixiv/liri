@@ -18,6 +18,11 @@ import HomeIcon from "@material-ui/icons/Home";
 import ClipboardIcon from "@material-ui/icons/Assignment";
 import CalendarIcon from "@material-ui/icons/CalendarToday";
 import ScoreIcon from "@material-ui/icons/Timeline";
+import Popover from "@material-ui/core/Popover";
+import PopupState, { bindTrigger, bindPopover } from "material-ui-popup-state";
+import Box from "@material-ui/core/Box";
+import Button from "@material-ui/core/Button";
+import AddTask from "../../components/AddTask";
 
 const Navigation = props => {
   const { classes } = props;
@@ -103,19 +108,57 @@ const Navigation = props => {
             />
           </Link>
           <div>
-            <NavLink to="/profile">
-              <IconButton className={classes.link}>
-                <AccountCircle color="secondary" className={classes.icons} />
-              </IconButton>
-            </NavLink>
-            {auth && (
-              <IconButton
-                color="secondary"
-                onClick={(handleClose, Meteor.logout)}
-              >
-                <ExitIcon className={classes.icons} />
-              </IconButton>
-            )}
+            <div>
+              <PopupState variant="popover" popupId="demo-popup-popover">
+                {popupState => (
+                  <div className={classes.position}>
+                    <Button
+                      variant="contained"
+                      style={{
+                        display:
+                          props.location.pathname === "/calendar"
+                            ? "block"
+                            : "none"
+                      }}
+                      color="primary"
+                      {...bindTrigger(popupState)}
+                    >
+                      Add New Task
+                    </Button>
+                    <Popover
+                      {...bindPopover(popupState)}
+                      anchorOrigin={{
+                        vertical: "bottom",
+                        horizontal: "left"
+                      }}
+                      transformOrigin={{
+                        vertical: "top",
+                        horizontal: "right"
+                      }}
+                    >
+                      <Box p={2}>
+                        <AddTask />
+                      </Box>
+                    </Popover>
+                  </div>
+                )}
+              </PopupState>
+            </div>
+            <div>
+              <NavLink to="/profile">
+                <IconButton className={classes.link}>
+                  <AccountCircle color="secondary" className={classes.icons} />
+                </IconButton>
+              </NavLink>
+              {auth && (
+                <IconButton
+                  color="secondary"
+                  onClick={(handleClose, Meteor.logout)}
+                >
+                  <ExitIcon className={classes.icons} />
+                </IconButton>
+              )}
+            </div>
           </div>
         </Toolbar>
       </AppBar>

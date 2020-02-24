@@ -7,11 +7,12 @@ const styles = () =>
       width: "325px",
       height: "150px",
       overflow: "auto",
-      margin: "10px 0 0 10px"
-    },
-    cardContent: {
-      boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)",
-      transition: "0.3s"
+      margin: "15px 0 0 15px",
+      transition: "0.3s",
+      boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
+      "&:hover": {
+        boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
+      }
     },
     cardContent: {
       // display: "flex"
