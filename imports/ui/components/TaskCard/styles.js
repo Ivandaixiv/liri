@@ -4,7 +4,6 @@ const styles = () =>
   createStyles({
     card: {
       display: "grid",
-      gridTemplateColumns: "1fr 1fr 1fr",
       width: "325px",
       height: "150px",
       overflow: "auto",
