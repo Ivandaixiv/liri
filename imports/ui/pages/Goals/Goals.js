@@ -25,8 +25,8 @@ class Goals extends Component {
             <div>
               <Typography variant="h4">
                 <div>
+                  <Typography className={classes.bold}>My Goals</Typography>{" "}
                   <div>
-                    <Typography className={classes.bold}>My Goals</Typography>{" "}
                     <Clock />
                   </div>
                   <div>
