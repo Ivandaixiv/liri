@@ -31,6 +31,12 @@ const styles = () =>
     },
     icons: {
       color: "#FFFFFF"
+    },
+    position: {
+      display: "flex",
+      position: "absolute",
+      right: "150px",
+      top: "30px"
     }
   });
 

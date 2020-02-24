@@ -44,7 +44,6 @@ class TaskCard extends Component {
   render() {
     const { classes, task, pets, userid } = this.props;
     const handleComplete = () => {
-      console.log("Completed");
       // Meteor.removeTask
       Meteor.call("task.removeTask", task);
       Meteor.call("user.addExp", task.exp);
