@@ -12,12 +12,13 @@ import Gravatar from "react-gravatar";
 import { withTracker } from "meteor/react-meteor-data";
 import FireIcon from "@material-ui/icons/Whatshot";
 import ClipboardIcon from "@material-ui/icons/Assignment";
+import { Users } from "../../../api/users";
 
 const ProfileCard = props => {
-  const { classes, data } = props;
+  const { classes, user } = props;
   //console.log(Accounts)
   console.log(props);
-  console.log(data);
+  console.log("User", user);
   //console.log(Meteor.user())
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -32,7 +33,7 @@ const ProfileCard = props => {
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
-  return (
+  return user[0] ? (
     <div className={classes.container}>
       <Card>
         <Typography className={classes.title}>Profile</Typography>
@@ -40,11 +41,13 @@ const ProfileCard = props => {
           <div>
             <Gravatar
               className={classes.avatar}
-              email={data.emails[0] && data.emails[0].address}
+              email={user[0].emails[0].address}
             />
           </div>
           <div className={classes.textContainer}>
-            <Typography className={classes.text}>{data.username}</Typography>
+            <Typography className={classes.text}>
+              {(user[0].username && user[0].username) || "Your Name"}
+            </Typography>
             <div>
               <Button
                 aria-describedby={id}
@@ -77,29 +80,29 @@ const ProfileCard = props => {
 
           <div>
             <Typography className={classes.emailText}>
-              Email: {data.emails[0].address}
+              Email: {user[0].emails[0].address}
             </Typography>
             <Typography className={classes.emailText}>
               Tasks Completed:
-              <ClipboardIcon color="primary" /> {data.tasksCompleted}
+              <ClipboardIcon color="primary" /> {user[0].tasksCompleted}
             </Typography>
             <Typography className={classes.emailText}>
               Streak Count: <FireIcon className={classes.fire} />
-              {data.streak}
+              {user[0].streak}
             </Typography>
             <Typography className={classes.emailText}>
-              Total Experience: {data.exp}
+              Total Experience: {user[0].exp}
             </Typography>
           </div>
         </div>
       </Card>
     </div>
-  );
+  ) : null;
 };
 
 export default withTracker(() => {
-  Meteor.subscribe("users");
+  Meteor.subscribe("user");
   return {
-    data: Meteor.user()
+    user: Users.find({}).fetch()
   };
 })(withStyles(styles)(ProfileCard));
