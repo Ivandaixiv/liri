@@ -132,7 +132,7 @@ class AccountForm extends Component {
                       <>
                         <Input
                           id="email"
-                          type="text"
+                          type="email"
                           inputProps={{
                             ...input,
                             autoComplete: "off"
