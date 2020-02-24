@@ -4,7 +4,7 @@ export const Tasks = new Mongo.Collection("tasks");
 
 if (Meteor.isServer) {
   Meteor.publish("tasks", function tasksPublication() {
-    return Tasks.find({ creatorId: this.userId });
+    return Tasks.find({ ownerId: this.userId });
   });
 }
 Meteor.methods({
@@ -23,7 +23,7 @@ Meteor.methods({
     });
   },
   "task.removeTask"(task) {
-    if (task.owner !== this.userId) {
+    if (task.ownerId !== this.userId) {
       // Checks if the user matches
       throw new Meteor.Error(
         "task.removeTask.not-authorized",
