@@ -11,9 +11,11 @@ const useStyles = makeStyles({
   },
   card: {
     padding: "1rem 1rem",
-    minWidth: "75vw",
-    maxWidth: "75vw",
-    marginTop: "20px"
+    minWidth: "40vw",
+    maxWidth: "40vw",
+    marginTop: "20px",
+    overflow: "scroll",
+    height: "80vh"
   },
   grid: {},
   box: {
