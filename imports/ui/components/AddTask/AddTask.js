@@ -43,7 +43,7 @@ class AddTask extends Component {
   }
   render() {
     return (
-      <div style={{ padding: 16, margin: "auto", maxWidth: 600 }}>
+      <div style={{ padding: 16, margin: "auto", maxWidth: 800, height: 500 }}>
         <CssBaseline />
         <Typography variant="h5" align="center" component="h2" gutterBottom>
           New Goals
