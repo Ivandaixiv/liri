@@ -1,6 +1,12 @@
 import React from "react";
 import { Meteor } from "meteor/meteor";
-import { Card, Typography, withStyles } from "@material-ui/core";
+import {
+  Card,
+  Typography,
+  withStyles,
+  Popover,
+  Button
+} from "@material-ui/core";
 import styles from "./styles";
 import Gravatar from "react-gravatar";
 import { withTracker } from "meteor/react-meteor-data";
@@ -13,6 +19,18 @@ const ProfileCard = props => {
   console.log(props);
   console.log(data);
   //console.log(Meteor.user())
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popover" : undefined;
 
   if (!data) return null;
   return (
@@ -28,20 +46,51 @@ const ProfileCard = props => {
           </div>
           <div className={classes.textContainer}>
             <Typography className={classes.text}>{data.username}</Typography>
+            <div>
+              <Button
+                aria-describedby={id}
+                variant="contained"
+                color="primary"
+                onClick={handleClick}
+              >
+                Open Popover
+              </Button>
+              <Popover
+                id={id}
+                open={open}
+                anchorEl={anchorEl}
+                onClose={handleClose}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "center"
+                }}
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "center"
+                }}
+              >
+                <Typography className={classes.typography}>
+                  The content of the Popover.
+                </Typography>
+              </Popover>
+            </div>
           </div>
+
           <div>
             <Typography className={classes.emailText}>
               Email: {data.emails[0].address}
             </Typography>
             <Typography className={classes.emailText}>
-              Tasks Completed: {data.tasksCompleted}
-              <ClipboardIcon color="primary" />
+              Tasks Completed:
+              <ClipboardIcon color="primary" /> {data.tasksCompleted}
             </Typography>
             <Typography className={classes.emailText}>
-              Streak Count: {data.streak}
-              <FireIcon className={classes.fire} />
+              Streak Count: <FireIcon className={classes.fire} />
+              {data.streak}
             </Typography>
-            <Typography className={classes.emailText}>Total Experience: {data.exp}</Typography>
+            <Typography className={classes.emailText}>
+              Total Experience: {data.exp}
+            </Typography>
           </div>
         </div>
       </Card>
