@@ -207,7 +207,12 @@ class AccountForm extends Component {
                   <br />
                   {this.state.errorMsg && (
                     <Alert variant="outlined" severity="warning">
-                      {this.state.errorMsg}
+                      {this.state.errorMsg}{" "}
+                      {setTimeout(() => {
+                        this.setState({
+                          errorMsg: null
+                        });
+                      }, 3000)}
                     </Alert>
                   )}
                 </FormControl>
