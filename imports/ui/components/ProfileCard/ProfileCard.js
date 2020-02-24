@@ -40,7 +40,8 @@ const ProfileCard = props => {
 
   const onSubmit = values => {
     console.log("Values", values);
-    Meteor.call("pets.updateName", pets[0], values.petname);
+    Meteor.call("user.updateUsername", values.username);
+    Meteor.call("pets.updatePet", pets[0], values.petname, values.species);
   };
   return user[0] ? (
     <div className={classes.container}>
@@ -116,7 +117,7 @@ const ProfileCard = props => {
                           <div>
                             <label>
                               <Field
-                                name="specie"
+                                name="species"
                                 component="input"
                                 type="radio"
                                 value="white"
@@ -125,7 +126,7 @@ const ProfileCard = props => {
                             </label>
                             <label>
                               <Field
-                                name="specie"
+                                name="species"
                                 component="input"
                                 type="radio"
                                 value="red"
@@ -134,7 +135,7 @@ const ProfileCard = props => {
                             </label>
                             <label>
                               <Field
-                                name="specie"
+                                name="species"
                                 component="input"
                                 type="radio"
                                 value="blue"
@@ -143,7 +144,7 @@ const ProfileCard = props => {
                             </label>
                             <label>
                               <Field
-                                name="specie"
+                                name="species"
                                 component="input"
                                 type="radio"
                                 value="green"

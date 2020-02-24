@@ -24,12 +24,12 @@ Meteor.methods({
       level: 1,
       exp: 1,
       // future consideration: choose your pet
-      species: 1,
+      species: "white",
       ownerId: this.userId,
       deathCounter: 0
     });
   },
-  "pets.updateName"(pet, name) {
+  "pets.updatePet"(pet, name, species) {
     if (pet.ownerId !== this.userId) {
       // Checks if the user matches
       throw new Meteor.Error(
@@ -38,7 +38,7 @@ Meteor.methods({
       );
     }
     Pets.update(pet._id, {
-      $set: { name }
+      $set: { name, species }
     });
   },
   "pets.takeHP"(pet) {
