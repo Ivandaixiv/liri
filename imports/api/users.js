@@ -23,19 +23,9 @@ Meteor.methods({
     });
   },
   "user.addCounters"(exp) {
-    const currentUserXP = Meteor.users.find(Meteor.userId()).fetch()[0].exp;
-    const totalExp = currentUserXP + exp;
-    if (totalExp > 99) {
-      let remainingExp = totalExp % 100;
-      Meteor.users.update(Meteor.userId(), {
-        $inc: { level: 1 },
-        $set: { exp: 1 + remainingExp }
-      });
-    } else {
-      Meteor.users.update(Meteor.userId(), {
-        $inc: { exp: exp, tasksCompleted: 1 }
-      });
-    }
+    Meteor.users.update(Meteor.userId(), {
+      $inc: { exp, tasksCompleted: 1 }
+    });
   },
   "user.addStreak"() {
     Meteor.users.update(Meteor.userId(), {

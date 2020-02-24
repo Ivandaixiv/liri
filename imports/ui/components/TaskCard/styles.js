@@ -3,12 +3,16 @@ import { createStyles } from "@material-ui/styles";
 const styles = () =>
   createStyles({
     card: {
-      paddingTop: "20px",
-      width: "20vw",
-      height: "8vw",
-      boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)",
+      display: "grid",
+      width: "325px",
+      height: "150px",
+      overflow: "auto",
+      margin: "15px 0 0 15px",
       transition: "0.3s",
-      "&hover": { boxShadow: "0 8px 16px 0 rgba(0,0,0,0.2)" }
+      boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
+      "&:hover": {
+        boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
+      }
     },
     cardContent: {
       // display: "flex"
