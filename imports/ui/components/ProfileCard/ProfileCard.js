@@ -5,7 +5,9 @@ import {
   Typography,
   withStyles,
   Popover,
-  Button
+  Button,
+  Box,
+  Radio
 } from "@material-ui/core";
 import styles from "./styles";
 import Gravatar from "react-gravatar";
@@ -13,9 +15,12 @@ import { withTracker } from "meteor/react-meteor-data";
 import FireIcon from "@material-ui/icons/Whatshot";
 import ClipboardIcon from "@material-ui/icons/Assignment";
 import { Users } from "../../../api/users";
+import { Pets } from "../../../api/pets";
+import { render } from "react-dom";
+import { Form, Field } from "react-final-form";
 
 const ProfileCard = props => {
-  const { classes, user } = props;
+  const { classes, user, pets } = props;
   //console.log(Accounts)
   console.log(props);
   console.log("User", user);
@@ -33,6 +38,10 @@ const ProfileCard = props => {
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
+  const onSubmit = values => {
+    console.log("Values", values);
+    Meteor.call("pets.updateName", pets[0], values.petname);
+  };
   return user[0] ? (
     <div className={classes.container}>
       <Card>
@@ -71,9 +80,106 @@ const ProfileCard = props => {
                   horizontal: "center"
                 }}
               >
-                <Typography className={classes.typography}>
-                  The content of the Popover.
-                </Typography>
+                <Box className={classes.popUp}>
+                  <h1>Account Details</h1>
+                  <Form
+                    onSubmit={onSubmit}
+                    initialValues={{ stooge: "larry", employed: false }}
+                    render={({
+                      handleSubmit,
+                      form,
+                      submitting,
+                      pristine,
+                      values
+                    }) => (
+                      <form onSubmit={handleSubmit}>
+                        <div>
+                          <label>Username</label>
+                          <Field
+                            name="username"
+                            component="input"
+                            type="text"
+                            placeholder="Username"
+                          />
+                        </div>
+                        <div>
+                          <label>Your Liri's name</label>
+                          <Field
+                            name="petname"
+                            component="input"
+                            type="text"
+                            placeholder="Liri's Name"
+                          />
+                        </div>
+                        <div>
+                          <label>Choose Your Liri</label>
+                          <div>
+                            <label>
+                              <Field
+                                name="specie"
+                                component="input"
+                                type="radio"
+                                value="white"
+                              />{" "}
+                              White
+                            </label>
+                            <label>
+                              <Field
+                                name="specie"
+                                component="input"
+                                type="radio"
+                                value="red"
+                              />{" "}
+                              Red
+                            </label>
+                            <label>
+                              <Field
+                                name="specie"
+                                component="input"
+                                type="radio"
+                                value="blue"
+                              />{" "}
+                              Blue
+                            </label>
+                            <label>
+                              <Field
+                                name="specie"
+                                component="input"
+                                type="radio"
+                                value="green"
+                              />{" "}
+                              Green
+                            </label>
+                          </div>
+                        </div>
+                        <div>
+                          <label>Background Url</label>
+                          <Field
+                            name="backgroundUrl"
+                            component="input"
+                            type="text"
+                            placeholder="Insert a image url"
+                          />
+                        </div>
+                        <div className="buttons">
+                          <button
+                            type="submit"
+                            disabled={submitting || pristine}
+                          >
+                            Submit
+                          </button>
+                          <button
+                            type="button"
+                            onClick={form.reset}
+                            disabled={submitting || pristine}
+                          >
+                            Reset
+                          </button>
+                        </div>
+                      </form>
+                    )}
+                  />
+                </Box>
               </Popover>
             </div>
           </div>
@@ -102,7 +208,9 @@ const ProfileCard = props => {
 
 export default withTracker(() => {
   Meteor.subscribe("user");
+  Meteor.subscribe("pets");
   return {
-    user: Users.find({}).fetch()
+    user: Users.find({}).fetch(),
+    pets: Pets.find({}).fetch()
   };
 })(withStyles(styles)(ProfileCard));

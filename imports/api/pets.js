@@ -29,6 +29,18 @@ Meteor.methods({
       deathCounter: 0
     });
   },
+  "pets.updateName"(pet, name) {
+    if (pet.ownerId !== this.userId) {
+      // Checks if the user matches
+      throw new Meteor.Error(
+        "pets.takeHP.not-authorized",
+        "You are not allowed affect this pet."
+      );
+    }
+    Pets.update(pet._id, {
+      $set: { name }
+    });
+  },
   "pets.takeHP"(pet) {
     if (pet.ownerId !== this.userId) {
       // Checks if the user matches

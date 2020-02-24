@@ -5,6 +5,9 @@ const styles = () =>
       padding: "6px",
       backgroundColor: "#272727"
     },
+    popUp: {
+      width: 800
+    },
     text: {
       fontSize: "2rem",
       display: "flex",
