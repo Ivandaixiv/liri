@@ -9,6 +9,7 @@ const ProfileCard = props => {
   const { classes, data } = props;
   //console.log(Accounts)
   console.log(props);
+  console.log(data);
   //console.log(Meteor.user())
 
   if (!data) return null;
