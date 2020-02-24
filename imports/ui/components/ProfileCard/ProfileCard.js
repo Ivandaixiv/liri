@@ -41,8 +41,7 @@ const ProfileCard = props => {
               Streak Count: {data.streak}
               <FireIcon className={classes.fire} />
             </Typography>
-            
-
+            <Typography className={classes.emailText}>Total Experience: {data.exp}</Typography>
           </div>
         </div>
       </Card>
