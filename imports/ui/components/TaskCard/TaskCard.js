@@ -55,7 +55,6 @@ class TaskCard extends Component {
       Meteor.call("task.removeTask", task);
       // Updates pets health
     };
-    const { classes, task, userid } = this.props;
     console.log("EXP", task.exp);
     console.log("Props", this.props);
     return (
