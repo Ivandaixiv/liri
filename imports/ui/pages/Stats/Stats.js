@@ -51,10 +51,14 @@ const Stats = props => {
           </div>
           {pets[0] && (
             <Box>
-              <Box display="flex" className={classes.petStats}>
-                <Typography> Health: {pets[0].hp}/100</Typography>
+              <Box>
+                <Box display="flex" className={classes.petStats}>
+                  <Typography> Health: {pets[0].hp}/100</Typography>
+                </Box>
+                <Box display="flex" className={classes.petStats}>
+                  <Typography> Deaths: {pets[0].deathCounter}</Typography>
+                </Box>
               </Box>
-
               <HPLinearProgress
                 variant="determinate"
                 value={pets[0].hp}
@@ -62,16 +66,16 @@ const Stats = props => {
               />
             </Box>
           )}
-          {user[0].exp && (
+          {pets[0] && (
             <Box>
               <Box display="flex" className={classes.petStats}>
                 <Typography>Level: {pets[0] && pets[0].level}</Typography>
-                <Typography> Experience: {user[0].exp}/100</Typography>
+                <Typography> Experience: {pets[0].exp}/100</Typography>
               </Box>
 
               <ExpLinearProgress
                 variant="determinate"
-                value={user[0].exp}
+                value={pets[0].exp}
                 className={classes.bar}
               />
             </Box>

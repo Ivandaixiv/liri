@@ -1,38 +1,38 @@
 import React from "react";
 import styles from "./styles";
-import { Form, Field, FormSpy } from "react-final-form";
 import { withTracker } from "meteor/react-meteor-data";
 import { Users } from "../../../api/users";
+import { Tasks } from "../../../api/tasks";
 import {
   Card,
-  CardActionArea,
-  CardActions,
-  CardContent,
   CardMedia,
-  Grid,
   Button,
   Typography,
-  withStyles,
-  FormControl
+  withStyles
 } from "@material-ui/core";
 
-
-
 const FocusCard = props => {
-  const { classes, user, userId } = props;
-console.log(user);
-const onSubmit = value => {
-  if (value === "fitness" ){
-    Meteor.call('user.updateFocus', userId, value);
-  }
-}
+  const { classes, user, userId, tasks } = props;
+  const onSubmit = value => {
+    if (value === "fitnesss") {
+      Meteor.call("user.addTask", userId, value);
+    } else if (value === "health") {
+      Meteor.call("user.addTask", userId, value);
+    }
+  };
 
   return (
-    <div>
+    <div className={classes.mainContainer}>
       <Button
         color="primary"
         onClick={() => {
-          onSubmit((value = "fitness"));
+          onSubmit(
+            Meteor.call("user.addTask", userId, [
+              "Run for thirty minutes",
+              "Hold a plank for one minute",
+              "Do ten pull-ups"
+            ])
+          );
         }}
       >
         <Card className={classes.container}>
@@ -40,9 +40,9 @@ const onSubmit = value => {
           <CardMedia
             className={classes.card}
             component="img"
-            image="http://place-puppy.com/200x199"
+            image="/liri.png"
           />
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography variant="body2" className={classes.text} component="p">
             Praesent et lectus ultricies, convallis odio in, auctor erat. Nunc
             ut lobortis nunc. In at semper justo, at hendrerit dui.
           </Typography>
@@ -52,17 +52,23 @@ const onSubmit = value => {
       <Button
         color="primary"
         onClick={() => {
-          onSubmit((value = "Puppy!"));
+          onSubmit(
+            Meteor.call("user.addTask", userId, [
+              "Drink eight glasses of water",
+              "Get at least eight hours of sleep",
+              "Etiam varius tristique nunc vitae venenatis."
+            ])
+          );
         }}
       >
         <Card className={classes.container}>
-          <Typography variant="h4">Puppy</Typography>
+          <Typography variant="h4">Health</Typography>
           <CardMedia
             className={classes.card}
             component="img"
-            image="http://place-puppy.com/200x200"
+            image="/liri.png"
           />
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography variant="body2" className={classes.text} component="p">
             Praesent et lectus ultricies, convallis odio in, auctor erat. Nunc
             ut lobortis nunc. In at semper justo, at hendrerit dui.
           </Typography>
@@ -72,27 +78,9 @@ const onSubmit = value => {
       <Button
         color="primary"
         onClick={() => {
-          onSubmit((value = "Test"));
-        }}
-      >
-        <Card className={classes.container}>
-          <Typography variant="h4">Placeholder</Typography>
-          <CardMedia
-            className={classes.card}
-            component="img"
-            image="http://place-puppy.com/200x205"
-          />
-          <Typography variant="body2" color="textSecondary" component="p">
-            Praesent et lectus ultricies, convallis odio in, auctor erat. Nunc
-            ut lobortis nunc. In at semper justo, at hendrerit dui.
-          </Typography>
-        </Card>
-      </Button>
-
-      <Button
-        color="primary"
-        onClick={() => {
-          onSubmit();
+          onSubmit(
+            Meteor.call("user.addTask", userId, ["Test", "Test2", "Test3"])
+          );
         }}
       >
         <Card className={classes.container}>
@@ -100,9 +88,9 @@ const onSubmit = value => {
           <CardMedia
             className={classes.card}
             component="img"
-            image="http://place-puppy.com/200x204"
+            image="/liri.png"
           />
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography variant="body2" className={classes.text} component="p">
             Praesent et lectus ultricies, convallis odio in, auctor erat. Nunc
             ut lobortis nunc. In at semper justo, at hendrerit dui.
           </Typography>
@@ -112,7 +100,9 @@ const onSubmit = value => {
       <Button
         color="primary"
         onClick={() => {
-          onSubmit((value = "PLACEHOLDER TAG"));
+          onSubmit(
+            Meteor.call("user.addTask", userId, ["Test", "Test2", "Test3"])
+          );
         }}
       >
         <Card className={classes.container}>
@@ -120,9 +110,9 @@ const onSubmit = value => {
           <CardMedia
             className={classes.card}
             component="img"
-            image="http://place-puppy.com/200x203"
+            image="/liri.png"
           />
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography variant="body2" className={classes.text} component="p">
             Praesent et lectus ultricies, convallis odio in, auctor erat. Nunc
             ut lobortis nunc. In at semper justo, at hendrerit dui.
           </Typography>
@@ -132,7 +122,9 @@ const onSubmit = value => {
       <Button
         color="primary"
         onClick={() => {
-          onSubmit((value = "PLACEHOLDER TAG"));
+          onSubmit(
+            Meteor.call("user.addTask", userId, ["Test", "Test2", "Test3"])
+          );
         }}
       >
         <Card className={classes.container}>
@@ -140,9 +132,31 @@ const onSubmit = value => {
           <CardMedia
             className={classes.card}
             component="img"
-            image="http://place-puppy.com/200x201"
+            image="/liri.png"
           />
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography variant="body2" className={classes.text} component="p">
+            Praesent et lectus ultricies, convallis odio in, auctor erat. Nunc
+            ut lobortis nunc. In at semper justo, at hendrerit dui.
+          </Typography>
+        </Card>
+      </Button>
+
+      <Button
+        color="primary"
+        onClick={() => {
+          onSubmit(
+            Meteor.call("user.addTask", userId, ["Test", "Test2", "Test3"])
+          );
+        }}
+      >
+        <Card className={classes.container}>
+          <Typography variant="h4">Placeholder</Typography>
+          <CardMedia
+            className={classes.card}
+            component="img"
+            image="/liri.png"
+          />
+          <Typography variant="body2" className={classes.text} component="p">
             Praesent et lectus ultricies, convallis odio in, auctor erat. Nunc
             ut lobortis nunc. In at semper justo, at hendrerit dui.
           </Typography>
@@ -152,22 +166,12 @@ const onSubmit = value => {
   );
 };
 
-//   render() {
-//     let { classes } = this.props;
-//     return (
-//       <div>
-//         <Typography variant="h3">test</Typography>
-//         {console.log("test")};
-//       </div>
-//     );
-//   }
-// }
-
 export default withTracker(() => {
   Meteor.subscribe("user");
-
+  Meteor.subscribe("tasks");
   return {
     user: Users.find({}).fetch(),
-    userId: Meteor.userId()
+    userId: Meteor.userId(),
+    tasks: Tasks.find({}).fetch()
   };
 })(withStyles(styles)(FocusCard));

@@ -26,7 +26,7 @@ const styles = () =>
     gridSpace: {
       paddingTop: "20px"
     },
-    bold: { fontWeight: 900 }
+    bold: { fontWeight: 900, fontSize: "30px" }
   });
 
 export default styles;

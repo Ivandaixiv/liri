@@ -4,12 +4,12 @@ export const Tasks = new Mongo.Collection("tasks");
 
 if (Meteor.isServer) {
   Meteor.publish("tasks", function tasksPublication() {
-    return Tasks.find({ owner: this.userId });
+    return Tasks.find({ ownerId: this.userId });
   });
 }
 Meteor.methods({
   // How to write a methtod in Meteor methods
-  "task.toggleComplete"(task) {
+  "task.complete"(task) {
     if (task.owner !== this.userId) {
       // Checks if the user matches
       throw new Meteor.Error(
@@ -19,11 +19,11 @@ Meteor.methods({
     }
     // change the complete status
     Tasks.update(task._id, {
-      $set: { complete: !task.complete }
+      $set: { complete: true }
     });
   },
-  "task.removeToDo"(task) {
-    if (task.owner !== this.userId) {
+  "task.removeTask"(task) {
+    if (task.ownerId !== this.userId) {
       // Checks if the user matches
       throw new Meteor.Error(
         "task.removeTask.not-authorized",
@@ -32,7 +32,7 @@ Meteor.methods({
     }
     Tasks.remove(task._id);
   },
-  "task.addTask"(taskTitle, dueDate, tags) {
+  "task.addTask"(task, goal, startDate, endDate, fullday) {
     if (!this.userId) {
       // Checks if the user matches
       throw new Meteor.Error(
@@ -42,11 +42,14 @@ Meteor.methods({
     }
 
     Tasks.insert({
-      title: taskTitle,
+      task,
       complete: false,
-      creatorId: this.userId,
-      dueDate: dueDate ? dueDate : null,
-      tags
+      ownerId: this.userId,
+      startDate: startDate ? startDate : new Date(),
+      endDate: endDate ? endDate : null,
+      goal,
+      fullday,
+      exp: task.length
     });
   }
 });
