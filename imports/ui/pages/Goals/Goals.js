@@ -23,7 +23,7 @@ class Goals extends Component {
             </div>
             <div>
               <Typography variant="h4">
-                <div className={classes.space}>
+                <div>
                   <div>
                     <Typography className={classes.bold}>My Goals</Typography>{" "}
                   </div>
