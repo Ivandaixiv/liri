@@ -14,6 +14,9 @@ if (Meteor.isServer) {
   Meteor.publish("user", function userPublication() {
     return Users.find({ _id: this.userId });
   });
+  Meteor.publish("allUsers", function allUsersPublication() {
+    return Users.find({});
+  });
 }
 
 Meteor.methods({
