@@ -14,10 +14,12 @@ import AddFriend from "./helpers/AddFriend";
 import styles from "./styles";
 import { Users } from "../../../api/users";
 import Box from "@material-ui/core/Box";
+import Scoreboard from "../../components/Scoreboard";
 
 const FriendList = props => {
   const classes = styles();
-  const { friends, allUsers, notFriends } = props;
+  const { friends, allUsers, commonFriends } = props;
+  console.log(commonFriends);
   return (
     <Grid container item xs="auto" justify="center" className={classes.grid}>
       <Card className={classes.card}>
@@ -86,17 +88,13 @@ export default withTracker(() => {
 
   const allUsers = Users.find({}).fetch();
 
-  const notFriends = allUsers.filter(
-    user => user.username === friends.username
+  const commonFriends = friends.map(({ _id }) =>
+    allUsers.filter(user => user._id === _id)
   );
-
-  // const notFriends = allUsers.filter(username => {
-  //   return !friends.includes(username);
-  // });
 
   return {
     friends,
     allUsers,
-    notFriends
+    commonFriends
   };
 })(FriendList);
