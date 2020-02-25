@@ -85,14 +85,7 @@ const ProfileCard = props => {
                   <h1>Account Details</h1>
                   <Form
                     onSubmit={onSubmit}
-                    initialValues={{ stooge: "larry", employed: false }}
-                    render={({
-                      handleSubmit,
-                      form,
-                      submitting,
-                      pristine,
-                      values
-                    }) => (
+                    render={({ handleSubmit, form, submitting, pristine }) => (
                       <form onSubmit={handleSubmit}>
                         <div>
                           <label>Username</label>

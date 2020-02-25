@@ -6,7 +6,11 @@ const styles = () =>
       backgroundColor: "#272727"
     },
     popUp: {
-      width: 800
+      width: 480,
+      display: "flex",
+      justifyItems: "left",
+      padding: "6px 6px 6px 6px",
+      height: 330
     },
     text: {
       fontSize: "2rem",
