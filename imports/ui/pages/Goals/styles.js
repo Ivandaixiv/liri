@@ -29,7 +29,11 @@ const styles = () =>
     gridSpace: {
       paddingTop: "20px"
     },
-    bold: { fontWeight: 900, fontSize: "30px" }
+    bold: { fontWeight: 900, fontSize: "30px" },
+    quickStart: {
+      marginLeft: "15px"
+    }
+
   });
 
 export default styles;

@@ -12,28 +12,31 @@ import {
   Typography,
   withStyles
 } from "@material-ui/core";
+import { withRouter, Redirect } from 'react-router-dom';
+
 
 const FocusCard = props => {
   const { classes, user, userId, tasks, values, task } = props;
   console.log(props);
   const onSubmit = () => {
-    this.props.history.push("/home");
-    console.log("test")
+  window.location.href = '/goals';
   };
 
   return (
+    
     <div className={classes.mainContainer}>
       {/* Fitness Card */}
       <Button
         color="primary"
         onClick={() => {
+          
           let task = "Do at least 10 pull-ups.";
           Meteor.call("task.addTask", task);
           let taskTwo = "Run for at least 30 minutes.";
           Meteor.call("task.addTask", taskTwo);
-          let taskThree = "Do stuff";
+          let taskThree = "Achieve more than 10k steps in a single day";
           Meteor.call("task.addTask", taskThree);
-          onSubmit(value);
+          onSubmit();
         }}
       >
         <Card className={classes.container}>
@@ -44,8 +47,7 @@ const FocusCard = props => {
             image="fitness.png"
           />
           <Typography variant="body2" className={classes.text} component="p">
-            Praesent et lectus ultricies, convallis odio in, auctor erat. Nunc
-            ut lobortis nunc. In at semper justo, at hendrerit dui.
+          Feel fit, active, and healthy. Kick-start your fitness by quickly adding a few fitness goals.  
           </Typography>
         </Card>
       </Button>
@@ -56,10 +58,11 @@ const FocusCard = props => {
         onClick={() => {
           let task = "Drink eight glasses of water";
           Meteor.call("task.addTask", task);
-          let taskTwo = "I don't know what to write";
+          let taskTwo = "Get at least eight hours of sleep";
           Meteor.call("task.addTask", taskTwo);
-          let taskThree = "I need to add proper info here";
+          let taskThree = "Maintain a balanced diet for the week";
           Meteor.call("task.addTask", taskThree);
+          onSubmit();
         }}
       >
         <Card className={classes.container}>
@@ -70,8 +73,7 @@ const FocusCard = props => {
             image="/health.png"
           />
           <Typography variant="body2" className={classes.text} component="p">
-            Praesent et lectus ultricies, convallis odio in, auctor erat. Nunc
-            ut lobortis nunc. In at semper justo, at hendrerit dui.
+            Feel physically, and mentally better. Quickly add a few goals to start a healthy lifestyle.
           </Typography>
         </Card>
       </Button>
@@ -86,6 +88,7 @@ const FocusCard = props => {
           Meteor.call("task.addTask", taskTwo);
           let taskThree = "Placeholder";
           Meteor.call("task.addTask", taskThree);
+          onSubmit();
         }}
       >
         <Card className={classes.container}>
@@ -96,8 +99,7 @@ const FocusCard = props => {
             image="/wait.png"
           />
           <Typography variant="body2" className={classes.text} component="p">
-            Praesent et lectus ultricies, convallis odio in, auctor erat. Nunc
-            ut lobortis nunc. In at semper justo, at hendrerit dui.
+            Become more efficient, and productive. Quickly add a few tasks to increase your productivity.
           </Typography>
         </Card>
       </Button>
@@ -112,6 +114,7 @@ const FocusCard = props => {
           Meteor.call("task.addTask", taskTwo);
           let taskThree = "Placeholder";
           Meteor.call("task.addTask", taskThree);
+          onSubmit();
         }}
       >
         <Card className={classes.container}>
@@ -138,6 +141,7 @@ const FocusCard = props => {
           Meteor.call("task.addTask", taskTwo);
           let taskThree = "Placeholder";
           Meteor.call("task.addTask", taskThree);
+          onSubmit();
         }}
       >
         <Card className={classes.container}>
@@ -164,6 +168,7 @@ const FocusCard = props => {
           Meteor.call("task.addTask", taskTwo);
           let taskThree = "Placeholder";
           Meteor.call("task.addTask", taskThree);
+          onSubmit();
         }}
       >
         <Card className={classes.container}>

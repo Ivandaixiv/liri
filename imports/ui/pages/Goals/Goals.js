@@ -59,6 +59,7 @@ class Goals extends Component {
                           <Button
                             variant="contained"
                             color="primary"
+                            className={classes.quickStart}
                             onClick={() => {
                               this.props.history.push('/focus')
                             }}
