@@ -14,69 +14,65 @@ import AddFriend from "./helpers/AddFriend";
 import styles from "./styles";
 import { Users } from "../../../api/users";
 import Box from "@material-ui/core/Box";
-import Scoreboard from "../../components/Scoreboard";
 
 const FriendList = props => {
   const classes = styles();
   const { friends, allUsers, commonFriends } = props;
   console.log(commonFriends);
   return (
-    <>
-      <Scoreboard />
-      <Grid container item xs="auto" justify="center" className={classes.grid}>
-        <Card className={classes.card}>
-          <List
-            subheader={
-              <ListSubheader className={classes.header}>
-                You Have {friends.length} Friends
-              </ListSubheader>
-            }
-            className={classes.list}
-          >
-            <Divider className={classes.divider} />
-            {friends &&
-              friends.map(friend => (
-                <ListItem className={classes.item} button key={friend._id}>
-                  <Gravatar
-                    className={classes.media}
-                    email={friend.emails[0].address}
-                  />
-                  <ListItemText className={classes.text}>
-                    {friend.username}
-                  </ListItemText>
-                </ListItem>
-              ))}
-            <Box>
-              <AddFriend />
-            </Box>
-          </List>
-        </Card>
-        <Card className={classes.card}>
-          <List
-            subheader={
-              <ListSubheader className={classes.header}>
-                {allUsers.length} Available Users
-              </ListSubheader>
-            }
-            className={classes.list}
-          >
-            <Divider className={classes.divider} />
-            {allUsers &&
-              allUsers.map(user => (
-                <ListItem className={classes.item} button key={user._id}>
-                  <Gravatar
-                    className={classes.media}
-                    email={user.emails[0].address}
-                  />
-                  <ListItemText className={classes.text}>
-                    {user.username}
-                  </ListItemText>
-                </ListItem>
-              ))}
-          </List>
-        </Card>
-      </Grid>
-    </>
+    <Grid container item xs="auto" justify="center" className={classes.grid}>
+      <Card className={classes.card}>
+        <List
+          subheader={
+            <ListSubheader className={classes.header}>
+              You Have {friends.length} Friends
+            </ListSubheader>
+          }
+          className={classes.list}
+        >
+          <Divider className={classes.divider} />
+          {friends &&
+            friends.map(friend => (
+              <ListItem className={classes.item} button key={friend._id}>
+                <Gravatar
+                  className={classes.media}
+                  email={friend.emails[0].address}
+                />
+                <ListItemText className={classes.text}>
+                  {friend.username}
+                </ListItemText>
+              </ListItem>
+            ))}
+          <Box>
+            <AddFriend />
+          </Box>
+        </List>
+      </Card>
+      <Card className={classes.card}>
+        <List
+          subheader={
+            <ListSubheader className={classes.header}>
+              {allUsers.length} Available Users
+            </ListSubheader>
+          }
+          className={classes.list}
+        >
+          <Divider className={classes.divider} />
+          {allUsers &&
+            allUsers.map(user => (
+              <ListItem className={classes.item} button key={user._id}>
+                <Gravatar
+                  className={classes.media}
+                  email={user.emails[0].address}
+                />
+                <ListItemText className={classes.text}>
+                  {user.username}
+                </ListItemText>
+              </ListItem>
+            ))}
+        </List>
+      </Card>
+    </Grid>
   );
 };
 

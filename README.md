@@ -34,7 +34,7 @@ yarn run start
 - MongoDB
 - API
 - Javascript
-- Project Files Structuring
+- Meteor Project Files Structuring
 
 ## Team's Experience / Learning Objectives
 
@@ -43,6 +43,6 @@ Increased understanding on Meteor, MongoDB, ReactJs, Git workflow and structurin
 ## Authors
 
 - Ivan - https://github.com/Ivandaixiv
-- Lance -
-- Ian -
-- Ringo -
+- Lance - https://github.com/fostlt
+- Ian - https://github.com/IED92
+- Ringo - https://github.com/ringo-w

@@ -1,7 +1,13 @@
 import React from "react";
 import FriendList from "../../components/FriendList/FriendList";
+import Scoreboard from "../../components/Scoreboard";
 
 const ScoreboardContainer = () => {
-  return <FriendList />;
+  return (
+    <>
+      <Scoreboard />
+      <FriendList />
+    </>
+  );
 };
 export default ScoreboardContainer;
