@@ -17,8 +17,7 @@ import Box from "@material-ui/core/Box";
 
 const FriendList = props => {
   const classes = styles();
-  const { friends, allUsers } = props;
-
+  const { friends, allUsers, notFriends } = props;
   return (
     <Grid
       container
@@ -94,8 +93,17 @@ export default withTracker(() => {
 
   const allUsers = Users.find({}).fetch();
 
+  const notFriends = allUsers.filter(
+    user => user.username === friends.username
+  );
+
+  // const notFriends = allUsers.filter(username => {
+  //   return !friends.includes(username);
+  // });
+
   return {
     friends,
-    allUsers
+    allUsers,
+    notFriends
   };
 })(FriendList);
