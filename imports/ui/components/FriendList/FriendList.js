@@ -6,37 +6,32 @@ import {
   Card,
   Grid,
   ListSubheader,
-  Divider,
-  Typography
+  Divider
 } from "@material-ui/core";
 import Gravatar from "react-gravatar";
 import { withTracker } from "meteor/react-meteor-data";
 import AddFriend from "./helpers/AddFriend";
 import styles from "./styles";
 import { Users } from "../../../api/users";
+import Box from "@material-ui/core/Box";
 
 const FriendList = props => {
   const classes = styles();
-  const { friends } = props;
-
-  console.log(friends);
-
+  const { friends, allUsers, notFriends } = props;
   return (
     <Grid
       container
-      direction="column"
+      item
+      xs="auto"
       justify="center"
-      alignItems="center"
+      spacing={3}
       className={classes.grid}
     >
-      <Card className={classes.addcard}>
-        <AddFriend />
-      </Card>
       <Card className={classes.card}>
         <List
           subheader={
             <ListSubheader className={classes.header}>
-              {friends.length} Friends
+              You Have {friends.length} Friends
             </ListSubheader>
           }
           className={classes.list}
@@ -44,13 +39,40 @@ const FriendList = props => {
           <Divider className={classes.divider} />
           {friends &&
             friends.map(friend => (
-              <ListItem className={classes.item} button>
+              <ListItem className={classes.item} button key={friend._id}>
                 <Gravatar
                   className={classes.media}
                   email={friend.emails[0].address}
                 />
                 <ListItemText className={classes.text}>
                   {friend.username}
+                </ListItemText>
+              </ListItem>
+            ))}
+          <Box>
+            <AddFriend />
+          </Box>
+        </List>
+      </Card>
+      <Card className={classes.card}>
+        <List
+          subheader={
+            <ListSubheader className={classes.header}>
+              {allUsers.length} Available Users
+            </ListSubheader>
+          }
+          className={classes.list}
+        >
+          <Divider className={classes.divider} />
+          {allUsers &&
+            allUsers.map(user => (
+              <ListItem className={classes.item} button key={user._id}>
+                <Gravatar
+                  className={classes.media}
+                  email={user.emails[0].address}
+                />
+                <ListItemText className={classes.text}>
+                  {user.username}
                 </ListItemText>
               </ListItem>
             ))}
@@ -61,13 +83,27 @@ const FriendList = props => {
 };
 
 export default withTracker(() => {
-  Meteor.subscribe("user");
+  Meteor.subscribe("users");
   Meteor.subscribe("friends");
+  Meteor.subscribe("allUsers");
 
   const friends = Users.find({
     "profile.friends": { $in: [Meteor.userId()] }
   }).fetch();
+
+  const allUsers = Users.find({}).fetch();
+
+  const notFriends = allUsers.filter(
+    user => user.username === friends.username
+  );
+
+  // const notFriends = allUsers.filter(username => {
+  //   return !friends.includes(username);
+  // });
+
   return {
-    friends
+    friends,
+    allUsers,
+    notFriends
   };
 })(FriendList);

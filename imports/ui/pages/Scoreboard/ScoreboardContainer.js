@@ -1,14 +1,7 @@
-import React, { Component } from "react";
-import Scoreboard from "./Scoreboard";
+import React from "react";
 import FriendList from "../../components/FriendList/FriendList";
 
-class ScoreboardContainer extends Component {
-  render() {
-    return (
-      <div className="scoreboard-container">
-        <FriendList />
-      </div>
-    );
-  }
-}
+const ScoreboardContainer = () => {
+  return <FriendList />;
+};
 export default ScoreboardContainer;

@@ -30,6 +30,7 @@ function Copyright() {
     </Typography>
   );
 }
+
 class AccountForm extends Component {
   constructor(props) {
     super(props);
@@ -40,6 +41,14 @@ class AccountForm extends Component {
     };
   }
 
+  timeout = () => {
+    setTimeout(() => {
+      this.setState({
+        errorMsg: null
+      });
+    }, 3000);
+  };
+
   validate = values => {
     const errors = {};
     if (!values.email) {
@@ -48,12 +57,11 @@ class AccountForm extends Component {
     if (!values.password) {
       errors.password = <Box color="error.main">REQUIRED</Box>;
     }
-    console.log(this.state.formToggle);
-    if (!this.state.formToggle) {
-      if (!values.username) {
-        errors.username = <Box color="error.main">REQUIRED</Box>;
-      }
-    }
+    // if (!this.state.formToggle) {
+    //   if (!values.username) {
+    //     errors.username = <Box color="error.main">REQUIRED</Box>;
+    //   }
+    // }
     return errors;
   };
 
@@ -126,7 +134,7 @@ class AccountForm extends Component {
                   </FormControl>
                 )}
                 <FormControl fullWidth>
-                  <InputLabel htmlFor="email">Email</InputLabel>
+                  <InputLabel htmlFor="email">Email*</InputLabel>
                   <Field name="email">
                     {({ input, meta }) => (
                       <>
@@ -149,7 +157,7 @@ class AccountForm extends Component {
                   </Field>
                 </FormControl>
                 <FormControl fullWidth style={{ paddingBottom: "20px" }}>
-                  <InputLabel htmlFor="password">Password</InputLabel>
+                  <InputLabel htmlFor="password">Password*</InputLabel>
                   <Field name="password">
                     {({ input, meta }) => (
                       <>
@@ -207,12 +215,8 @@ class AccountForm extends Component {
                   <br />
                   {this.state.errorMsg && (
                     <Alert variant="outlined" severity="warning">
-                      {this.state.errorMsg}{" "}
-                      {setTimeout(() => {
-                        this.setState({
-                          errorMsg: null
-                        });
-                      }, 3000)}
+                      {this.state.errorMsg}
+                      {this.timeout()}
                     </Alert>
                   )}
                 </FormControl>

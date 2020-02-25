@@ -14,6 +14,9 @@ if (Meteor.isServer) {
   Meteor.publish("user", function userPublication() {
     return Users.find({ _id: this.userId });
   });
+  Meteor.publish("allUsers", function allUsersPublication() {
+    return Users.find({});
+  });
 }
 
 Meteor.methods({
@@ -35,6 +38,11 @@ Meteor.methods({
   "user.removeStreak"() {
     Meteor.users.update(Meteor.userId(), {
       $set: { streak: 1 }
+    });
+  },
+  "user.updateUsername"(username) {
+    Meteor.users.update(Meteor.userId(), {
+      $set: { username }
     });
   },
   "user.updateFocus"(userId, focuses) {

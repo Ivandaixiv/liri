@@ -20,43 +20,23 @@ import { withTracker } from "meteor/react-meteor-data";
 
 class TaskCard extends Component {
   handleComplete = () => {
-    console.log("Completed");
-
-    // Meteor.removeTask
     Meteor.call("task.removeTask", this.props.task);
     Meteor.call("user.addCounters", this.props.task.exp);
-    console.log(this.props.task.exp);
-    console.log("This is being called");
     Meteor.call(
       "pets.addCounters",
       this.props.task.exp,
       this.props.pets[0].ownerId
     );
     Meteor.call("user.addStreak");
+    Meteor.call("pets.evolve", this.props.pets[0].ownerId);
   };
   handleDelete = () => {
-    console.log("Deleted");
     Meteor.call("task.removeTask", this.props.task);
     Meteor.call("pets.takeHP", this.props.pets[0]);
     Meteor.call("user.removeStreak");
-    // Updates pets health
   };
   render() {
     const { classes, task, pets, userid } = this.props;
-    const handleComplete = () => {
-      console.log("Completed");
-      // Meteor.removeTask
-      Meteor.call("task.removeTask", task);
-      Meteor.call("user.addExp", task.exp);
-      Meteor.call("user.addStreak");
-    };
-    const handleDelete = () => {
-      console.log("Deleted");
-      Meteor.call("task.removeTask", task);
-      // Updates pets health
-    };
-    console.log("EXP", task.exp);
-    console.log("Props", this.props);
     return (
       <Card className={classes.card}>
         <CardContent className={classes.cardContent}>

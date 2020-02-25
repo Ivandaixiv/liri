@@ -5,11 +5,14 @@ const styles = () =>
       padding: "6px",
       backgroundColor: "#272727"
     },
+    popUp: {
+      width: 800
+    },
     text: {
       fontSize: "2rem",
       display: "flex",
       alignItems: "center",
-      marginLeft: "1rem"
+      marginTop: "1rem"
     },
     avatar: {
       height: "150px",
@@ -33,7 +36,9 @@ const styles = () =>
     },
     textContainer: {
       display: "flex",
-      paddingRight: "1.5rem",
+      flexDirection: "column",
+      alignItems: "center",
+      minWidth: 300,
       borderRight: "2px solid #4B4B4B"
     },
     emailText: {
