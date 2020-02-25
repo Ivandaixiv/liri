@@ -57,11 +57,6 @@ class AccountForm extends Component {
     if (!values.password) {
       errors.password = <Box color="error.main">REQUIRED</Box>;
     }
-    // if (!this.state.formToggle) {
-    //   if (!values.username) {
-    //     errors.username = <Box color="error.main">REQUIRED</Box>;
-    //   }
-    // }
     return errors;
   };
 
@@ -93,7 +88,6 @@ class AccountForm extends Component {
 
   render() {
     const { classes } = this.props;
-    console.log("Logged In: ", Meteor.userId());
     return (
       <Container component="main" maxWidth="xs">
         <CssBaseline />
