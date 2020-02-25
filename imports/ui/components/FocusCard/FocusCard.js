@@ -3,6 +3,8 @@ import styles from "./styles";
 import { withTracker } from "meteor/react-meteor-data";
 import { Users } from "../../../api/users";
 import { Tasks } from "../../../api/tasks";
+import "../../../api/tasks";
+import "../../../api/users";
 import {
   Card,
   CardMedia,
@@ -12,27 +14,25 @@ import {
 } from "@material-ui/core";
 
 const FocusCard = props => {
-  const { classes, user, userId, tasks } = props;
-  const onSubmit = value => {
-    if (value === "fitnesss") {
-      Meteor.call("user.addTask", userId, value);
-    } else if (value === "health") {
-      Meteor.call("user.addTask", userId, value);
-    }
-  };
+  const { classes, user, userId, tasks, values, task } = props;
+  console.log(props);
+  const onSubmit = value => {};
 
   return (
     <div className={classes.mainContainer}>
+      {/* Fitness Card */}
       <Button
         color="primary"
         onClick={() => {
-          onSubmit(
-            Meteor.call("user.addTask", userId, [
-              "Run for thirty minutes",
-              "Hold a plank for one minute",
-              "Do ten pull-ups"
-            ])
-          );
+          let task = "Do at least 10 pull-ups.";
+          // const fullday = false
+          Meteor.call("task.addTask", task);
+          let taskTwo = "Run for at least 30 minutes.";
+          // const fullday = false
+          Meteor.call("task.addTask", taskTwo);
+
+          let taskThree = "Do stuff";
+          Meteor.call("task.addTask", taskThree);
         }}
       >
         <Card className={classes.container}>
@@ -40,7 +40,7 @@ const FocusCard = props => {
           <CardMedia
             className={classes.card}
             component="img"
-            image="/liri.png"
+            image="fitness.png"
           />
           <Typography variant="body2" className={classes.text} component="p">
             Praesent et lectus ultricies, convallis odio in, auctor erat. Nunc
@@ -49,16 +49,19 @@ const FocusCard = props => {
         </Card>
       </Button>
 
+      {/* Health Card */}
       <Button
         color="primary"
         onClick={() => {
-          onSubmit(
-            Meteor.call("user.addTask", userId, [
-              "Drink eight glasses of water",
-              "Get at least eight hours of sleep",
-              "Etiam varius tristique nunc vitae venenatis."
-            ])
-          );
+          let task = "Drink eight glasses of water";
+          // const fullday = false
+          Meteor.call("task.addTask", task);
+          let taskTwo = "I don't know what to write";
+          // const fullday = false
+          Meteor.call("task.addTask", taskTwo);
+
+          let taskThree = "I need to add proper info here";
+          Meteor.call("task.addTask", taskThree);
         }}
       >
         <Card className={classes.container}>
@@ -66,7 +69,7 @@ const FocusCard = props => {
           <CardMedia
             className={classes.card}
             component="img"
-            image="/liri.png"
+            image="/health.png"
           />
           <Typography variant="body2" className={classes.text} component="p">
             Praesent et lectus ultricies, convallis odio in, auctor erat. Nunc
@@ -75,86 +78,24 @@ const FocusCard = props => {
         </Card>
       </Button>
 
+      {/* Productivity Card */}
       <Button
         color="primary"
         onClick={() => {
-          onSubmit(
-            Meteor.call("user.addTask", userId, ["Test", "Test2", "Test3"])
-          );
+          let task = "Placeholder";
+          Meteor.call("task.addTask", task);
+          let taskTwo = "Placeholder";
+          Meteor.call("task.addTask", taskTwo);
+          let taskThree = "Placeholder";
+          Meteor.call("task.addTask", taskThree);
         }}
       >
         <Card className={classes.container}>
-          <Typography variant="h4">Placeholder</Typography>
+          <Typography variant="h4">Productivity</Typography>
           <CardMedia
             className={classes.card}
             component="img"
-            image="/liri.png"
-          />
-          <Typography variant="body2" className={classes.text} component="p">
-            Praesent et lectus ultricies, convallis odio in, auctor erat. Nunc
-            ut lobortis nunc. In at semper justo, at hendrerit dui.
-          </Typography>
-        </Card>
-      </Button>
-
-      <Button
-        color="primary"
-        onClick={() => {
-          onSubmit(
-            Meteor.call("user.addTask", userId, ["Test", "Test2", "Test3"])
-          );
-        }}
-      >
-        <Card className={classes.container}>
-          <Typography variant="h4">Placeholder</Typography>
-          <CardMedia
-            className={classes.card}
-            component="img"
-            image="/liri.png"
-          />
-          <Typography variant="body2" className={classes.text} component="p">
-            Praesent et lectus ultricies, convallis odio in, auctor erat. Nunc
-            ut lobortis nunc. In at semper justo, at hendrerit dui.
-          </Typography>
-        </Card>
-      </Button>
-
-      <Button
-        color="primary"
-        onClick={() => {
-          onSubmit(
-            Meteor.call("user.addTask", userId, ["Test", "Test2", "Test3"])
-          );
-        }}
-      >
-        <Card className={classes.container}>
-          <Typography variant="h4">Placeholder</Typography>
-          <CardMedia
-            className={classes.card}
-            component="img"
-            image="/liri.png"
-          />
-          <Typography variant="body2" className={classes.text} component="p">
-            Praesent et lectus ultricies, convallis odio in, auctor erat. Nunc
-            ut lobortis nunc. In at semper justo, at hendrerit dui.
-          </Typography>
-        </Card>
-      </Button>
-
-      <Button
-        color="primary"
-        onClick={() => {
-          onSubmit(
-            Meteor.call("user.addTask", userId, ["Test", "Test2", "Test3"])
-          );
-        }}
-      >
-        <Card className={classes.container}>
-          <Typography variant="h4">Placeholder</Typography>
-          <CardMedia
-            className={classes.card}
-            component="img"
-            image="/liri.png"
+            image="/wait.png"
           />
           <Typography variant="body2" className={classes.text} component="p">
             Praesent et lectus ultricies, convallis odio in, auctor erat. Nunc
