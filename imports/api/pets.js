@@ -71,12 +71,6 @@ Meteor.methods({
           $set: { exp: 1 + remainingExp, hp: 100 }
         }
       );
-      const currentLevel = Pets.find({ ownerId: ownerId }).fetch()[0].level;
-      if (currentLevel >= 10) {
-        Pets.update({ ownerId: ownerId }, { $set: { stage: "young" } });
-      } else if (currentLevel >= 20) {
-        Pets.update({ ownerId: ownerId }, { $set: { stage: "adult" } });
-      }
     } else {
       Pets.update(
         { ownerId: ownerId },
@@ -100,7 +94,7 @@ Meteor.methods({
   },
   "pets.evolve"(ownerId) {
     const currentLevel = Pets.find({ ownerId: ownerId }).fetch()[0].level;
-    if (currentLevel >= 5) {
+    if (10 > currentLevel >= 5) {
       Pets.update({ ownerId: ownerId }, { $set: { stage: "young" } });
     } else if (currentLevel >= 10) {
       Pets.update({ ownerId: ownerId }, { $set: { stage: "adult" } });
