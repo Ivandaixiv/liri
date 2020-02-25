@@ -6,7 +6,18 @@ const styles = () =>
       backgroundColor: "#272727"
     },
     popUp: {
-      width: 800
+      width: 800,
+      height: 500,
+      padding: 25
+    },
+    button: {
+      margin: 25
+    },
+    form: {
+      display: "flex",
+      flexDirection: "column",
+      height: "75%",
+      justifyContent: "space-between"
     },
     text: {
       fontSize: "2rem",
