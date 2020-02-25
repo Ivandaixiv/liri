@@ -4,7 +4,6 @@ import { Form, Field } from "react-final-form";
 import {
   FormControl,
   Input,
-  Grid,
   InputLabel,
   Typography,
   Button
@@ -21,6 +20,7 @@ import "../../../api/pets";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Avatar from "@material-ui/core/Avatar";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Alert from "@material-ui/lab/Alert";
 
 function Copyright() {
   return (
@@ -30,14 +30,24 @@ function Copyright() {
     </Typography>
   );
 }
+
 class AccountForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       formToggle: true,
-      error: null
+      error: null,
+      errorMsg: null
     };
   }
+
+  timeout = () => {
+    setTimeout(() => {
+      this.setState({
+        errorMsg: null
+      });
+    }, 3000);
+  };
 
   validate = values => {
     const errors = {};
@@ -47,9 +57,11 @@ class AccountForm extends Component {
     if (!values.password) {
       errors.password = <Box color="error.main">REQUIRED</Box>;
     }
-    if (!values.username && !this.state.formToggle) {
-      errors.username = <Box color="error.main">REQUIRED</Box>;
-    }
+    // if (!this.state.formToggle) {
+    //   if (!values.username) {
+    //     errors.username = <Box color="error.main">REQUIRED</Box>;
+    //   }
+    // }
     return errors;
   };
 
@@ -58,7 +70,8 @@ class AccountForm extends Component {
 
     Accounts.createUser({ username, email, password }, error => {
       if (error) {
-        throw new Error(error);
+        this.setState({ errorMsg: error.message });
+        console.log(error);
       }
       if (Meteor.user()) {
         Meteor.call("user.newAccount", Meteor.userId());
@@ -72,7 +85,8 @@ class AccountForm extends Component {
 
     Meteor.loginWithPassword(email, password, error => {
       if (error) {
-        throw new Error(error);
+        this.setState({ errorMsg: error.message });
+        console.log(error);
       }
     });
   };
@@ -120,13 +134,13 @@ class AccountForm extends Component {
                   </FormControl>
                 )}
                 <FormControl fullWidth>
-                  <InputLabel htmlFor="email">Email</InputLabel>
+                  <InputLabel htmlFor="email">Email*</InputLabel>
                   <Field name="email">
                     {({ input, meta }) => (
                       <>
                         <Input
                           id="email"
-                          type="text"
+                          type="email"
                           inputProps={{
                             ...input,
                             autoComplete: "off"
@@ -143,7 +157,7 @@ class AccountForm extends Component {
                   </Field>
                 </FormControl>
                 <FormControl fullWidth style={{ paddingBottom: "20px" }}>
-                  <InputLabel htmlFor="password">Password</InputLabel>
+                  <InputLabel htmlFor="password">Password*</InputLabel>
                   <Field name="password">
                     {({ input, meta }) => (
                       <>
@@ -192,12 +206,19 @@ class AccountForm extends Component {
                       }}
                     >
                       {this.state.formToggle ? (
-                        <Typography>Create an Account</Typography>
+                        <Typography>Register</Typography>
                       ) : (
                         <Typography>Login</Typography>
                       )}
                     </Button>
                   </div>
+                  <br />
+                  {this.state.errorMsg && (
+                    <Alert variant="outlined" severity="warning">
+                      {this.state.errorMsg}
+                      {this.timeout()}
+                    </Alert>
+                  )}
                 </FormControl>
               </form>
             )}

@@ -25,7 +25,7 @@ const Stats = props => {
       <Box className={classes.statsContainer}>
         <Box className={classes.statsBox}>
           <Typography variant="h4">
-            {user[0].username && user[0].username}'s stats
+            {user[0].username ? user[0].username : "Your account"}'s stats
           </Typography>
           <Typography className={classes.name}>
             {pets[0] && pets[0].name} is{" "}
@@ -53,8 +53,8 @@ const Stats = props => {
             <Box>
               <Box display="flex" className={classes.petStats}>
                 <Typography> Health: {pets[0].hp}/100</Typography>
+                <Typography> Deaths: {pets[0].deathCounter}</Typography>
               </Box>
-
               <HPLinearProgress
                 variant="determinate"
                 value={pets[0].hp}
@@ -62,16 +62,16 @@ const Stats = props => {
               />
             </Box>
           )}
-          {user[0].exp && (
+          {pets[0] && (
             <Box>
               <Box display="flex" className={classes.petStats}>
                 <Typography>Level: {pets[0] && pets[0].level}</Typography>
-                <Typography> Experience: {user[0].exp}/100</Typography>
+                <Typography> Experience: {pets[0].exp}/100</Typography>
               </Box>
 
               <ExpLinearProgress
                 variant="determinate"
-                value={user[0].exp}
+                value={pets[0].exp}
                 className={classes.bar}
               />
             </Box>

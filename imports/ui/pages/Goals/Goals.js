@@ -6,11 +6,16 @@ import TaskCard from "../../components/TaskCard";
 import { withTracker } from "meteor/react-meteor-data";
 import { Tasks } from "../../../api/tasks";
 import AddTask from "../../components/AddTask";
+import Popover from "@material-ui/core/Popover";
+import PopupState, { bindTrigger, bindPopover } from "material-ui-popup-state";
+import Box from "@material-ui/core/Box";
+import Button from "@material-ui/core/Button";
+import Clock from "../../components/Clock";
+
 
 class Goals extends Component {
   render() {
     const { classes, tasks } = this.props;
-    // console.log(this.props.userId);
     return (
       <div className={classes.pad}>
         <Card className={classes.card}>
@@ -20,7 +25,52 @@ class Goals extends Component {
             </div>
             <div>
               <Typography variant="h4">
-                <span className={classes.bold}>My Goals</span>
+                <div>
+                  <Typography className={classes.bold}>My Goals</Typography>{" "}
+                  <div>
+                    <Clock />
+                  </div>
+                  <div>
+                    <PopupState variant="popover" popupId="demo-popup-popover">
+                      {popupState => (
+                        <div>
+                          <Button
+                            variant="contained"
+                            color="primary"
+                            {...bindTrigger(popupState)}
+                          >
+                            Add New Task
+                          </Button>
+                          <Popover
+                            {...bindPopover(popupState)}
+                            anchorOrigin={{
+                              vertical: "bottom",
+                              horizontal: "left"
+                            }}
+                            transformOrigin={{
+                              vertical: "top",
+                              horizontal: "right"
+                            }}
+                          >
+                            <Box p={2}>
+                              <AddTask />
+                            </Box>
+                          </Popover>
+                          <Button
+                            variant="contained"
+                            color="primary"
+                            className={classes.quickStart}
+                            onClick={() => {
+                              this.props.history.push('/focus')
+                            }}
+                          >
+                            Quick start
+                          </Button>
+                        </div>
+                      )}
+                    </PopupState>
+                  </div>
+                </div>
               </Typography>
             </div>
           </CardContent>
@@ -38,8 +88,6 @@ class Goals extends Component {
               })}
           </Grid>
         </Grid>
-
-        <AddTask />
       </div>
     );
   }

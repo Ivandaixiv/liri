@@ -18,14 +18,67 @@ Meteor.methods({
       );
     }
     Pets.insert({
-      // future consideration: add custom name
       name: "Your Liri",
       hp: 100,
       level: 1,
-      // future consideration: choose your pet
-      species: 1,
-      ownerId: this.userId
+      exp: 1,
+      species: "white",
+      ownerId: this.userId,
+      deathCounter: 0,
+      stage: "egg"
     });
+  },
+  "pets.updatePet"(pet, name, species) {
+    if (pet.ownerId !== this.userId) {
+      // Checks if the user matches
+      throw new Meteor.Error(
+        "pets.takeHP.not-authorized",
+        "You are not allowed affect this pet."
+      );
+    }
+    Pets.update(pet._id, {
+      $set: { name, species }
+    });
+  },
+  "pets.takeHP"(pet) {
+    if (pet.ownerId !== this.userId) {
+      // Checks if the user matches
+      throw new Meteor.Error(
+        "pets.takeHP.not-authorized",
+        "You are not allowed affect this pet."
+      );
+    }
+    Pets.update(pet._id, {
+      $inc: { hp: -10 }
+    });
+    if (pet.hp <= 10) {
+      Pets.update(pet._id, {
+        $inc: { deathCounter: 1 },
+        $set: { hp: 100 }
+      });
+    }
+  },
+  "pets.addCounters"(exp, ownerId) {
+    const currentUserXP = Pets.find({ ownerId: ownerId }).fetch()[0].exp;
+    const totalExp = currentUserXP + exp;
+    console.log("OwnerID: ", ownerId, "Exp:", exp);
+    if (totalExp > 99) {
+      let remainingExp = totalExp % 100;
+      Pets.update(
+        { ownerId: ownerId },
+        {
+          $inc: { level: 1 },
+          $set: { exp: 1 + remainingExp, hp: 100 }
+        }
+      );
+    } else {
+      Pets.update(
+        { ownerId: ownerId },
+        {
+          $inc: { exp: exp }
+        }
+      );
+    }
   },
   "pets.switchPet"(pet, user, specie) {
     if (user._id !== this.userId) {
@@ -39,26 +92,12 @@ Meteor.methods({
       $set: { species: specie }
     });
   },
-  "pets.evolve"(pet, user) {
-    if (user._id !== this.userId) {
-      // Checks if the user matches
-      throw new Meteor.Error(
-        "pets.evolve.not-authorized",
-        "You are not allowed to evolve this pet."
-      );
+  "pets.evolve"(ownerId) {
+    const currentLevel = Pets.find({ ownerId: ownerId }).fetch()[0].level;
+    if (10 > currentLevel >= 5) {
+      Pets.update({ ownerId: ownerId }, { $set: { stage: "young" } });
+    } else if (currentLevel >= 10) {
+      Pets.update({ ownerId: ownerId }, { $set: { stage: "adult" } });
     }
-    Pets.update(pet._id, {
-      $set: { stage: pet.stage + 1 }
-    });
   }
-  // "pets.displayLiri"(pet) {
-  //   if (task.owner !== this.userId) {
-  //     // Checks if the user matches
-  //     throw new Meteor.Error(
-  //       "pets.displayLiri.not-authorized",
-  //       "You are not allowed to display this pet."
-  //     );
-  //   }
-  //   Pets;
-  // }
 });

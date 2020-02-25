@@ -2,7 +2,7 @@ import { createStyles } from "@material-ui/styles";
 
 const styles = () =>
   createStyles({
-    //placeholder
+    // placeholder
   });
 
 export default styles;
