@@ -85,7 +85,6 @@ const ProfileCard = props => {
                   <h1>Account Details</h1>
                   <Form
                     onSubmit={onSubmit}
-                    initialValues={{ stooge: "larry", employed: false }}
                     render={({
                       handleSubmit,
                       form,

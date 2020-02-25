@@ -2,8 +2,13 @@
 
 ## Screenshots
 
-![screenshot 1](./screenshots/)
-![screenshot 1](./screenshots/)
+![Login Screen](https://user-images.githubusercontent.com/36806106/75234056-c157d780-576e-11ea-8c71-8c9e30591492.png)
+![Registration](https://user-images.githubusercontent.com/36806106/75234065-c583f500-576e-11ea-8ddc-ae836ec71e1d.png)
+![Home and Stat](https://user-images.githubusercontent.com/36806106/75234247-1bf13380-576f-11ea-84bb-5872c6c102f7.png)
+![Goal](https://user-images.githubusercontent.com/36806106/75234252-1f84ba80-576f-11ea-9b12-418ee0f470f2.png)
+![Calendar](https://user-images.githubusercontent.com/36806106/75234334-4511c400-576f-11ea-8927-c529fb5955bc.png)
+![Scoreboard](https://user-images.githubusercontent.com/36806106/75234342-48a54b00-576f-11ea-8127-048176efb939.pn)
+![Profile](https://user-images.githubusercontent.com/36806106/75234424-738f9f00-576f-11ea-91e9-fbb56039d063.png)
 
 ## Project Description
 
@@ -34,7 +39,7 @@ yarn run start
 - MongoDB
 - API
 - Javascript
-- Project Files Structuring
+- Meteor Project Files Structuring
 
 ## Team's Experience / Learning Objectives
 
@@ -43,6 +48,6 @@ Increased understanding on Meteor, MongoDB, ReactJs, Git workflow and structurin
 ## Authors
 
 - Ivan - https://github.com/Ivandaixiv
-- Lance -
-- Ian -
-- Ringo -
+- Lance - https://github.com/fostlt
+- Ian - https://github.com/IED92
+- Ringo - https://github.com/ringo-w
