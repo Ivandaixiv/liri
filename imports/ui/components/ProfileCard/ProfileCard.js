@@ -85,10 +85,16 @@ const ProfileCard = props => {
                   <h1>Account Details</h1>
                   <Form
                     onSubmit={onSubmit}
-                    render={({ handleSubmit, form, submitting, pristine }) => (
-                      <form onSubmit={handleSubmit}>
+                    render={({
+                      handleSubmit,
+                      form,
+                      submitting,
+                      pristine,
+                      values
+                    }) => (
+                      <form onSubmit={handleSubmit} className={classes.form}>
                         <div>
-                          <label>Username</label>
+                          <Typography>Username</Typography>
                           <Field
                             name="username"
                             component="input"
@@ -97,7 +103,7 @@ const ProfileCard = props => {
                           />
                         </div>
                         <div>
-                          <label>Your Liri's name</label>
+                          <Typography>Your Liri's name</Typography>
                           <Field
                             name="petname"
                             component="input"
@@ -106,9 +112,9 @@ const ProfileCard = props => {
                           />
                         </div>
                         <div>
-                          <label>Choose Your Liri</label>
+                          <Typography>Choose Your Liri</Typography>
                           <div>
-                            <label>
+                            <Typography>
                               <Field
                                 name="species"
                                 component="input"
@@ -116,8 +122,8 @@ const ProfileCard = props => {
                                 value="white"
                               />{" "}
                               White
-                            </label>
-                            <label>
+                            </Typography>
+                            <Typography>
                               <Field
                                 name="species"
                                 component="input"
@@ -125,8 +131,8 @@ const ProfileCard = props => {
                                 value="red"
                               />{" "}
                               Red
-                            </label>
-                            <label>
+                            </Typography>
+                            <Typography>
                               <Field
                                 name="species"
                                 component="input"
@@ -134,8 +140,8 @@ const ProfileCard = props => {
                                 value="blue"
                               />{" "}
                               Blue
-                            </label>
-                            <label>
+                            </Typography>
+                            <Typography>
                               <Field
                                 name="species"
                                 component="input"
@@ -143,11 +149,11 @@ const ProfileCard = props => {
                                 value="green"
                               />{" "}
                               Green
-                            </label>
+                            </Typography>
                           </div>
                         </div>
                         <div>
-                          <label>Background Url</label>
+                          <Typography>Background Url</Typography>
                           <Field
                             name="backgroundUrl"
                             component="input"
@@ -155,14 +161,16 @@ const ProfileCard = props => {
                             placeholder="Insert a image url"
                           />
                         </div>
-                        <div className="buttons">
+                        <div>
                           <button
+                            className={classes.button}
                             type="submit"
                             disabled={submitting || pristine}
                           >
                             Submit
                           </button>
                           <button
+                            className={classes.button}
                             type="button"
                             onClick={form.reset}
                             disabled={submitting || pristine}
