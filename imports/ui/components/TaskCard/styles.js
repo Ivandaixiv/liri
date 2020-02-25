@@ -4,7 +4,7 @@ const styles = () =>
   createStyles({
     card: {
       display: "grid",
-      width: "340px",
+      width: "380px",
       height: "150px",
       overflow: "auto",
       margin: "15px 0 0 15px",
@@ -13,10 +13,7 @@ const styles = () =>
       "&:hover": {
         boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
       }
-    },
-    cardContent: {
-      // display: "flex"
-    },
+    }
     pad: {
       padding: "20"
     },
