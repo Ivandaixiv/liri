@@ -8,10 +8,12 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
+import { Users } from "../../../api/users";
+import { Pets } from "../../../api/pets";
+import { withTracker } from "meteor/react-meteor-data";
 
 const columns = [
   { id: "name", label: "Username", minWidth: 170 },
-  { id: "level", label: "Pet Level", minWidth: 100 },
   {
     id: "totalExperience",
     label: "Total Experience",
@@ -35,33 +37,9 @@ const columns = [
   }
 ];
 
-// formatRows = () => {
-//   const rows = data.map(data => {
-//     if (data) {
-
-//       return {
-//         name: Users.username,
-//         level:
-//         totalExperience:
-//         completed:
-//         streak:
-//       };
-//     }
-//   });
-//   return rows;
-// };
-
-function createData(name, level, totalExperience, completed, streak) {
-  return { name, level, totalExperience, completed, streak };
+function createData(name, totalExperience, completed, streak) {
+  return { name, totalExperience, completed, streak };
 }
-
-const rows = [
-  createData("India", 1, 1324171354, 3287263, 1),
-  createData("China", "CN", 1403500365, 9596961, 2),
-  createData("Italy", "IT", 60483973, 301340, 1),
-  createData("United States", "US", 327167434, 9833520, 2),
-  createData("Canada", "CA", 37602103, 9984670, 5)
-];
 
 const useStyles = makeStyles({
   root: {
@@ -72,7 +50,9 @@ const useStyles = makeStyles({
   }
 });
 
-export default function Scoreboard() {
+function Scoreboard(props) {
+  const rows = [];
+
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -86,6 +66,13 @@ export default function Scoreboard() {
     setPage(0);
   };
 
+  console.log("Scoreboard Props", props);
+  props.users[0] &&
+    props.users.map(user => {
+      rows.push(
+        createData(user.username, user.exp, user.tasksCompleted, user.streak)
+      );
+    });
   return (
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>
@@ -104,24 +91,30 @@ export default function Scoreboard() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map(row => {
-                return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                    {columns.map(column => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === "number"
-                            ? column.format(value)
-                            : value}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
+            {rows &&
+              rows
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map(row => {
+                  return (
+                    <TableRow
+                      hover
+                      role="checkbox"
+                      tabIndex={-1}
+                      key={row.code}
+                    >
+                      {columns.map(column => {
+                        const value = row[column.id];
+                        return (
+                          <TableCell key={column.id} align={column.align}>
+                            {column.format && typeof value === "number"
+                              ? column.format(value)
+                              : value}
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  );
+                })}
           </TableBody>
         </Table>
       </TableContainer>
@@ -137,3 +130,12 @@ export default function Scoreboard() {
     </Paper>
   );
 }
+
+export default withTracker(() => {
+  Meteor.subscribe("users");
+  Meteor.subscribe("pets");
+  return {
+    users: Users.find({}).fetch(),
+    pets: Pets.find({}).fetch()
+  };
+})(Scoreboard);
