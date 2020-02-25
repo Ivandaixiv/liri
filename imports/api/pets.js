@@ -61,7 +61,6 @@ Meteor.methods({
   "pets.addCounters"(exp, ownerId) {
     const currentUserXP = Pets.find({ ownerId: ownerId }).fetch()[0].exp;
     const totalExp = currentUserXP + exp;
-    console.log("OwnerID: ", ownerId, "Exp:", exp);
     if (totalExp > 99) {
       let remainingExp = totalExp % 100;
       Pets.update(

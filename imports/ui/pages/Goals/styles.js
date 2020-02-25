@@ -13,7 +13,6 @@ const styles = () =>
       minHeight: 150,
       paddingBottom: "10px",
       backgroundColor: "#46bf8f"
-      // opacity: "0.95"
     },
     cardContent: {},
     title: {
@@ -33,7 +32,6 @@ const styles = () =>
     quickStart: {
       marginLeft: "15px"
     }
-
   });
 
 export default styles;

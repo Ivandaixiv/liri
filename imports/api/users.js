@@ -52,11 +52,9 @@ Meteor.methods({
   },
 
   "friend.friends"() {
-    console.log("find users with friends containing", Meteor.userId());
     const response = Users.find({
       "profile.friends": { $in: [Meteor.userId()] }
     }).fetch();
-    console.log("server response", response);
     return response;
   },
 

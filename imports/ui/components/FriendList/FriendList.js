@@ -18,7 +18,6 @@ import Box from "@material-ui/core/Box";
 const FriendList = props => {
   const classes = styles();
   const { friends, allUsers, commonFriends } = props;
-  console.log(commonFriends);
   return (
     <Grid container item xs="auto" justify="center" className={classes.grid}>
       <Card className={classes.card}>

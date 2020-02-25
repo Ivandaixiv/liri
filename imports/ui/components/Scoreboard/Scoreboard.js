@@ -66,7 +66,6 @@ function Scoreboard(props) {
     setPage(0);
   };
 
-  console.log("Scoreboard Props", props);
   props.users[0] &&
     props.users.map(user => {
       rows.push(
@@ -103,7 +102,6 @@ function Scoreboard(props) {
                 .map(row => {
                   return (
                     <TableRow hover role="checkbox" tabIndex={-1} key={row._id}>
-                      {console.log("Row:", row)}
                       {columns.map(column => {
                         const value = row[column.id];
                         return (
