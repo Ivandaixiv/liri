@@ -19,14 +19,7 @@ const FriendList = props => {
   const classes = styles();
   const { friends, allUsers, notFriends } = props;
   return (
-    <Grid
-      container
-      item
-      xs="auto"
-      justify="center"
-      spacing={3}
-      className={classes.grid}
-    >
+    <Grid container item xs="auto" justify="center" className={classes.grid}>
       <Card className={classes.card}>
         <List
           subheader={
