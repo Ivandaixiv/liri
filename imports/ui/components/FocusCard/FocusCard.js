@@ -5,6 +5,7 @@ import { Users } from "../../../api/users";
 import { Tasks } from "../../../api/tasks";
 import "../../../api/tasks";
 import "../../../api/users";
+import { Router, Route } from 'react-router'
 import {
   Card,
   CardMedia,
@@ -103,6 +104,85 @@ const FocusCard = props => {
           </Typography>
         </Card>
       </Button>
+
+      {/* Productivity Card */}
+      <Button
+        color="primary"
+        onClick={() => {
+          let task = "Placeholder";
+          Meteor.call("task.addTask", task);
+          let taskTwo = "Placeholder";
+          Meteor.call("task.addTask", taskTwo);
+          let taskThree = "Placeholder";
+          Meteor.call("task.addTask", taskThree);
+        }}
+      >
+        <Card className={classes.container}>
+          <Typography variant="h4">Placeholder</Typography>
+          <CardMedia
+            className={classes.card}
+            component="img"
+            image="/liri.png"
+          />
+          <Typography variant="body2" className={classes.text} component="p">
+            Praesent et lectus ultricies, convallis odio in, auctor erat. Nunc
+            ut lobortis nunc. In at semper justo, at hendrerit dui.
+          </Typography>
+        </Card>
+      </Button>
+
+            {/* Productivity Card */}
+            <Button
+        color="primary"
+        onClick={() => {
+          let task = "Placeholder";
+          Meteor.call("task.addTask", task);
+          let taskTwo = "Placeholder";
+          Meteor.call("task.addTask", taskTwo);
+          let taskThree = "Placeholder";
+          Meteor.call("task.addTask", taskThree);
+        }}
+      >
+        <Card className={classes.container}>
+          <Typography variant="h4">Placeholder</Typography>
+          <CardMedia
+            className={classes.card}
+            component="img"
+            image="/liri.png"
+          />
+          <Typography variant="body2" className={classes.text} component="p">
+            Praesent et lectus ultricies, convallis odio in, auctor erat. Nunc
+            ut lobortis nunc. In at semper justo, at hendrerit dui.
+          </Typography>
+        </Card>
+      </Button>
+
+            {/* Productivity Card */}
+            <Button
+        color="primary"
+        onClick={() => {
+          let task = "Placeholder";
+          Meteor.call("task.addTask", task);
+          let taskTwo = "Placeholder";
+          Meteor.call("task.addTask", taskTwo);
+          let taskThree = "Placeholder";
+          Meteor.call("task.addTask", taskThree);
+        }}
+      >
+        <Card className={classes.container}>
+          <Typography variant="h4">Placeholder</Typography>
+          <CardMedia
+            className={classes.card}
+            component="img"
+            image="/liri.png"
+          />
+          <Typography variant="body2" className={classes.text} component="p">
+            Praesent et lectus ultricies, convallis odio in, auctor erat. Nunc
+            ut lobortis nunc. In at semper justo, at hendrerit dui.
+          </Typography>
+        </Card>
+      </Button>
+
     </div>
   );
 };
