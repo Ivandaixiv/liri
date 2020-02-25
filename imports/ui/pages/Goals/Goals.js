@@ -12,6 +12,7 @@ import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import Clock from "../../components/Clock";
 
+
 class Goals extends Component {
   render() {
     const { classes, tasks } = this.props;
@@ -55,6 +56,15 @@ class Goals extends Component {
                               <AddTask />
                             </Box>
                           </Popover>
+                          <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={() => {
+                              this.props.history.push('/focus')
+                            }}
+                          >
+                            Quick start
+                          </Button>
                         </div>
                       )}
                     </PopupState>

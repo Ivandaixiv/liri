@@ -16,7 +16,10 @@ import {
 const FocusCard = props => {
   const { classes, user, userId, tasks, values, task } = props;
   console.log(props);
-  const onSubmit = value => {};
+  const onSubmit = () => {
+    this.props.history.push("/home");
+    console.log("test")
+  };
 
   return (
     <div className={classes.mainContainer}>
@@ -25,14 +28,12 @@ const FocusCard = props => {
         color="primary"
         onClick={() => {
           let task = "Do at least 10 pull-ups.";
-          // const fullday = false
           Meteor.call("task.addTask", task);
           let taskTwo = "Run for at least 30 minutes.";
-          // const fullday = false
           Meteor.call("task.addTask", taskTwo);
-
           let taskThree = "Do stuff";
           Meteor.call("task.addTask", taskThree);
+          onSubmit(value);
         }}
       >
         <Card className={classes.container}>
@@ -54,12 +55,9 @@ const FocusCard = props => {
         color="primary"
         onClick={() => {
           let task = "Drink eight glasses of water";
-          // const fullday = false
           Meteor.call("task.addTask", task);
           let taskTwo = "I don't know what to write";
-          // const fullday = false
           Meteor.call("task.addTask", taskTwo);
-
           let taskThree = "I need to add proper info here";
           Meteor.call("task.addTask", taskThree);
         }}
@@ -130,8 +128,8 @@ const FocusCard = props => {
         </Card>
       </Button>
 
-            {/* Productivity Card */}
-            <Button
+      {/* Productivity Card */}
+      <Button
         color="primary"
         onClick={() => {
           let task = "Placeholder";
@@ -156,8 +154,8 @@ const FocusCard = props => {
         </Card>
       </Button>
 
-            {/* Productivity Card */}
-            <Button
+      {/* Productivity Card */}
+      <Button
         color="primary"
         onClick={() => {
           let task = "Placeholder";
@@ -181,7 +179,6 @@ const FocusCard = props => {
           </Typography>
         </Card>
       </Button>
-
     </div>
   );
 };
