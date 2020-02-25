@@ -35,22 +35,21 @@ const columns = [
   }
 ];
 
-formatRows = () => {
-  const dates = this.props.tasks.map(task => {
-    if (task.startDate && task.endDate) {
-      task.fullday = true;
+// formatRows = () => {
+//   const rows = data.map(data => {
+//     if (data) {
 
-      return {
-        name: Users.username,
-        level: task.fullday,
-        totalExperience: moment(task.startDate).format("YYYY-MM-DD"),
-        completed: moment(task.endDate).format("YYYY-MM-DD"),
-        streak: task
-      };
-    }
-  });
-  return dates;
-};
+//       return {
+//         name: Users.username,
+//         level:
+//         totalExperience:
+//         completed:
+//         streak:
+//       };
+//     }
+//   });
+//   return rows;
+// };
 
 function createData(name, level, totalExperience, completed, streak) {
   return { name, level, totalExperience, completed, streak };
