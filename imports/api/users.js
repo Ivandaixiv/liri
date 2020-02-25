@@ -22,7 +22,11 @@ if (Meteor.isServer) {
 Meteor.methods({
   "user.newAccount"(userId) {
     Meteor.users.update(userId, {
-      $set: { tasksCompleted: 0, streak: 1, exp: 1 }
+      $set: {
+        tasksCompleted: 0,
+        streak: 1,
+        exp: 1
+      }
     });
   },
   "user.addCounters"(exp) {
