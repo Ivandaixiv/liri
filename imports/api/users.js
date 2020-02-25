@@ -40,6 +40,11 @@ Meteor.methods({
       $set: { streak: 1 }
     });
   },
+  "user.updateUsername"(username) {
+    Meteor.users.update(Meteor.userId(), {
+      $set: { username }
+    });
+  },
   "user.updateFocus"(userId, focuses) {
     Meteor.users.update(userId, {
       $push: { currentTasks: task }

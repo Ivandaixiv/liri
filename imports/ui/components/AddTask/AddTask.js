@@ -65,13 +65,14 @@ class AddTask extends Component {
             form: { mutators },
             handleSubmit,
             reset,
+            form,
             submitting,
             pristine,
             values
           }) => (
             <form
               onSubmit={event => {
-                handleSubmit(event).then(reset);
+                handleSubmit(event).then(() => form.reset());
               }}
               noValidate
             >
@@ -146,7 +147,7 @@ class AddTask extends Component {
                     <Button
                       type="button"
                       variant="contained"
-                      onClick={reset}
+                      onClick={form.reset}
                       disabled={submitting || pristine}
                     >
                       Reset

@@ -18,15 +18,26 @@ Meteor.methods({
       );
     }
     Pets.insert({
-      // future consideration: add custom name
       name: "Your Liri",
       hp: 100,
       level: 1,
       exp: 1,
-      // future consideration: choose your pet
-      species: 1,
+      species: "white",
       ownerId: this.userId,
-      deathCounter: 0
+      deathCounter: 0,
+      stage: "egg"
+    });
+  },
+  "pets.updatePet"(pet, name, species) {
+    if (pet.ownerId !== this.userId) {
+      // Checks if the user matches
+      throw new Meteor.Error(
+        "pets.takeHP.not-authorized",
+        "You are not allowed affect this pet."
+      );
+    }
+    Pets.update(pet._id, {
+      $set: { name, species }
     });
   },
   "pets.takeHP"(pet) {
@@ -60,6 +71,12 @@ Meteor.methods({
           $set: { exp: 1 + remainingExp, hp: 100 }
         }
       );
+      const currentLevel = Pets.find({ ownerId: ownerId }).fetch()[0].level;
+      if (currentLevel >= 10) {
+        Pets.update({ ownerId: ownerId }, { $set: { stage: "young" } });
+      } else if (currentLevel >= 20) {
+        Pets.update({ ownerId: ownerId }, { $set: { stage: "adult" } });
+      }
     } else {
       Pets.update(
         { ownerId: ownerId },
@@ -81,26 +98,12 @@ Meteor.methods({
       $set: { species: specie }
     });
   },
-  "pets.evolve"(pet, user) {
-    if (user._id !== this.userId) {
-      // Checks if the user matches
-      throw new Meteor.Error(
-        "pets.evolve.not-authorized",
-        "You are not allowed to evolve this pet."
-      );
+  "pets.evolve"(ownerId) {
+    const currentLevel = Pets.find({ ownerId: ownerId }).fetch()[0].level;
+    if (currentLevel >= 5) {
+      Pets.update({ ownerId: ownerId }, { $set: { stage: "young" } });
+    } else if (currentLevel >= 10) {
+      Pets.update({ ownerId: ownerId }, { $set: { stage: "adult" } });
     }
-    Pets.update(pet._id, {
-      $set: { stage: pet.stage + 1 }
-    });
   }
-  // "pets.displayLiri"(pet) {
-  //   if (task.owner !== this.userId) {
-  //     // Checks if the user matches
-  //     throw new Meteor.Error(
-  //       "pets.displayLiri.not-authorized",
-  //       "You are not allowed to display this pet."
-  //     );
-  //   }
-  //   Pets;
-  // }
 });
