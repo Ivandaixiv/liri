@@ -37,8 +37,8 @@ const columns = [
   }
 ];
 
-function createData(name, totalExperience, completed, streak) {
-  return { name, totalExperience, completed, streak };
+function createData(name, totalExperience, completed, streak, _id) {
+  return { name, totalExperience, completed, streak, _id };
 }
 
 const useStyles = makeStyles({
@@ -70,7 +70,13 @@ function Scoreboard(props) {
   props.users[0] &&
     props.users.map(user => {
       rows.push(
-        createData(user.username, user.exp, user.tasksCompleted, user.streak)
+        createData(
+          user.username,
+          user.exp,
+          user.tasksCompleted,
+          user.streak,
+          user._id
+        )
       );
     });
   return (
@@ -96,12 +102,8 @@ function Scoreboard(props) {
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map(row => {
                   return (
-                    <TableRow
-                      hover
-                      role="checkbox"
-                      tabIndex={-1}
-                      key={row.code}
-                    >
+                    <TableRow hover role="checkbox" tabIndex={-1} key={row._id}>
+                      {console.log("Row:", row)}
                       {columns.map(column => {
                         const value = row[column.id];
                         return (
