@@ -12,13 +12,10 @@ import FireIcon from "@material-ui/icons/Whatshot";
 import ClipboardIcon from "@material-ui/icons/Assignment";
 import { ExpLinearProgress } from "./styles";
 import { HPLinearProgress } from "./styles";
-// import PropTypes from "prop-types";
 
 const Stats = props => {
   const { classes, user, pets } = props;
-  console.log("Props", props);
 
-  user.length > 0 && user[0].username && console.log("User", user[0]);
   return (
     user.length > 0 &&
     user[0] && (

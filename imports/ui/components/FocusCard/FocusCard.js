@@ -12,24 +12,20 @@ import {
   Typography,
   withStyles
 } from "@material-ui/core";
-import { withRouter, Redirect } from 'react-router-dom';
-
+import { withRouter, Redirect } from "react-router-dom";
 
 const FocusCard = props => {
   const { classes, user, userId, tasks, values, task } = props;
-  console.log(props);
   const onSubmit = () => {
-  window.location.href = '/goals';
+    window.location.href = "/goals";
   };
 
   return (
-    
     <div className={classes.mainContainer}>
       {/* Fitness Card */}
       <Button
         color="primary"
         onClick={() => {
-          
           let task = "Do at least 10 pull-ups.";
           Meteor.call("task.addTask", task);
           let taskTwo = "Run for at least 30 minutes.";
@@ -47,7 +43,8 @@ const FocusCard = props => {
             image="fitness.png"
           />
           <Typography variant="body2" className={classes.text} component="p">
-          Feel fit, active, and healthy. Kick-start your fitness by quickly adding a few fitness goals.  
+            Feel fit, active, and healthy. Kick-start your fitness by quickly
+            adding a few fitness goals.
           </Typography>
         </Card>
       </Button>
@@ -73,7 +70,8 @@ const FocusCard = props => {
             image="/health.png"
           />
           <Typography variant="body2" className={classes.text} component="p">
-            Feel physically, and mentally better. Quickly add a few goals to start a healthy lifestyle.
+            Feel physically, and mentally better. Quickly add a few goals to
+            start a healthy lifestyle.
           </Typography>
         </Card>
       </Button>
@@ -99,7 +97,8 @@ const FocusCard = props => {
             image="/wait.png"
           />
           <Typography variant="body2" className={classes.text} component="p">
-            Become more efficient, and productive. Quickly add a few tasks to increase your productivity.
+            Become more efficient, and productive. Quickly add a few tasks to
+            increase your productivity.
           </Typography>
         </Card>
       </Button>

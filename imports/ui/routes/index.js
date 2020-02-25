@@ -13,8 +13,6 @@ import Focuses from "../pages/Focuses";
 
 import { Tasks } from "../../api/tasks";
 
-// import FullScreenLoader from "../components/FullScreenLoader";
-
 const Routes = props => {
   return props.userId ? (
     <>

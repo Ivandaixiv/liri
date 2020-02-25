@@ -1,8 +1,5 @@
 import { createStyles } from "@material-ui/styles";
 
-const styles = () =>
-  createStyles({
-    // placeholder
-  });
+const styles = () => createStyles({});
 
 export default styles;
